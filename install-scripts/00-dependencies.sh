@@ -72,4 +72,15 @@ for PKG1 in "${dependencies[@]}"; do
   fi
 done
 
+# Installation of main dependencies
+printf "\n%s - Installing hyprland dependencies.... \n" "${NOTE}"
+
+for PKG1 in "${hyprland_dep[@]}"; do
+  install_package "$PKG1" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
+    exit 1
+  fi
+done
+
 clear

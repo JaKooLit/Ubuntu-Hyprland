@@ -18,7 +18,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_image.log"
-MLOG="install-$(date +%d-%H%M%S)_image.log"
+MLOG="install-$(date +%d-%H%M%S)_image2.log"
 
 # Installing dependencies
 for PKG1 in "${depend[@]}"; do

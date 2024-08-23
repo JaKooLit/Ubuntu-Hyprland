@@ -3,7 +3,7 @@
 # This script is cleaning up previous manual installation files / directories
 
 # 22 Aug 2024
-# Files to be removed rom /usr/local/bin
+# Files to be removed from /usr/local/bin
 
 TARGET_DIR="/usr/local/bin"
 

@@ -149,7 +149,7 @@ chmod +x install.sh
 ./install.sh
 ```
 <p align="center">
-    <img align="center" width="100%" src="https://github.com/JaKooLit/Ubuntu-Hyprland/blob/Ubuntu-24.04-LTS/Ubuntu24.04.png" />
+    <img align="center" width="100%" src="https://github.com/JaKooLit/Ubuntu-Hyprland/blob/24.10/Ubuntu.png" />
 
 #### ✨ for ZSH and OH-MY-ZSH installation
 > installer should auto change your default shell to zsh. However, if it does not, do this
@@ -176,17 +176,16 @@ source ~/.zshrc
 - swww [`LINK`](https://github.com/Horus645/swww)
 - hyprlock [`LINK`](https://github.com/hyprwm/hyprlock)
 - hypridle [`LINK`](https://github.com/hyprwm/hypridle)
-- hyprlang [`LINK`](https://github.com/hyprwm/hyprlang)
-- hyprcursor [`LINK`](https://github.com/hyprwm/hyprcursor)
-- swappy [`LINK`](https://github.com/jtheoof/swappy)
 - xdg-desktop-portal-hyprland [`LINK`](https://github.com/hyprwm/xdg-desktop-portal-hyprland)
 - rofi-wayland [`LINK`](https://github.com/lbonn/rofi)
+- Imagemagick [`LINK`](https://github.com/ImageMagick/ImageMagick) - as of 23 AUG 2024, version 7 still not on official repo, hence needed to build from source
+
 > [!TIP]
 > To update to latest packages, re-running this script will auto update all. Script is configured to pull latest packages build for you.
 
 #### 🤬 FAQ
 #### Most common question I got is, Hey Ja, Why the heck it is taking long time to install? Other distro like Arch its only a minute or two. Why here takes like forever?!?!?!
-- Well, most of the core packages are downloaded and Build and compiled from SOURCE. There are no pre-built binary (yet) for Ubuntu and Ubuntu. Unlike Other distros, they already have prepacked binary that can just download and install.
+- Well, some packages are downloaded, build and compiled from SOURCE. Unlike Other distros, they already have prepacked binary that can just download and install.
 
 > [!NOTE] 
 > This script does not setup audio. Kindly set up. If you have not, I recommend pipewire. `sudo apt install -y pipewire`

@@ -7,7 +7,7 @@ depend=(
 )
 
 # specific branch or release
-wal_tag="dev"
+#wal_tag="dev"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -21,7 +21,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_wallust.log"
-MLOG="install-$(date +%d-%H%M%S)_wallust.log"
+MLOG="install-$(date +%d-%H%M%S)_wallust2.log"
 
 # Installing dependencies
 for PKG1 in "${depend[@]}"; do
@@ -42,7 +42,7 @@ fi
 
 # Clone and build wallust
 printf "${NOTE} Installing wallust...\n"
-if git clone --depth 1 -b "$wal_tag" https://codeberg.org/explosion-mental/wallust.git; then
+if git clone --depth 1 https://codeberg.org/explosion-mental/wallust.git; then
     cd wallust || exit 1
     make
     if sudo make install 2>&1 | tee -a "$MLOG"; then
