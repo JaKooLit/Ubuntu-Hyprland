@@ -10,10 +10,10 @@ fi
 
 clear
 
-printf "\n%.0s" {1..3}                            
+printf "\n%.0s" {1..3}
 echo "   |  _.   |/  _   _  |  o _|_ "
 echo " \_| (_| o |\ (_) (_) |_ |  |_ "
-printf "\n%.0s" {1..2}  
+printf "\n%.0s" {1..2}
 
 # Welcome message
 echo "$(tput setaf 6)Welcome to JaKooLit's Ubuntu 24.04 Hyprland Install Script!$(tput sgr0)"
@@ -26,7 +26,7 @@ echo "$(tput setaf 3)NOTE: If you are installing on a VM, ensure to enable 3D ac
 echo
 
 printf "\n%.0s" {1..4}
-echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT NOTICE!!!! $(tput sgr0)" 
+echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT NOTICE!!!! $(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)Latest Hyprland compatible with Ubuntu 24.04 is only up to v0.39.1 $(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)This was due to old version is wayland-protocols available in Ubuntu Repo $(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)Because of the above, the latest Hyprland-Dots compatible will only be v2.2.13 $(tput sgr0)"
@@ -35,7 +35,7 @@ echo "$(tput bold)$(tput setaf 7)This would also mean that support for this proj
 echo "$(tput bold)$(tput setaf 7)Please be guided$(tput sgr0)"
 printf "\n%.0s" {1..3}
 
-read -p "$(tput setaf 6)Would you like to proceed? (y/n): $(tput sgr0)" proceed
+read -p "$(tput setaf 6)Would you like to proceed? (y/n) : $(tput sgr0)" proceed
 
 if [ "$proceed" != "y" ]; then
     echo "Installation aborted."
@@ -113,6 +113,7 @@ ask_custom_option() {
         fi
     done
 }
+
 # Function to execute a script if it exists and make it executable
 execute_script() {
     local script="$1"
@@ -162,20 +163,16 @@ execute_script "00-dependencies.sh"
 execute_script "00-hypr-pkgs.sh"
 execute_script "imagemagick.sh"
 execute_script "fonts.sh"
-execute_script "swappy.sh"
 execute_script "swww.sh"
 execute_script "rofi-wayland.sh"
 execute_script "wallust.sh"
 execute_script "ags.sh"
 execute_script "hyprlang.sh"
 execute_script "hyprlock.sh"
-execute_script "hyprcursor.sh"
 execute_script "hypridle.sh"
 execute_script "hyprland.sh"
-execute_script "hypr-eco.sh"
 
 
-#execute_script "cliphist.sh"
 
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
@@ -212,6 +209,7 @@ fi
 if [ "$rog" == "Y" ]; then
     execute_script "rog.sh"
 fi
+
 # re-install rofi-wayland
 execute_script "rofi-wayland.sh"
 execute_script "InputGroup.sh"
@@ -237,7 +235,7 @@ printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not inst
 printf "\n"
 printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
 
-read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
+read -p "${CAT} Would you like to reboot now? (y/n): " HYP
 
 if [[ "$HYP" =~ ^[Yy]$ ]]; then
     if [[ "$nvidia" == "Y" ]]; then
@@ -245,5 +243,5 @@ if [[ "$HYP" =~ ^[Yy]$ ]]; then
         systemctl reboot
     else
         systemctl reboot
-    fi    
+    fi
 fi

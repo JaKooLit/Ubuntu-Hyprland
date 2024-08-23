@@ -1,6 +1,6 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# GTK Themes & ICONS and  Sourcing from a different Repo #
+# GTK Themes & ICONS and Sourcing from a different Repo #
 
 engine=(
     unzip
@@ -20,8 +20,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_themes.log"
 
-
-# installing engine needed for gtk themes
+# Installing engine needed for GTK themes
 for PKG1 in "${engine[@]}"; do
     install_package "$PKG1" 2>&1 | tee -a "$LOG"
     if [ $? -ne 0 ]; then
@@ -37,7 +36,7 @@ if [ -d "GTK-themes-icons" ]; then
 fi
 
 echo "$NOTE Cloning GTK themes and Icons repository..." 2>&1 | tee -a "$LOG"
-if git clone https://github.com/JaKooLit/GTK-themes-icons.git ; then
+if git clone https://github.com/JaKooLit/GTK-themes-icons.git; then
     cd GTK-themes-icons
     chmod +x auto-extract.sh
     ./auto-extract.sh

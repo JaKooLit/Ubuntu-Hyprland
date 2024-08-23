@@ -10,55 +10,56 @@ Extra=(
 
 )
 
-# packages neeeded
-hypr_package=( 
-  cliphist
-  grim
-  gvfs
-  gvfs-backends
-  inxi
-  kitty
-  nano
-  pavucontrol
-  playerctl
-  polkit-kde-agent-1
-  python3-requests
-  python3-pip
-  qt5ct
-  qt5-style-kvantum
-  qt5-style-kvantum-themes
-  qt6ct
-  slurp
-  sway-notification-center
-  waybar
-  wget
-  wl-clipboard
-  wlogout
-  xdg-user-dirs
-  xdg-utils
-  yad
+# packages needed
+hypr_package=(
+    cliphist
+    grim
+    gvfs
+    gvfs-backends
+    inxi
+    kitty
+    nano
+    pavucontrol
+    playerctl
+    polkit-kde-agent-1
+    python3-requests
+    python3-pip
+    qt5ct
+    qt5-style-kvantum
+    qt5-style-kvantum-themes
+    qt6ct
+    slurp
+    swappy
+    sway-notification-center
+    waybar
+    wget
+    wl-clipboard
+    wlogout
+    xdg-user-dirs
+    xdg-utils
+    yad
 )
 
 # the following packages can be deleted. however, dotfiles may not work properly
 hypr_package_2=(
-  brightnessctl
-  btop
-  cava
-  eog
-  gnome-system-monitor
-  mousepad
-  mpv
-  mpv-mpris
-  nvtop
-  pamixer
-  qalculate-gtk
-  vim
+    brightnessctl
+    btop
+    cava
+    eog
+    gnome-system-monitor
+    mousepad
+    mpv
+    mpv-mpris
+    nvtop
+    pamixer
+    qalculate-gtk
+    vim
 )
 
 # List of packages to uninstall as it conflicts with swaync or causing swaync to not function properly
 uninstall=(
-  dunst
-  mako
+    dunst
+    mako
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -78,21 +79,21 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypr-pkgs.log"
 printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
 
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+    install_package "$PKG1" 2>&1 | tee -a "$LOG"
+    if [ $? -ne 0 ]; then
+        echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
+        exit 1
+    fi
 done
 
 printf "\n%s - Checking if mako or dunst are installed and removing for swaync to work properly \n" "${NOTE}"
 
 for PKG in "${uninstall[@]}"; do
-  uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation had failed, please check the log"
-    exit 1
-  fi
+    uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
+    if [ $? -ne 0 ]; then
+        echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation had failed, please check the log"
+        exit 1
+    fi
 done
 
 ## making brightnessctl work

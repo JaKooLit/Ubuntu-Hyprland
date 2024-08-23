@@ -3,7 +3,7 @@
 # Hyprland-Dots to download a specific release #
 
 # Define the specific release version to download
-specific_version="v2.2.14"
+specific_version="v2.3.1-1"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 

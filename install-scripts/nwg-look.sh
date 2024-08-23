@@ -1,12 +1,12 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# nwg-look ) #
+# nwg-look #
 
 nwg_look=(
-  golang
-  libgtk-3-dev
-  libcairo2-dev
-  libglib2.0-bin
+    golang
+    libgtk-3-dev
+    libcairo2-dev
+    libglib2.0-bin
 )
 
 # specific tags to download
@@ -28,11 +28,11 @@ MLOG="install-$(date +'%d-%H%M%S')_nwg-look2.log"
 
 # Installing NWG-Look Dependencies
 for PKG1 in "${nwg_look[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+    install_package "$PKG1" 2>&1 | tee -a "$LOG"
+    if [ $? -ne 0 ]; then
+        echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
+        exit 1
+    fi
 done
 
 printf "${NOTE} Installing nwg-look\n"

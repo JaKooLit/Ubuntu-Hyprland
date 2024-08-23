@@ -1,6 +1,6 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# Rofi-Wayland) #
+# Rofi-Wayland #
 
 rofi=(
   bison
@@ -8,11 +8,22 @@ rofi=(
   pandoc
   doxygen
   cppcheck
-  ohcount
   libmpdclient-dev
   libnl-3-dev
   libasound2-dev
+  libstartup-notification0-dev
+  libxcb-ewmh-dev
+  libxcb-cursor-dev
+  libxcb-icccm4-dev
+  libxcb-randr0-dev
+  libxcb-render-util0-dev
+  libxcb-util-dev
+  libxcb-xkb-dev
+  libxcb-xinerama0-dev
+  libxkbcommon-dev
+  libxkbcommon-x11-dev
 )
+
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -28,13 +39,13 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_rofi_wayland.log"
 MLOG="install-$(date +%d-%H%M%S)_rofi_wayland2.log"
 
-# uninstall other rofi
+# Uninstall other rofi
 for PKG in "rofi" "bison"; do
-  uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation had failed, please check the log"
-    exit 1
-  fi
+    uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
+    if [ $? -ne 0 ]; then
+        echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation had failed, please check the log"
+        exit 1
+    fi
 done
 
 sleep 1
@@ -43,40 +54,40 @@ printf "\n"
 printf "\n%s - Installing rofi-wayland dependencies.... \n" "${NOTE}"
 
 printf "${NOTE} Force installing packages...\n"
- for FORCE in "${rofi[@]}"; do
-   sudo apt-get --reinstall install -y "$FORCE" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $FORCE Package installation failed, Please check the installation logs"; exit 1; }
-  done
+for FORCE in "${rofi[@]}"; do
+    sudo apt-get --reinstall install -y "$FORCE" 2>&1 | tee -a "$LOG"
+    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $FORCE Package installation failed, Please check the installation logs"; exit 1; }
+done
 
 printf "\n\n"
 
-# Clone and build rofi - wayland
+# Clone and build rofi-wayland
 printf "${NOTE} Installing rofi-wayland...\n"
 
 # Check if rofi folder exists
 if [ -d "rofi" ]; then
-  printf "${NOTE} rofi folder exists. Removing existing directory...\n"
-  rm -rf rofi
+    printf "${NOTE} rofi folder exists. Removing existing directory...\n"
+    rm -rf rofi
 fi
 
-# cloning rofi-wayland
+# Cloning rofi-wayland
 printf "${NOTE} Cloning rofi-wayland repository...\n"
 if git clone https://github.com/lbonn/rofi.git; then
-  cd rofi || exit 1
+    cd rofi || exit 1
 else
-  echo -e "${ERROR} Download failed for rofi-wayland." 2>&1 | tee -a "$LOG"
-  exit 1
+    echo -e "${ERROR} Download failed for rofi-wayland." 2>&1 | tee -a "$LOG"
+    exit 1
 fi
 
 # Proceed with the installation steps
-if meson setup build && ninja -C build ; then
-  if sudo ninja -C build install 2>&1 | tee -a "$MLOG"; then
-    printf "${OK} rofi-wayland installed successfully.\n" 2>&1 | tee -a "$MLOG"
-  else
-    echo -e "${ERROR} Installation failed for rofi-wayland." 2>&1 | tee -a "$MLOG"
-  fi
+if meson setup build && ninja -C build; then
+    if sudo ninja -C build install 2>&1 | tee -a "$MLOG"; then
+        printf "${OK} rofi-wayland installed successfully.\n" 2>&1 | tee -a "$MLOG"
+    else
+        echo -e "${ERROR} Installation failed for rofi-wayland." 2>&1 | tee -a "$MLOG"
+    fi
 else
-  echo -e "${ERROR} Meson setup or ninja build failed for rofi-wayland." 2>&1 | tee -a "$MLOG"
+    echo -e "${ERROR} Meson setup or ninja build failed for rofi-wayland." 2>&1 | tee -a "$MLOG"
 fi
 
 # Move logs to Install-Logs directory

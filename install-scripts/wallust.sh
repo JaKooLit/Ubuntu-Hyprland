@@ -1,13 +1,12 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# wallust - pywal colors replacment #
+# wallust - pywal colors replacement #
 
 depend=(
-librust-jpeg-decoder-dev
-cargo
+    librust-jpeg-decoder-dev
 )
 
-#specific branch or release
+# specific branch or release
 wal_tag="dev"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -24,17 +23,16 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_wallust.log"
 MLOG="install-$(date +%d-%H%M%S)_wallust.log"
 
-# Installing depencies
+# Installing dependencies
 for PKG1 in "${depend[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+    install_package "$PKG1" 2>&1 | tee -a "$LOG"
+    if [ $? -ne 0 ]; then
+        echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
+        exit 1
+    fi
 done
 
-##
-printf "${NOTE} Installing wallust from dev branch...\n"  
+printf "${NOTE} Installing wallust from dev branch...\n"
 
 # Check if folder exists and remove it
 if [ -d "wallust" ]; then
@@ -44,20 +42,19 @@ fi
 
 # Clone and build wallust
 printf "${NOTE} Installing wallust...\n"
-if git clone --depth 1 -b $wal_tag https://codeberg.org/explosion-mental/wallust.git; then
+if git clone --depth 1 -b "$wal_tag" https://codeberg.org/explosion-mental/wallust.git; then
     cd wallust || exit 1
-	make
-    if sudo make install 2>&1 | tee -a "$MLOG" ; then
+    make
+    if sudo make install 2>&1 | tee -a "$MLOG"; then
         printf "${OK} wallust installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
         echo -e "${ERROR} Installation failed for wallust." 2>&1 | tee -a "$MLOG"
     fi
-    #moving the addional logs to Install-Logs directory
-    mv $MLOG ../Install-Logs/ || true 
+    # Moving the additional logs to Install-Logs directory
+    mv "$MLOG" ../Install-Logs/ || true 
     cd ..
 else
     echo -e "${ERROR} Download failed for wallust." 2>&1 | tee -a "$LOG"
 fi
 
 clear
-

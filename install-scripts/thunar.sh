@@ -3,13 +3,13 @@
 # Thunar #
 
 thunar=(
-ffmpegthumbnailer
-file-roller
-thunar 
-thunar-volman 
-tumbler 
-thunar-archive-plugin
-xarchiver
+    ffmpegthumbnailer
+    file-roller
+    thunar 
+    thunar-volman 
+    tumbler 
+    thunar-archive-plugin
+    xarchiver
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -25,21 +25,21 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_thunar.log"
 
-printf "${NOTE} Installing Thunar Packages...\n"  
-  for THUNAR in "${thunar[@]}"; do
+printf "${NOTE} Installing Thunar Packages...\n"
+for THUNAR in "${thunar[@]}"; do
     install_package "$THUNAR" 2>&1 | tee -a "$LOG"
     [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $THUNAR Package installation failed, Please check the installation logs"; exit 1; }
-  done
+done
 
- # Check for existing configs and copy if does not exist
+# Check for existing configs and copy if does not exist
 for DIR1 in gtk-3.0 Thunar xfce4; do
-  DIRPATH=~/.config/$DIR1
-  if [ -d "$DIRPATH" ]; then
-    echo -e "${NOTE} Config for $DIR1 found, no need to copy." 2>&1 | tee -a "$LOG"
-  else
-    echo -e "${NOTE} Config for $DIR1 not found, copying from assets." 2>&1 | tee -a "$LOG"
-    cp -r assets/$DIR1 ~/.config/ && echo "Copy $DIR1 completed!" || echo "Error: Failed to copy $DIR1 config files." 2>&1 | tee -a "$LOG"
-  fi
+    DIRPATH=~/.config/$DIR1
+    if [ -d "$DIRPATH" ]; then
+        echo -e "${NOTE} Config for $DIR1 found, no need to copy." 2>&1 | tee -a "$LOG"
+    else
+        echo -e "${NOTE} Config for $DIR1 not found, copying from assets." 2>&1 | tee -a "$LOG"
+        cp -r assets/$DIR1 ~/.config/ && echo "Copy $DIR1 completed!" || echo "Error: Failed to copy $DIR1 config files." 2>&1 | tee -a "$LOG"
+    fi
 done
 
 clear

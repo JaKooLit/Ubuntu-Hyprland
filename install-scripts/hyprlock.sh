@@ -3,11 +3,13 @@
 # hyprlock #
 
 lock=(
-libmagic-dev
+    libmagic-dev
+    libhyprlang-dev
+    libhyprutils-dev
 )
 
 #specific branch or release
-lock_tag="v0.3.0"
+lock_tag="v0.4.0"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -21,7 +23,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprlock.log"
-MLOG="install-$(date +%d-%H%M%S)_hyprlock.log"
+MLOG="install-$(date +%d-%H%M%S)_hyprlock2.log"
 
 # Installation of dependencies
 printf "\n%s - Installing hyprlock dependencies.... \n" "${NOTE}"
@@ -34,7 +36,7 @@ for PKG1 in "${lock[@]}"; do
   fi
 done
 
-# Check if hyprlidle folder exists and remove it
+# Check if hyprlock folder exists and remove it
 if [ -d "hyprlock" ]; then
     printf "${NOTE} Removing existing hyprlock folder...\n"
     rm -rf "hyprlock"
@@ -58,5 +60,5 @@ else
     echo -e "${ERROR} Download failed for hyprlock." 2>&1 | tee -a "$LOG"
 fi
 
-clear
+
 

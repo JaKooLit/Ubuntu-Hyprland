@@ -3,11 +3,11 @@
 # Fonts Required #
 
 fonts=(
-fonts-firacode
-fonts-font-awesome
-fonts-noto
-fonts-noto-cjk
-fonts-noto-color-emoji
+    fonts-firacode
+    fonts-font-awesome
+    fonts-noto
+    fonts-noto-cjk
+    fonts-noto-color-emoji
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -27,11 +27,11 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_fonts.log"
 printf "\n%s - Installing fonts.... \n" "${NOTE}"
 
 for PKG1 in "${fonts[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+    install_package "$PKG1" 2>&1 | tee -a "$LOG"
+    if [ $? -ne 0 ]; then
+        echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
+        exit 1
+    fi
 done
 
 # jetbrains nerd font. Necessary for waybar

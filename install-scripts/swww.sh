@@ -3,12 +3,10 @@
 # SWWW - Wallpaper Utility #
 
 swww=(
-cargo
-liblz4-dev
-rustc
+    liblz4-dev
 )
 
-#specific branch or release
+# specific branch or release
 swww_tag="v0.9.5"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -29,18 +27,18 @@ MLOG="install-$(date +%d-%H%M%S)_swww.log"
 printf "\n%s - Installing swww dependencies.... \n" "${NOTE}"
 
 for PKG1 in "${swww[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+    install_package "$PKG1" 2>&1 | tee -a "$LOG"
+    if [ $? -ne 0 ]; then
+        echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
+        exit 1
+    fi
 done
 
 printf "${NOTE} Force installing packages...\n"
- for FORCE in "${swww[@]}"; do
-   sudo apt-get --reinstall install -y "$FORCE" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $FORCE Package installation failed, Please check the installation logs"; exit 1; }
-  done
+for FORCE in "${swww[@]}"; do
+    sudo apt-get --reinstall install -y "$FORCE" 2>&1 | tee -a "$LOG"
+    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $FORCE Package installation failed, Please check the installation logs"; exit 1; }
+done
 
 printf "\n\n"
 
@@ -48,17 +46,17 @@ printf "${NOTE} Installing swww\n"
 
 # Check if swww folder exists
 if [ -d "swww" ]; then
-  printf "${NOTE} swww folder exists. Pulling latest changes...\n"
-  cd swww || exit 1
-  git pull origin main 2>&1 | tee -a "$MLOG"
-else
-  printf "${NOTE} Cloning swww repository...\n"
-  if git clone --recursive https://github.com/Horus645/swww.git; then
+    printf "${NOTE} swww folder exists. Pulling latest changes...\n"
     cd swww || exit 1
-  else
-    echo -e "${ERROR} Download failed for swww" 2>&1 | tee -a "$LOG"
-    exit 1
-  fi
+    git pull origin main 2>&1 | tee -a "$MLOG"
+else
+    printf "${NOTE} Cloning swww repository...\n"
+    if git clone --recursive https://github.com/Horus645/swww.git; then
+        cd swww || exit 1
+    else
+        echo -e "${ERROR} Download failed for swww" 2>&1 | tee -a "$LOG"
+        exit 1
+    fi
 fi
 
 # Proceed with the rest of the installation steps

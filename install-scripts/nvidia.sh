@@ -4,9 +4,9 @@
 # UBUNTU USERS, FOLLOW README!
 
 nvidia_pkg=(
-  libva-wayland2
-  libnvidia-egl-wayland1
-  nvidia-vaapi-driver
+    libva-wayland2
+    libnvidia-egl-wayland1
+    nvidia-vaapi-driver
 )
 
 # for ubuntu-nvidia owners! just delete #
@@ -53,52 +53,51 @@ add_to_file() {
 
 # Install additional Nvidia packages
 printf "${YELLOW} Installing Nvidia packages...\n"
-  for NVIDIA in "${nvidia_pkg[@]}"; do
+for NVIDIA in "${nvidia_pkg[@]}"; do
     install_package "$NVIDIA" 2>&1 | tee -a "$LOG"
-  done
+done
 
+printf "${YELLOW} nvidia-stuff to /etc/default/grub...\n"
 
-printf "${YELLOW} nvidia-stuff to /etc/default/grub..."
+# Additional options to add to GRUB_CMDLINE_LINUX
+additional_options="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 rcutree.rcu_idle_gp_delay=1"
 
-  # Additional options to add to GRUB_CMDLINE_LINUX
-  additional_options="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 rcutree.rcu_idle_gp_delay=1"
-
-  # Check if additional options are already present in GRUB_CMDLINE_LINUX
-  if grep -q "GRUB_CMDLINE_LINUX.*$additional_options" /etc/default/grub; then
+# Check if additional options are already present in GRUB_CMDLINE_LINUX
+if grep -q "GRUB_CMDLINE_LINUX.*$additional_options" /etc/default/grub; then
     echo "GRUB_CMDLINE_LINUX already contains the additional options"
-  else
+else
     # Append the additional options to GRUB_CMDLINE_LINUX
     sudo sed -i "s/GRUB_CMDLINE_LINUX=\"/GRUB_CMDLINE_LINUX=\"$additional_options /" /etc/default/grub
     echo "Added the additional options to GRUB_CMDLINE_LINUX"
-  fi
+fi
 
-  # Update GRUB configuration
-  sudo update-grub 2>&1 | tee -a "$LOG"
-    
-  # Define the configuration file and the line to add
-    config_file="/etc/modprobe.d/nvidia.conf"
-    line_to_add="""
-    options nvidia-drm modeset=1 fbdev=1
-    options nvidia NVreg_PreserveVideoMemoryAllocations=1
-    """
+# Update GRUB configuration
+sudo update-grub 2>&1 | tee -a "$LOG"
 
-    # Check if the config file exists
-    if [ ! -e "$config_file" ]; then
-        echo "Creating $config_file"
-        sudo touch "$config_file" 2>&1 | tee -a "$LOG"
-    fi
+# Define the configuration file and the line to add
+config_file="/etc/modprobe.d/nvidia.conf"
+line_to_add="""
+options nvidia-drm modeset=1 fbdev=1
+options nvidia NVreg_PreserveVideoMemoryAllocations=1
+"""
 
-    add_to_file "$config_file" "$line_to_add"
+# Check if the config file exists
+if [ ! -e "$config_file" ]; then
+    echo "Creating $config_file"
+    sudo touch "$config_file" 2>&1 | tee -a "$LOG"
+fi
 
-   # Add NVIDIA modules to initramfs configuration
-   modules_to_add="nvidia nvidia_modeset nvidia_uvm nvidia_drm"
-   modules_file="/etc/initramfs-tools/modules"
+add_to_file "$config_file" "$line_to_add"
 
-   if [ -e "$modules_file" ]; then
+# Add NVIDIA modules to initramfs configuration
+modules_to_add="nvidia nvidia_modeset nvidia_uvm nvidia_drm"
+modules_file="/etc/initramfs-tools/modules"
+
+if [ -e "$modules_file" ]; then
     add_to_file "$modules_file" "$modules_to_add" 2>&1 | tee -a "$LOG"
     sudo update-initramfs -u 2>&1 | tee -a "$LOG"
-   else
+else
     echo "Modules file ($modules_file) not found." 2>&1 | tee -a "$LOG"
-   fi
+fi
 
 clear
