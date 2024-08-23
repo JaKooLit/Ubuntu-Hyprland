@@ -16,7 +16,7 @@ echo " \_| (_| o |\ (_) (_) |_ |  |_ "
 printf "\n%.0s" {1..2}
 
 # Welcome message
-echo "$(tput setaf 6)Welcome to JaKooLit's Ubuntu 24.04 Hyprland Install Script!$(tput sgr0)"
+echo "$(tput setaf 6)Welcome to JaKooLit's Ubuntu 24.10 Hyprland Install Script!$(tput sgr0)"
 echo
 echo "$(tput setaf 166)ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) $(tput sgr0)"
 echo
@@ -24,16 +24,6 @@ echo "$(tput setaf 3)NOTE: You will be required to answer some questions during 
 echo
 echo "$(tput setaf 3)NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! $(tput sgr0)"
 echo
-
-printf "\n%.0s" {1..4}
-echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT NOTICE!!!! $(tput sgr0)"
-echo "$(tput bold)$(tput setaf 7)Latest Hyprland compatible with Ubuntu 24.04 is only up to v0.39.1 $(tput sgr0)"
-echo "$(tput bold)$(tput setaf 7)This was due to old version is wayland-protocols available in Ubuntu Repo $(tput sgr0)"
-echo "$(tput bold)$(tput setaf 7)Because of the above, the latest Hyprland-Dots compatible will only be v2.2.13 $(tput sgr0)"
-echo "$(tput bold)$(tput setaf 7)Newer dots may not be compatible.$(tput sgr0)"
-echo "$(tput bold)$(tput setaf 7)This would also mean that support for this project might slowdown$(tput sgr0)"
-echo "$(tput bold)$(tput setaf 7)Please be guided$(tput sgr0)"
-printf "\n%.0s" {1..3}
 
 read -p "$(tput setaf 6)Would you like to proceed? (y/n) : $(tput sgr0)" proceed
 
@@ -167,11 +157,10 @@ execute_script "swww.sh"
 execute_script "rofi-wayland.sh"
 execute_script "wallust.sh"
 execute_script "ags.sh"
+execute_script "hyprland.sh"
 execute_script "hyprlang.sh"
 execute_script "hyprlock.sh"
 execute_script "hypridle.sh"
-execute_script "hyprland.sh"
-
 
 
 if [ "$nvidia" == "Y" ]; then

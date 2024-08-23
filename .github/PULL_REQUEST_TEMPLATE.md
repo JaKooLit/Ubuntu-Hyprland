@@ -25,11 +25,11 @@ Please put an `x` in the boxes that apply:
 
 Please put an `x` in the boxes that apply:
 
-- [ ] I have read the [CONTRIBUTING](https://github.com/JaKooLit/Debian-Hyprland/blob/main/CONTRIBUTING.md) document.
+- [ ] I have read the [CONTRIBUTING](https://github.com/JaKooLit/Ubuntu-Hyprland/blob/main/CONTRIBUTING.md) document.
 - [ ] My code follows the code style of this project.
-- [ ] My commit message follows the [commit guidelines](https://github.com/JaKooLit/Debian-Hyprland/blob/main/CONTRIBUTING.md#git-commit-messages).
+- [ ] My commit message follows the [commit guidelines](https://github.com/JaKooLit/Ubuntu-Hyprland/blob/main/CONTRIBUTING.md#git-commit-messages).
 - [ ] My change requires a change to the documentation.
-- [ ] I want to add something in Debian-Hyprland wiki.
+- [ ] I want to add something in Ubuntu-Hyprland wiki.
 - [ ] I have added tests to cover my changes.
 - [ ] I have tested my code locally and it works as expected.
 - [ ] All new and existing tests passed.

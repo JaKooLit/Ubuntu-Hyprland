@@ -4,20 +4,17 @@
   <a href="#-to-use-this-script"><kbd> <br> How to Use this Script <br> </kbd></a>&ensp;&ensp;
   <a href="#gallery-and-videos"><kbd> <br> Gallery <br> </kbd></a>&ensp;&ensp;
  </div><br>
+
+
 <div align="center">
 
-
 ## 💌 JaKooLit's Ubuntu Hyprland Install Script 💌
-#### For Ubuntu 24.04 Noble Numbat
+#### For Ubuntu 24.10 Oracular Oriole
 
-![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Debian-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Debian-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Debian-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
+![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
 
 <br/>
 </div>
-
-### 🛋️ Why I created a separate branch for Ubuntu 24.04 LTS
-- With latest Hyprland v0.40.0 released, it wont build on Ubuntu 24.04 LTS. Reason is that Ubuntu did not update their wayland-protocol. Its the reason why it wont build. 
-- This is the reason why I have to set a specific release version on Hyprland packages including its eco-system as it is most likely wayland protocol wont be updated since its an LTS version.
 
 <div align="center">
 👇 KOOL's Hyprland-Dots related Links 👇
@@ -57,7 +54,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 #### ⚠️ Pre-requisites and VERY Important! ### 
 - Do not run this installer as sudo or as root
 - This Installer requires a user with a priviledge to install packages
-- This is only tested on 24.04 LTS. Older Ubuntu versions wont work
+- This is only 24.10 Oracular Oriole. Check [`MAIN BRANCH`](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/main) for other Ubuntu Versions 
 - If you have login Manager already like GDM (gnome login manager), I highly advice not to install SDDM. But if you decide to install SDDM, see here [`Issue 2 - SDDM`](https://github.com/JaKooLit/Debian-Hyprland/issues/2)
 
 > [!IMPORTANT]
@@ -74,18 +71,16 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 </summary>
 
 <p align="center">
-    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Debian/debian.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Debian/debian2.png" />       
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Ubuntu/Ubuntu.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Ubuntu/Ubuntu2.png" />       
 </p>
 
 <p align="center">
-    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/default-waybar.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Debian/debian4.png" />   
-   <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/wlogout-dark.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Debian/hyprlock.png"" /> 
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/default-waybar.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Ubuntu/Ubuntu4.png" />   
+   <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/wlogout-dark.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Ubuntu/hyprlock.png"" /> 
    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/waybar-layout.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/waybar-style.png"" /> 
 </p>
 
-#### ❕ Installed on Kali Linux 😈
 
-![alt text](https://github.com/JaKooLit/screenshots/blob/main/Hyprland-ScreenShots/Debian/Kali-Linux1.png)
 
 #### ❕ Installed on Ubuntu 24.04 LTS with Nvidia Laptop 😷 
 ![alt text](https://github.com/JaKooLit/screenshots/blob/main/Distro-Hyprland/Ubuntu/Ubuntu-24.04-nvidia.png)
@@ -93,7 +88,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 #### 📷 More updated Screenshots Here [`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-Dots-Showcase)
 
-#### 📷 Older Screenshots: v1[`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots/Debian) & v2[`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots/Debian-v2)
+#### 📷 Older Screenshots: v1[`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots/Ubuntu) & v2[`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots/Ubuntu-v2)
 
 </details>
 
@@ -123,11 +118,9 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 - the wallpaper offered to be downloaded towards the end is from this [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
 - The dotfiles that will be pulled by this installer is only specific. Since newer dotfiles might not work properly
 
-> [!NOTE]
-> There is a lot of changes on Hyprland v0.40.0. And because of this, the latest Hyprland-Dots compatible for this script will be Hyprland-Dots v2.2.14 [`LINK`](https://github.com/JaKooLit/Hyprland-Dots/releases/tag/v2.2.14)
 
 #### ✨  Some notes on this installer / Prerequisites
-- This script is meant to install in Ubuntu 24.04 LTS
+- This script is meant to install for Ubuntu 24.10 Oracular Oriole
 - If you are using gnome already, DO NOT install SDDM. GDM will work. Apart from GDM and SDDM, any other Login Manager may not work nor launch Hyprland. However, hyprland can be launched through tty by type Hyprland
 - 🕯️ network-manager-gnome (nm-applet) has been removed from the packages to install. This is because it is known to restart the networkmanager causing issues in the installation process. After you boot up, inorder to get the network-manager applet, install network-manager-gnome. `sudo apt install network-manager-gnome` See below if your network or wifi became unmanaged after installation
 - If you have nvidia, and wanted to use proprietary drivers, uninstall nouveau first (if installed). This script will be installing proprietary nvidia drivers and will not deal with removal of nouveau.
@@ -150,13 +143,13 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 ## ✨ to use this script
 > clone this repo (latest commit only) by using git. Change directory, make executable and run the script
 ```bash
-git clone --depth=1 -b Ubuntu-24.04-LTS https://github.com/JaKooLit/Debian-Hyprland.git ~/Ubuntu-Hyprland
+git clone --depth=1 -b 24.10 https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland
 cd ~/Ubuntu-Hyprland
 chmod +x install.sh
 ./install.sh
 ```
 <p align="center">
-    <img align="center" width="100%" src="https://github.com/JaKooLit/Debian-Hyprland/blob/Ubuntu-24.04-LTS/Ubuntu24.04.png" />
+    <img align="center" width="100%" src="https://github.com/JaKooLit/Ubuntu-Hyprland/blob/Ubuntu-24.04-LTS/Ubuntu24.04.png" />
 
 #### ✨ for ZSH and OH-MY-ZSH installation
 > installer should auto change your default shell to zsh. However, if it does not, do this
@@ -193,7 +186,7 @@ source ~/.zshrc
 
 #### 🤬 FAQ
 #### Most common question I got is, Hey Ja, Why the heck it is taking long time to install? Other distro like Arch its only a minute or two. Why here takes like forever?!?!?!
-- Well, most of the core packages are downloaded and Build and compiled from SOURCE. There are no pre-built binary (yet) for Debian and Ubuntu. Unlike Other distros, they already have prepacked binary that can just download and install.
+- Well, most of the core packages are downloaded and Build and compiled from SOURCE. There are no pre-built binary (yet) for Ubuntu and Ubuntu. Unlike Other distros, they already have prepacked binary that can just download and install.
 
 > [!NOTE] 
 > This script does not setup audio. Kindly set up. If you have not, I recommend pipewire. `sudo apt install -y pipewire`
@@ -255,13 +248,13 @@ env = WLR_RENDERER_ALLOW_SOFTWARE,1
 - [ ] ROFI issues (scaling, unexplained scaling etc). This is most likely to experience if you are installing on a system where rofi is currently installed. To fix it uninstall rofi and install rofi-wayland . `sudo apt autoremove rofi` . 
 - Install rofi-wayland with 
 ```bash
-cd ~/Debian-Hyprland
+cd ~/Ubuntu-Hyprland
 ./install-scripts/rofi-wayland.sh
 ```
 - [ ] Rofi-wayland is compatible with x11 so no need to worry.
 - [ ] Does not work in Ubuntu 23.10 and older
 - [ ] sddm blackscreen when log-out
-- [ ] Installing SDDM if or any other Login Manager installed. See [`Issue 2 - SDDM`](https://github.com/JaKooLit/Debian-Hyprland/issues/2)
+- [ ] Installing SDDM if or any other Login Manager installed. See [`Issue 2 - SDDM`](https://github.com/JaKooLit/Ubuntu-Hyprland/issues/2)
 - [ ] network is down or become unmanaged [`This`](https://askubuntu.com/questions/71159/network-manager-says-device-not-managed) might help
 - [ ] pyprland is a hit and miss. Drop down not working, zooming is hit and miss
 - [ ] See note above about Hyprland-Dots newer version incompatibility
@@ -299,6 +292,6 @@ cd ~/Debian-Hyprland
 
                         
 ## 🥰🥰 💖💖 👍👍👍
-[![Stargazers over time](https://starchart.cc/JaKooLit/Debian-Hyprland.svg?variant=adaptive)](https://starchart.cc/JaKooLit/Debian-Hyprland)
+[![Stargazers over time](https://starchart.cc/JaKooLit/Ubuntu-Hyprland.svg?variant=adaptive)](https://starchart.cc/JaKooLit/Ubuntu-Hyprland)
 
                     
