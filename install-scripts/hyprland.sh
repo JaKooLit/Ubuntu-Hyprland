@@ -4,9 +4,9 @@
 
 hypr=(
   hyprland-protocols
-  hyprland-dev
   hyprwayland-scanner
   hyprland
+  hyprland-dev
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##

@@ -7,6 +7,7 @@
 # packages neeeded
 dependencies=(
     build-essential
+    cargo
     cmake
     cmake-extras
     curl

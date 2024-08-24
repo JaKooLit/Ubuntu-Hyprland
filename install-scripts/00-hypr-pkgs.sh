@@ -13,6 +13,7 @@ Extra=(
 # packages needed
 hypr_package=(
     cliphist
+    fastfetch
     grim
     gvfs
     gvfs-backends
