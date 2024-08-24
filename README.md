@@ -27,7 +27,7 @@ Branches below are still on early stages
 > clone repo including the branch.
 
 > [!IMPORTANT]
-> Make SURE you include the branch by adding -b <BRANCH>
+> Make SURE you include the branch by adding -b BRANCH
 > Example below for downloading from 24.10 Branch
 
 ```bash
