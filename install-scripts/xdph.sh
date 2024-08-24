@@ -3,6 +3,10 @@
 # XDG-Desktop-Portals #
 
 xdg=(
+    libpipewire-0.3-dev
+    libspa-0.2-dev
+    libdrm-dev
+    libgbm-dev  
     xdg-desktop-portal-gtk
 )
 

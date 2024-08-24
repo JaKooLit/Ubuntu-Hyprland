@@ -5,7 +5,6 @@
 hypr=(
   hyprland-protocols
   hyprwayland-scanner
-  hyprland-dev
 )
 
 # forcing to reinstall. Had experience it says hyprland is already installed
