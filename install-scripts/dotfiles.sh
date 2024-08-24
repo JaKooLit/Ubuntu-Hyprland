@@ -3,7 +3,7 @@
 # Hyprland-Dots to download a specific release #
 
 # Define the specific release version to download
-specific_version="v2.3.3-DebUntu"
+specific_version="v2.3.3-Deb-Untu"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 
