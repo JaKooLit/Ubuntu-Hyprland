@@ -18,11 +18,29 @@
 
 #### ALPHA - BETA - RC BRANCHES
 Branches below are still on early stages
-
 <h4 align="left">
   <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10"> Ubuntu 24.10 Oracular Oriole Hyprland install script branch </a><br><br>
 </h4>
 
 
-### How to install?
-- All readme are on each branches
+## ✨ How to install?
+> clone repo including the branch.
+
+> [!IMPORTANT]
+> Make SURE you include the branch by adding -b <BRANCH>
+> Example below for downloading from 24.10 Branch
+
+```bash
+git clone -b 24.10 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland
+cd ~/Ubuntu-Hyprland
+chmod +x install.sh
+./install.sh
+```
+
+- Below picture is a sample 
+<p align="center">
+    <img align="center" width="100%" src="https://github.com/JaKooLit/Ubuntu-Hyprland/blob/24.10/Ubuntu.png" />
+
+> [!IMPORTANT]
+> Read through the Readme on each Branches for installation
+
