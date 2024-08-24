@@ -47,6 +47,7 @@ hyprland_dep=(
     libhyprcursor-dev
     libhyprlang-dev
     libhyprutils-dev
+    libpam0g-dev
     hyprcursor-util
 )
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
