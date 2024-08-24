@@ -41,21 +41,22 @@ install_package() {
 
 # Function for re-installing packages
 re_install_package() {
-    # Checking if package is already installed
-    if sudo dpkg -l | grep -q -w "$1"; then
-        echo -e "${OK} $1 is already installed. Skipping..."
-    else
-        # Package not installed
-        echo -e "${NOTE} Installing $1 ..."
-        sudo apt-get install --reinstall -y "$1" 2>&1 | tee -a "$LOG"
-        # Making sure the package is installed
-        if sudo dpkg -l | grep -q -w "$1"; then
-            echo -e "\e[1A\e[K${OK} $1 was installed."
+    echo -e "${NOTE} Force installing $1 ..."
+    
+    # Try to reinstall the package
+    if sudo apt-get install --reinstall -y "$1" 2>&1 | tee -a "$LOG"; then
+        # Check if the package was installed successfully
+        if dpkg -l | grep -q -w "$1"; then
+            echo -e "${OK} $1 was installed successfully."
         else
-            # Something is missing, exiting to review the log
-            echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry, I have tried :("
+            # Package was not found, installation failed
+            echo -e "${ERROR} $1 failed to install. Please check the install.log. You may need to install it manually. Sorry, I have tried :("
             exit 1
         fi
+    else
+        # Installation command failed
+        echo -e "${ERROR} Failed to reinstall $1. Please check the install.log. You may need to install it manually. Sorry, I have tried :("
+        exit 1
     fi
 }
 
