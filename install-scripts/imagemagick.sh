@@ -47,7 +47,10 @@ if dpkg -l | grep -qw imagemagick; then
         # Extract the major and minor version numbers
         if [[ "$installed_version" =~ ^8:6\.9 ]]; then
             echo "ImageMagick version $installed_version is 8:6.9.* or less."  2>&1 | tee -a "$LOG"
-            echo "Updating ImageMagick from source..."  2>&1 | tee -a "$LOG"
+            echo "Uninstalling installed $installed_version and installing from source" 2>&1 | tee -a "$LOG"
+            
+            sudo apt autoremove imagemagick 2>&1 | tee -a "$LOG"
+
         elif [[ "$installed_version" =~ ^8:7 ]]; then
             echo "ImageMagick version $installed_version is 8:7.* or higher."  2>&1 | tee -a "$LOG"
             echo "No action needed."  2>&1 | tee -a "$LOG"

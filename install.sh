@@ -199,7 +199,7 @@ if [ "$rog" == "Y" ]; then
 fi
 
 # re-install rofi-wayland
-execute_script "rofi-wayland.sh"
+#execute_script "rofi-wayland.sh"
 
 execute_script "InputGroup.sh"
 
