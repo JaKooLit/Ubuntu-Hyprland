@@ -16,8 +16,9 @@
   <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04"> Ubuntu 24.04 LTS Noble Numbat Hyprland install script branch </a><br><br>
 </h4>
 
-#### BETA Branch
-- Branches below are still on Beta stage
+#### ALPHA - BETA - RC BRANCHES
+Branches below are still on early stages
+
 <h4 align="left">
   <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10"> Ubuntu 24.10 Oracular Oriole Hyprland install script branch </a><br><br>
 </h4>
