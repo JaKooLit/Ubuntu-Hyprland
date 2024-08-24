@@ -11,6 +11,7 @@ hypr=(
 f_hypr=(
   hyprland
 )
+
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 
 # Determine the directory where the script is located
@@ -25,19 +26,19 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprland.log"
 
 source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
-# force
-printf "${NOTE} Installing Hyprland .......\n"
- for HYPR1 in "${f_hypr[@]}"; do
-   re_install_package "$HYPR1" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $HYPR1 Package installation failed, Please check the installation logs"; exit 1; }
-done
-
-
 # Hyprland
-printf "${NOTE} Installing Hyprland .......\n"
+printf "${NOTE} Installing Hyprland extra packages .......\n"
  for HYPR in "${hypr[@]}"; do
    install_package "$HYPR" 2>&1 | tee -a "$LOG"
    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $HYPR Package installation failed, Please check the installation logs"; exit 1; }
+done
+
+
+# force
+printf "${NOTE} Force Installing Hyprland .......\n"
+ for HYPR1 in "${f_hypr[@]}"; do
+   re_install_package "$HYPR1" 2>&1 | tee -a "$LOG"
+   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $HYPR1 Package installation failed, Please check the installation logs"; exit 1; }
 done
 
 clear 

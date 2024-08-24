@@ -30,37 +30,12 @@ for PKG1 in "${depend[@]}"; do
     fi
 done
 
-# Function to get the installed version of ImageMagick
-get_installed_version() {
-    apt show imagemagick 2>/dev/null | grep -i version | awk '{print $2}'
-}
-
-# Check if ImageMagick is installed
-if dpkg -l | grep -qw imagemagick; then
-    # Get the installed version of ImageMagick
-    installed_version=$(get_installed_version)
-    
-    if [[ -z "$installed_version" ]]; then
-        echo "Unable to determine the installed version of ImageMagick."  2>&1 | tee -a "$LOG"
-        echo "Reinstalling ImageMagick from source..."  2>&1 | tee -a "$LOG"
-    else
-        # Extract the major and minor version numbers
-        if [[ "$installed_version" =~ ^8:6\.9 ]]; then
-            echo "ImageMagick version $installed_version is 8:6.9.* or less."  2>&1 | tee -a "$LOG"
-            echo "Uninstalling installed $installed_version and installing from source" 2>&1 | tee -a "$LOG"
-            
-            sudo apt autoremove imagemagick 2>&1 | tee -a "$LOG"
-
-        elif [[ "$installed_version" =~ ^8:7 ]]; then
-            echo "ImageMagick version $installed_version is 8:7.* or higher."  2>&1 | tee -a "$LOG"
-            echo "No action needed."  2>&1 | tee -a "$LOG"
-            exit 0
-        fi
-    fi
-else
-    echo "ImageMagick is not installed."  2>&1 | tee -a "$LOG"
-    echo "Installing ImageMagick from source..."  2>&1 | tee -a "$LOG"
+# check if Imagemagick is already installed manually 
+if [ -f "/usr/local/bin/magick" ]; then
+    echo "${NOTE} /usr/local/bin/magick already exists. skipping installation of Imagemagick." 2>&1 | tee -a "$LOG"
+    exit 0
 fi
+
 
 # Check if folder exists and remove it
 if [ -d "ImageMagick" ]; then
