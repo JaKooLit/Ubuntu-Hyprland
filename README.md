@@ -5,7 +5,6 @@
   <a href="#gallery-and-videos"><kbd> <br> Gallery <br> </kbd></a>&ensp;&ensp;
  </div><br>
 
-
 <div align="center">
 
 ## 💌 JaKooLit's Ubuntu Hyprland Install Script 💌
