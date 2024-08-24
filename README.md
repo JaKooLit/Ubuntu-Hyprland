@@ -10,7 +10,7 @@
 ## 💌 JaKooLit's Ubuntu Hyprland Install Script 💌
 #### For Ubuntu 24.04 Noble Numbat
 
-![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Debian-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Debian-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Debian-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
+![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
 
 <br/>
 </div>
@@ -83,9 +83,6 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/waybar-layout.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/waybar-style.png"" /> 
 </p>
 
-#### ❕ Installed on Kali Linux 😈
-
-![alt text](https://github.com/JaKooLit/screenshots/blob/main/Hyprland-ScreenShots/Debian/Kali-Linux1.png)
 
 #### ❕ Installed on Ubuntu 24.04 LTS with Nvidia Laptop 😷 
 ![alt text](https://github.com/JaKooLit/screenshots/blob/main/Distro-Hyprland/Ubuntu/Ubuntu-24.04-nvidia.png)
@@ -150,13 +147,13 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 ## ✨ to use this script
 > clone this repo (latest commit only) by using git. Change directory, make executable and run the script
 ```bash
-git clone --depth=1 -b Ubuntu-24.04-LTS https://github.com/JaKooLit/Debian-Hyprland.git ~/Ubuntu-Hyprland
+git clone -b 24.04 --depth 1 https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland
 cd ~/Ubuntu-Hyprland
 chmod +x install.sh
 ./install.sh
 ```
 <p align="center">
-    <img align="center" width="100%" src="https://github.com/JaKooLit/Debian-Hyprland/blob/Ubuntu-24.04-LTS/Ubuntu24.04.png" />
+    <img align="center" width="100%" src="https://github.com/JaKooLit/Ubuntu-Hyprland/blob/24.04/Ubuntu24.04.png" />
 
 #### ✨ for ZSH and OH-MY-ZSH installation
 > installer should auto change your default shell to zsh. However, if it does not, do this
@@ -255,7 +252,7 @@ env = WLR_RENDERER_ALLOW_SOFTWARE,1
 - [ ] ROFI issues (scaling, unexplained scaling etc). This is most likely to experience if you are installing on a system where rofi is currently installed. To fix it uninstall rofi and install rofi-wayland . `sudo apt autoremove rofi` . 
 - Install rofi-wayland with 
 ```bash
-cd ~/Debian-Hyprland
+cd ~/Ubuntu-Hyprland
 ./install-scripts/rofi-wayland.sh
 ```
 - [ ] Rofi-wayland is compatible with x11 so no need to worry.
@@ -299,6 +296,6 @@ cd ~/Debian-Hyprland
 
                         
 ## 🥰🥰 💖💖 👍👍👍
-[![Stargazers over time](https://starchart.cc/JaKooLit/Debian-Hyprland.svg?variant=adaptive)](https://starchart.cc/JaKooLit/Debian-Hyprland)
+[![Stargazers over time](https://starchart.cc/JaKooLit/Ubuntu-Hyprland.svg?variant=adaptive)](https://starchart.cc/JaKooLit/Ubuntu-Hyprland)
 
                     
