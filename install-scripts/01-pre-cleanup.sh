@@ -47,3 +47,4 @@ for PKG_NAME in "${PACKAGES[@]}"; do
   fi
 done
 
+clear
