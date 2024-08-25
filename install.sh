@@ -201,8 +201,10 @@ if [ "$rog" == "Y" ]; then
     execute_script "rog.sh"
 fi
 
-# re-install rofi-wayland
+# re-install scripts it failed in some occasions
 execute_script "rofi-wayland.sh"
+execute_script "hyprlock.sh"
+execute_script "hypridle.sh"
 
 # input
 execute_script "InputGroup.sh"
