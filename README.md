@@ -48,3 +48,13 @@ chmod +x install.sh
 - Yes, BUT ensure to use the appropriate Ubuntu version. Like latest Linux mint is based on Ubuntu 24.04, you should use the 24.04 branch.
 - So kindly search which version of Ubuntu is your system running and use appropriate branch
 
+
+## Some Links of Projects used for this project
+- KooL's Hyprland Dots [`LINK`](https://github.com/JaKooLit/Hyprland-Dots)
+- SDDM Theme ['LINK'](https://github.com/JaKooLit/simple-sddm.git)
+- Wallpapers - which was offered to download at the end of installation ['LINK'](https://github.com/JaKooLit/Wallpaper-Bank)
+- GTK Themes and Icons [`LINK`](https://github.com/JaKooLit/GTK-themes-icons)
+
+
+## KooL's Hyprland Dots very own wiki
+- KooL's Dots [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki) . In that wiki are FAQ, TIPS, Changelogs, and more
