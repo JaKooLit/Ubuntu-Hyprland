@@ -152,10 +152,13 @@ execute_script "01-pre-cleanup.sh"
 execute_script "00-dependencies.sh"
 execute_script "00-hypr-pkgs.sh"
 execute_script "imagemagick.sh"
+
+# install wallust
+execute_script "wallust.sh"
+
 execute_script "fonts.sh"
 execute_script "swww.sh"
 execute_script "rofi-wayland.sh"
-execute_script "wallust.sh"
 execute_script "ags.sh"
 execute_script "hyprland.sh"
 execute_script "hyprlock.sh"
@@ -199,8 +202,9 @@ if [ "$rog" == "Y" ]; then
 fi
 
 # re-install rofi-wayland
-#execute_script "rofi-wayland.sh"
+execute_script "rofi-wayland.sh"
 
+# input
 execute_script "InputGroup.sh"
 
 if [ "$dots" == "Y" ]; then
