@@ -25,18 +25,18 @@ source "$HOME/.cargo/env"
 
 # Remove any existing Wallust binary
 if [[ -f "/usr/local/bin/wallust" ]]; then
-    echo "Removing existing Wallust binary..."
-    sudo rm "/usr/local/bin/wallust" 2>&1 | tee -a "$LOG"
+    echo "Removing existing Wallust binary..." 2>&1 | tee -a "$LOG"
+    sudo rm "/usr/local/bin/wallust" 
 fi
 
 # Install Wallust using Cargo
 echo "Installing Wallust using Cargo..."
-if cargo install wallust 2>&1 | tee -a "$LOG"; then
-    echo "Wallust installed successfully."
+if cargo install wallust ; then
+    echo "Wallust installed successfully." 2>&1 | tee -a "$LOG"
 
     # Move the newly compiled binary to /usr/local/bin
-    echo "Moving Wallust binary to /usr/local/bin..."
-    sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin 2>&1 | tee -a "$LOG"
+    echo "Moving Wallust binary to /usr/local/bin..." 2>&1 | tee -a "$LOG"
+    sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin 
 else
     echo "Error: Wallust installation failed. Check the log file $LOG for details."
     exit 1
