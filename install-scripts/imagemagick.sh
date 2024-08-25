@@ -19,7 +19,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_image.log"
-MLOG="install-$(date +%d-%H%M%S)_image.log"
+MLOG="install-$(date +%d-%H%M%S)_image2.log"
 
 # Installing depencies
 for PKG1 in "${depend[@]}"; do
@@ -29,6 +29,12 @@ for PKG1 in "${depend[@]}"; do
     exit 1
   fi
 done
+
+# check if Imagemagick is already installed manually 
+if [ -f "/usr/local/bin/magick" ]; then
+    echo "${NOTE} /usr/local/bin/magick already exists. skipping installation of Imagemagick." 2>&1 | tee -a "$LOG"
+    exit 0
+fi
 
 ##
 printf "${NOTE} Installing ImageMagick from source...\n"  

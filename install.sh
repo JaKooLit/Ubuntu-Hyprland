@@ -172,7 +172,6 @@ execute_script "hyprlock.sh"
 execute_script "hyprcursor.sh"
 execute_script "hypridle.sh"
 execute_script "hyprland.sh"
-execute_script "hypr-eco.sh"
 
 
 #execute_script "cliphist.sh"

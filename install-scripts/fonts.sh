@@ -3,11 +3,11 @@
 # Fonts Required #
 
 fonts=(
-fonts-firacode
-fonts-font-awesome
-fonts-noto
-fonts-noto-cjk
-fonts-noto-color-emoji
+  fonts-firacode
+  fonts-font-awesome
+  fonts-noto
+  fonts-noto-cjk
+  fonts-noto-color-emoji
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##

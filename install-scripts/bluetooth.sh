@@ -3,8 +3,8 @@
 # Bluetooth #
 
 blue=(
-bluez
-blueman
+  bluez
+  blueman
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##

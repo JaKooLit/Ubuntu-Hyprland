@@ -1,16 +1,7 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# wallust - pywal colors replacment #
+# wallust - pywal colors replacement #
 
-depend=(
-librust-jpeg-decoder-dev
-cargo
-)
-
-#specific branch or release
-wal_tag="dev"
-
-## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -18,46 +9,37 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PARENT_DIR="$SCRIPT_DIR/.."
 cd "$PARENT_DIR" || exit 1
 
+# Source external functions, adjust path as necessary
 source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_wallust.log"
-MLOG="install-$(date +%d-%H%M%S)_wallust.log"
 
-# Installing depencies
-for PKG1 in "${depend[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
-done
+# Create log directory if it doesn't exist
+mkdir -p "$(dirname "$LOG")"
 
-##
-printf "${NOTE} Installing wallust from dev branch...\n"  
+# Install up-to-date Rust
+echo "Installing Rust..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y >> "$LOG" 2>&1
+source "$HOME/.cargo/env"
 
-# Check if folder exists and remove it
-if [ -d "wallust" ]; then
-    printf "${NOTE} Removing existing wallust folder...\n"
-    rm -rf "wallust"
+# Remove any existing Wallust binary
+if [[ -f "/usr/local/bin/wallust" ]]; then
+    echo "Removing existing Wallust binary..."
+    sudo rm "/usr/local/bin/wallust" >> "$LOG" 2>&1
 fi
 
-# Clone and build wallust
-printf "${NOTE} Installing wallust...\n"
-if git clone --depth 1 -b $wal_tag https://codeberg.org/explosion-mental/wallust.git; then
-    cd wallust || exit 1
-	make
-    if sudo make install 2>&1 | tee -a "$MLOG" ; then
-        printf "${OK} wallust installed successfully.\n" 2>&1 | tee -a "$MLOG"
-    else
-        echo -e "${ERROR} Installation failed for wallust." 2>&1 | tee -a "$MLOG"
-    fi
-    #moving the addional logs to Install-Logs directory
-    mv $MLOG ../Install-Logs/ || true 
-    cd ..
+# Install Wallust using Cargo
+echo "Installing Wallust using Cargo..."
+if cargo install wallust >> "$LOG" 2>&1; then
+    echo "Wallust installed successfully."
+
+    # Move the newly compiled binary to /usr/local/bin
+    echo "Moving Wallust binary to /usr/local/bin..."
+    sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin >> "$LOG" 2>&1
 else
-    echo -e "${ERROR} Download failed for wallust." 2>&1 | tee -a "$LOG"
+    echo "Error: Wallust installation failed. Check the log file $LOG for details."
+    exit 1
 fi
 
 clear
-
