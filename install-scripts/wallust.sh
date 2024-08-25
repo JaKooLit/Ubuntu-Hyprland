@@ -19,7 +19,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_wallust.log"
 mkdir -p "$(dirname "$LOG")"
 
 # Install up-to-date Rust
-echo "Installing Rust..."
+echo "Installing most up to Rust compiler..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 2>&1 | tee -a "$LOG"
 source "$HOME/.cargo/env"
 
