@@ -23,11 +23,15 @@ echo "Installing Rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 2>&1 | tee -a "$LOG"
 source "$HOME/.cargo/env"
 
+printf "\n%.0s" {1..2} 
+
 # Remove any existing Wallust binary
 if [[ -f "/usr/local/bin/wallust" ]]; then
     echo "Removing existing Wallust binary..." 2>&1 | tee -a "$LOG"
     sudo rm "/usr/local/bin/wallust" 
 fi
+
+printf "\n%.0s" {1..2} 
 
 # Install Wallust using Cargo
 echo "Installing Wallust using Cargo..." | tee -a "$LOG"
