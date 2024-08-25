@@ -1,5 +1,10 @@
 ## Changelogs
 
+## 25 Aug 2024
+- a bit of refactored tailored into "newer" Hyprland dots
+- wallust will be installed using cargo
+- code clean up
+
 ## 11 June 2024
 - adjusted script to install only Hyprland-Dots v2.2.14
 
