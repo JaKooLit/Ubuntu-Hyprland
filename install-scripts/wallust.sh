@@ -30,15 +30,15 @@ if [[ -f "/usr/local/bin/wallust" ]]; then
 fi
 
 # Install Wallust using Cargo
-echo "Installing Wallust using Cargo..."
-if cargo install wallust ; then
-    echo "Wallust installed successfully." 2>&1 | tee -a "$LOG"
+echo "Installing Wallust using Cargo..." | tee -a "$LOG"
+if cargo install wallust 2>&1 | tee -a "$LOG" ; then
+    echo "Wallust installed successfully." | tee -a "$LOG"
 
     # Move the newly compiled binary to /usr/local/bin
-    echo "Moving Wallust binary to /usr/local/bin..." 2>&1 | tee -a "$LOG"
-    sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin 
+    echo "Moving Wallust binary to /usr/local/bin..." | tee -a "$LOG"
+    sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin 2>&1 | tee -a "$LOG"
 else
-    echo "Error: Wallust installation failed. Check the log file $LOG for details."
+    echo "Error: Wallust installation failed. Check the log file $LOG for details." | tee -a "$LOG"
     exit 1
 fi
 
