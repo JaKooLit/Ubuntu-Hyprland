@@ -20,23 +20,23 @@ mkdir -p "$(dirname "$LOG")"
 
 # Install up-to-date Rust
 echo "Installing Rust..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y >> "$LOG" 2>&1
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 2>&1 | tee -a "$LOG"
 source "$HOME/.cargo/env"
 
 # Remove any existing Wallust binary
 if [[ -f "/usr/local/bin/wallust" ]]; then
     echo "Removing existing Wallust binary..."
-    sudo rm "/usr/local/bin/wallust" >> "$LOG" 2>&1
+    sudo rm "/usr/local/bin/wallust" 2>&1 | tee -a "$LOG"
 fi
 
 # Install Wallust using Cargo
 echo "Installing Wallust using Cargo..."
-if cargo install wallust >> "$LOG" 2>&1; then
+if cargo install wallust 2>&1 | tee -a "$LOG"; then
     echo "Wallust installed successfully."
 
     # Move the newly compiled binary to /usr/local/bin
     echo "Moving Wallust binary to /usr/local/bin..."
-    sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin >> "$LOG" 2>&1
+    sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin 2>&1 | tee -a "$LOG"
 else
     echo "Error: Wallust installation failed. Check the log file $LOG for details."
     exit 1
