@@ -223,20 +223,27 @@ fi
 
 clear
 
-printf "\n${OK} Yey! Installation Completed.\n"
-printf "\n"
-sleep 2
-printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
-printf "\n"
-printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
+# Check if either hyprland or hyprland-git is installed
+if dpkg -l | grep -qw hyprland || dpkg -l | grep -qw hyprland-git; then
+    printf "\n${OK} Yey! Installation Completed.\n"
+    sleep 2
+    printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
+    printf "\n"
+    printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
 
-read -p "${CAT} Would you like to reboot now? (y/n): " HYP
+    # Prompt user to reboot
+    read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
 
-if [[ "$HYP" =~ ^[Yy]$ ]]; then
-    if [[ "$nvidia" == "Y" ]]; then
-        echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
-        systemctl reboot
-    else
-        systemctl reboot
+    if [[ "$HYP" =~ ^[Yy]$ ]]; then
+        if [[ "$nvidia" == "Y" ]]; then
+            echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
+            systemctl reboot
+        else
+            systemctl reboot
+        fi    
     fi
+else
+    # Print error message if neither package is installed
+    printf "\n${NOTE} Hyprland failed to install. Please check Install-Logs...\n\n"
+    exit 1
 fi
