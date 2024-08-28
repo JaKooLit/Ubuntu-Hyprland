@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 28 Aug 2024
+- Added final check if hyprland is installed and will give an error to user
+
 ## 25 Aug 2024
 - a bit of refactored tailored into "newer" Hyprland dots
 - wallust will be installed using cargo
