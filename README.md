@@ -15,9 +15,10 @@
 <br/>
 </div>
 
-### 🛋️ Why I created a separate branch for Ubuntu 24.04 LTS
-- With latest Hyprland v0.40.0 released, it wont build on Ubuntu 24.04 LTS. Reason is that Ubuntu did not update their wayland-protocol. Its the reason why it wont build. 
-- This is the reason why I have to set a specific release version on Hyprland packages including its eco-system as it is most likely wayland protocol wont be updated since its an LTS version.
+> [!NOTE]
+> Ubuntu 24.04 LTS specific
+- Latest Hyprland version that is compatible with Ubuntu 24.04 is Hyprland v0.39.1. Reason is that some dependencies are old so newer Hyprland wont build on it. 
+- This is the reason why I have to set a specific release version on Hyprland packages including its eco-system and pre-configured DOTS as it is most likely wayland protocol wont be updated since its an LTS version.
 
 <div align="center">
 👇 KOOL's Hyprland-Dots related Links 👇
@@ -115,6 +116,8 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 ### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy pre-configured dots, it will be downloaded from that centralized repo.
+- For Ubuntu 24.04, specific Hyprland-dots that are guaranted to work is [`LINK`](https://github.com/JaKooLit/Hyprland-Dots/releases/tag/v2.3.3-Ubuntu-24.04) . This is also the dots which will be set to installed on this script.
+- Newer dots may not work.
 - Hyprland-Dots use are constantly evolving / improving. you can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)
 - Since the Hyprland-Dots are evolving, some of the screenshots maybe old
 - the wallpaper offered to be downloaded towards the end is from this [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
