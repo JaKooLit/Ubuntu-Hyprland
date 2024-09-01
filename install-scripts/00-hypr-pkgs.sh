@@ -55,10 +55,16 @@ hypr_package_2=(
   vim
 )
 
+# packages to force reinstall 
+force_reinstall=(
+  wayland-protocols
+)
+
 # List of packages to uninstall as it conflicts with swaync or causing swaync to not function properly
 uninstall=(
   dunst
   mako
+  rofi
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -91,6 +97,15 @@ for PKG in "${uninstall[@]}"; do
   uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation had failed, please check the log"
+    exit 1
+  fi
+done
+
+# reinstall packages
+for PKG2 in "${force_reinstall[@]}"; do
+  re_install_package "$PKG2" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - force re-installing $PKG2 had failed, please check the log"
     exit 1
   fi
 done
