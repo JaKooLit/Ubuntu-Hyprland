@@ -244,6 +244,6 @@ if dpkg -l | grep -qw hyprland || dpkg -l | grep -qw hyprland-git; then
     fi
 else
     # Print error message if neither package is installed
-    printf "\n${NOTE} Hyprland failed to install. Please check Install-Logs...\n\n"
+    printf "\n${WARN} Hyprland failed to install. Please check Install-Logs...\n\n"
     exit 1
 fi
