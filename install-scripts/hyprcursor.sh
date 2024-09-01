@@ -8,7 +8,7 @@ cursor=(
 )
 
 #specific branch or release
-cursor_tag="v0.1.8"
+cursor_tag="v0.1.9"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located

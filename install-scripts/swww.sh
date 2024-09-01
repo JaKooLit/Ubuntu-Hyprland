@@ -3,9 +3,7 @@
 # SWWW - Wallpaper Utility #
 
 swww=(
-cargo
-liblz4-dev
-rustc
+  liblz4-dev
 )
 
 #specific branch or release

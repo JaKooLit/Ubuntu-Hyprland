@@ -3,8 +3,16 @@
 # XDG-Desktop-Portals #
 
 xdg=(
-xdg-desktop-portal-gtk
+    libpipewire-0.3-dev
+    libspa-0.2-dev
+    libdrm-dev
+    libgbm-dev
+    wayland-protocols  
+    xdg-desktop-portal-gtk
 )
+
+#specific branch or release
+xdph_tag="v1.3.3"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -21,10 +29,13 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_xdph.log"
 MLOG="install-$(date +%d-%H%M%S)_xdph2.log"
 
 ##
-printf "${NOTE} Installing xdg-desktop-portal-gtk...\n"  
+printf "${NOTE} Installing xdg-desktop-portal-gtk...\n"
 for portal in "${xdg[@]}"; do
     install_package "$portal" 2>&1 | tee -a "$LOG"
-    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $portal Package installation failed, Please check the installation logs"; exit 1; }
+    if [ $? -ne 0 ]; then
+        echo -e "\e[1A\e[K${ERROR} - $portal Package installation failed, Please check the installation logs"
+        exit 1
+    fi
 done
 
 # Check if xdg-desktop-portal-hyprland folder exists and remove it
@@ -35,16 +46,17 @@ fi
 
 # Clone and build xdg-desktop-portal-hyprland
 printf "${NOTE} Installing xdg-desktop-portal-hyprland...\n"
-if git clone --branch v1.3.0 --recursive https://github.com/hyprwm/xdg-desktop-portal-hyprland; then
+if git clone --recursive -b $xdph_tag https://github.com/hyprwm/xdg-desktop-portal-hyprland; then
     cd xdg-desktop-portal-hyprland || exit 1
-    make all
-    if sudo make install 2>&1 | tee -a "$MLOG" ; then
+    cmake -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -B build
+    cmake --build build
+    if sudo cmake --install build 2>&1 | tee -a "$MLOG"; then
         printf "${OK} xdg-desktop-portal-hyprland installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
         echo -e "${ERROR} Installation failed for xdg-desktop-portal-hyprland." 2>&1 | tee -a "$MLOG"
     fi
-    #moving the addional logs to Install-Logs directory
-    mv $MLOG ../Install-Logs/ || true 
+    # Moving the additional logs to Install-Logs directory
+    mv "$MLOG" ../Install-Logs/ || true
     cd ..
 else
     echo -e "${ERROR} Download failed for xdg-desktop-portal-hyprland." 2>&1 | tee -a "$LOG"

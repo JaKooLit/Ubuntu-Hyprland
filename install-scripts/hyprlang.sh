@@ -3,7 +3,7 @@
 # hyprlang - hyprland and xdg-desktop-portal- dependencies #
 
 #specific branch or release
-lang_tag="v0.5.1"
+lang_tag="v0.5.2"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
