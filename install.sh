@@ -171,9 +171,9 @@ execute_script "swww.sh"
 execute_script "rofi-wayland.sh"
 execute_script "ags.sh"
 execute_script "hyprlang.sh"
-execute_script "hyprlock.sh"
 execute_script "hyprcursor.sh"
-execute_script "hypridle.sh"
+
+sleep 1
 execute_script "hyprland.sh"
 
 
