@@ -3,7 +3,7 @@
 # imagemagick from source #
 
 depend=(
-b   uild-essential
+    build-essential
 )
 
 

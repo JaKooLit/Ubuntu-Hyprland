@@ -125,8 +125,9 @@ done
 sudo apt build-dep wlroots
 export PATH=$PATH:/usr/local/go/bin
 
-# Install Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-source $HOME/.cargo/env
+# Install up-to-date Rust
+echo "Installing most up to Rust compiler..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 2>&1 | tee -a "$LOG"
+source "$HOME/.cargo/env"
 
 clear
