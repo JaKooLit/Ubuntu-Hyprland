@@ -237,8 +237,8 @@ fi
 
 clear
 
-# Check if either hyprland or hyprland-git is installed
-if dpkg -l | grep -qw hyprland || dpkg -l | grep -qw hyprland-git; then
+# Check if either hyprland or Hyprland files exist in /usr/local/bin/
+if [ -e /usr/local/bin/hyprland ] || [ -f /usr/local/bin/Hyprland ]; then
     printf "\n${OK} Yey! Installation Completed.\n"
     sleep 2
     printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
