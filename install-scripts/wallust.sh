@@ -19,7 +19,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_wallust.log"
 mkdir -p "$(dirname "$LOG")"
 
 # Install up-to-date Rust
-echo "Installing most up to Rust compiler..."
+echo "$NOTE Installing most up to date Rust compiler..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 2>&1 | tee -a "$LOG"
 source "$HOME/.cargo/env"
 
@@ -34,7 +34,7 @@ fi
 printf "\n%.0s" {1..2} 
 
 # Install Wallust using Cargo
-echo "Installing Wallust using Cargo..." | tee -a "$LOG"
+echo "$NOTE Installing Wallust using Cargo..." | tee -a "$LOG"
 if cargo install wallust 2>&1 | tee -a "$LOG" ; then
     echo "Wallust installed successfully." | tee -a "$LOG"
 
@@ -42,7 +42,7 @@ if cargo install wallust 2>&1 | tee -a "$LOG" ; then
     echo "Moving Wallust binary to /usr/local/bin..." | tee -a "$LOG"
     sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin 2>&1 | tee -a "$LOG"
 else
-    echo "Error: Wallust installation failed. Check the log file $LOG for details." | tee -a "$LOG"
+    echo "$ERROR Wallust installation failed. Check the log file $LOG for details." | tee -a "$LOG"
     exit 1
 fi
 
