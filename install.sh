@@ -160,7 +160,8 @@ sudo apt update
 # Install hyprland packages
 execute_script "00-dependencies.sh"
 execute_script "00-hypr-pkgs.sh"
-execute_script "imagemagick.sh"
+
+#execute_script "imagemagick.sh" #this is for compiling from source. 07 Sep 2024
 
 # install wallust
 execute_script "wallust.sh"

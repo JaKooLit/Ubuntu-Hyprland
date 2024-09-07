@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 07 Sep 2024
+- disabled imagemagick compilation from source
+- dotfiles adjusted so it will be compatible for imagemagick v6
+
 ## 25 Aug 2024
 - a bit of refactored tailored into "newer" Hyprland dots
 - wallust will be installed using cargo
