@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 07 Sep 2024
+- disabled imagemagick compilation from source
+- dotfiles adjusted so it will be compatible for imagemagick v6
+
 ## 28 Aug 2024
 - Added final check if hyprland is installed and will give an error to user
 
