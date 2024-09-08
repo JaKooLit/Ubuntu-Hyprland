@@ -1,4 +1,4 @@
-7#!/bin/bash
+#!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
 # Aylur's GTK Shell #
 
