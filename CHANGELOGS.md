@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 08 Sep 2024
+- Added final error checks on install-logs
+
 ## 07 Sep 2024
 - disabled imagemagick compilation from source
 - dotfiles adjusted so it will be compatible for imagemagick v6
