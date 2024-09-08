@@ -3,7 +3,7 @@
 # Hyprland-Dots to download a specific release #
 
 # Define the specific release version to download
-specific_version="v2.3.3-Ubuntu-24.04-Hyprland-0.39.0 "
+specific_version="v2.3.3-Ubuntu-24.04-Hyprland-0.39.0"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 
