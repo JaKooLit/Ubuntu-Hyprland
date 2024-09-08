@@ -16,6 +16,9 @@
 <img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Objects/File Folder.webp" alt="File Folder" width="38" height="38" />   <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04"> 👉 Ubuntu 24.04 LTS Noble Numbat Hyprland install script branch </a><br><br>
 </h4>
 
+#### ⁉️ 🙋🏻 🙋‍♀ FAQ ⁉ WILL WORK ON Ubuntu 24.04.1 LTS ⁉
+- YES! 24.04.1 Ubuntu is just an updated Ubuntu 24.04 . Use the 24.04 Branch / Script.
+
 
 ### ALPHA - BETA - RC BRANCHES
 Branches below are still on early stages
