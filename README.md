@@ -18,6 +18,7 @@
 
 #### ⁉️ 🙋🏻 🙋‍♀ FAQ ⁉ WILL WORK ON Ubuntu 24.04.1 LTS ⁉
 - YES! 24.04.1 Ubuntu is just an updated Ubuntu 24.04 . Use the 24.04 Branch / Script.
+- This also means if Ubuntu decide to have another major update say 24.04.2 or .3 etc.. 
 
 
 ### ALPHA - BETA - RC BRANCHES
