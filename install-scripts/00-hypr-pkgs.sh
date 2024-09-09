@@ -62,6 +62,8 @@ hypr_package_2=(
 uninstall=(
     dunst
     mako
+    rofi
+    cargo
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -100,5 +102,10 @@ done
 
 ## making brightnessctl work
 sudo chmod +s $(which brightnessctl) 2>&1 | tee -a "$LOG" || true
+
+# Install up-to-date Rust
+echo "$NOTE Installing most up to date Rust compiler..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 2>&1 | tee -a "$LOG"
+source "$HOME/.cargo/env"
 
 clear
