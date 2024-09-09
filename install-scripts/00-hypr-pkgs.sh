@@ -61,8 +61,9 @@ force_reinstall=(
   wayland-protocols
 )
 
-# List of packages to uninstall as it conflicts with swaync or causing swaync to not function properly
+# List of packages to uninstall as it conflicts with lots of things
 uninstall=(
+  cargo
   dunst
   mako
   rofi
