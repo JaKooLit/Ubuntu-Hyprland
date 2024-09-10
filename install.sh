@@ -143,6 +143,7 @@ printf "\n"
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
 
+printf "\n%.0s" {1..3}
 # check if any known login managers are active when users choose to install sddm
 if [ "$sddm" == "Y" ]; then
     # List of services to check
@@ -153,6 +154,8 @@ if [ "$sddm" == "Y" ]; then
         if systemctl is-active --quiet "$svc"; then
             echo "${ERROR} $svc is active. Please stop or disable it first or do not choose SDDM to install."
             echo "${NOTE} If you have GDM, no need to install SDDM. GDM will work fine as Login Manager for Hyprland."
+            printf "\n%.0s" {1..3}
+            
             exit 1  
         fi
     done
