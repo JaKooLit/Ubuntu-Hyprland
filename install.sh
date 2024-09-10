@@ -155,6 +155,23 @@ printf "\n"
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
 
+# check if any known login managers are active when users choose to install sddm
+if [ "$sddm" == "Y" ]; then
+    # List of services to check
+    services=("gdm.service" "gdm3.service" "lightdm.service" "xdm.service" "lxdm.service")
+
+    # Loop through each service
+    for svc in "${services[@]}"; do
+        if systemctl is-active --quiet "$svc"; then
+            echo "${ERROR} $svc is active. Please stop or disable it first or do not choose SDDM to install."
+            echo "${NOTE} If you have GDM, no need to install SDDM. GDM will work fine as Login Manager for Hyprland."
+            exit 1  
+        fi
+    done
+fi
+
+
+sleep 1
 sudo apt update
 
 # Install hyprland packages
