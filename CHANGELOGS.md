@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 10 Sep 2024
+- added background check of known login managers if they are active if user chose to install sddm
+
 ## 08 Sep 2024
 - Added final error checks on install-logs
 
