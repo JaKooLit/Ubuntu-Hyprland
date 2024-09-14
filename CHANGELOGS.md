@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 14 Sep 2024
+- Added Essential Packages final check in lieu of errors from Install log files in Install-Logs directory
+
 ## 10 Sep 2024
 - added background check of known login managers if they are active if user chose to install sddm
 
