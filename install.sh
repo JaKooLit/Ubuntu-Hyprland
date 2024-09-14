@@ -133,8 +133,11 @@ ask_yes_no "-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OB
 printf "\n"
 ask_yes_no "-Install zsh & oh-my-zsh plus (OPTIONAL) pokemon-colorscripts for tty?" zsh
 printf "\n"
-ask_yes_no "-Install nwg-look? (a GTK Theming app - lxappearance-like) WARN! This Package Takes long time to build!" nwg
-printf "\n"
+
+# 14 Sep 2024, now in Ocular Universe repo
+#ask_yes_no "-Install nwg-look? (a GTK Theming app - lxappearance-like) WARN! This Package Takes long time to build!" nwg
+#printf "\n"
+
 ask_yes_no "-Installing on Asus ROG Laptops?" rog
 printf "\n"
 ask_yes_no "-Do you want to download and install pre-configured Hyprland-dotfiles?" dots
@@ -214,9 +217,9 @@ if [ "$zsh" == "Y" ]; then
     execute_script "zsh.sh"
 fi
 
-if [ "$nwg" == "Y" ]; then
-    execute_script "nwg-look.sh"
-fi
+#if [ "$nwg" == "Y" ]; then
+#    execute_script "nwg-look.sh"
+#fi
 
 if [ "$rog" == "Y" ]; then
     execute_script "rog.sh"

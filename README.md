@@ -125,8 +125,6 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 - If you have nvidia, and wanted to use proprietary drivers, uninstall nouveau first (if installed). This script will be installing proprietary nvidia drivers and will not deal with removal of nouveau.
 - NVIDIA users / owners, after installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
  
-#### ⚠️ WARNING! nwg-look takes long time to install. 
-- nwg-look is a utility to costumize your GTK theme. It's a LXAppearance like. Its a good tool though but this package is entirely optional
 
 #### ✨ Costumize the packages to be installed
 - inside the install-scripts directory, you can edit 00-hypr-pkgs.sh. Do not edit 00-dependencies.sh unless you know what you are doing. Care though as the Hyprland Dots may not work properly!
@@ -169,15 +167,12 @@ source ~/.zshrc
 - if you installed in your laptop and Brightness and Keyboard brightness does not work you can execute this command `sudo chmod +s $(which brightnessctl)`
 
 #### ✨ Packages that are manually downloaded and build. These packages will not be updated by apt and have to be manually updated
-- Hyprland [`LINK`](https://github.com/hyprwm/Hyprland)
-- nwg-look [`LINK`](https://github.com/nwg-piotr/nwg-look)
 - Asus ROG asusctl [`LINK`](https://gitlab.com/asus-linux/asusctl) and superfxctl [`LINK`](https://gitlab.com/asus-linux/supergfxctl)
 - swww [`LINK`](https://github.com/Horus645/swww)
 - hyprlock [`LINK`](https://github.com/hyprwm/hyprlock)
 - hypridle [`LINK`](https://github.com/hyprwm/hypridle)
 - xdg-desktop-portal-hyprland [`LINK`](https://github.com/hyprwm/xdg-desktop-portal-hyprland)
 - rofi-wayland [`LINK`](https://github.com/lbonn/rofi)
-- Imagemagick [`LINK`](https://github.com/ImageMagick/ImageMagick) - as of 23 AUG 2024, version 7 still not on official repo, hence needed to build from source
 
 > [!TIP]
 > To update to latest packages, re-running this script will auto update all. Script is configured to pull latest packages build for you.
