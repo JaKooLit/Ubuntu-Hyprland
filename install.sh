@@ -264,8 +264,8 @@ execute_script "03-Final-Check.sh"
 
 printf "\n%.0s" {1..1}
 
-# Check if either hyprland or hyprland-git is installed
-if dpkg -l | grep -qw hyprland; then
+# Check if either hyprland or Hyprland files exist in /usr/local/bin/
+if [ -e /usr/local/bin/hyprland ] || [ -f /usr/local/bin/Hyprland ]; then
     printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed Please see above!"
     printf "\n${CAT} Ignore this message if it states 'All essential packages are installed.'\n"
     sleep 2
