@@ -61,12 +61,12 @@ else
     echo -e "${ERROR} Download failed for xdg-desktop-portal-hyprland." 2>&1 | tee -a "$LOG"
 fi
 
-printf "\n\n"
 printf "${NOTE} Checking for other XDG-Desktop-Portal-Implementations....\n"
 sleep 1
 printf "\n"
 printf "${NOTE} XDG-desktop-portal-KDE & GNOME (if installed) should be manually disabled or removed! I can't remove it... sorry...\n"
 while true; do
+    printf "\n%.0s" {1..2}
     read -p "${CAT} Would you like to try to remove other XDG-Desktop-Portal-Implementations? (y/n): " XDPH1
     echo
     sleep 1

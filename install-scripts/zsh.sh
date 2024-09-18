@@ -36,7 +36,7 @@ for ZSHP in "${zsh[@]}"; do
     fi
 done
 
-printf "\n"
+printf "\n%.0s" {1..2}
 
 ## Optional Pokemon color scripts
 while true; do
