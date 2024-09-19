@@ -49,6 +49,10 @@ chmod +x install.sh
 > [!IMPORTANT]
 > Read through the Readme on each Branches for installation
 
+> [!IMPORTANT]
+> make sure to disable any idle or suspend functions on your system else script will fail
+
+
 ## FAQ 🙋‍♂️ Will this work on other Distro Based on Ubuntu? Like Linux mint?
 - Yes, BUT ensure to use the appropriate Ubuntu version. Like latest Linux mint is based on Ubuntu 24.04, you should use the 24.04 branch.
 - So kindly search which version of Ubuntu is your system running and use appropriate branch
