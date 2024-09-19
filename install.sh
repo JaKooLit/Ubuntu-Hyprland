@@ -191,6 +191,8 @@ execute_script "swappy.sh"
 execute_script "swww.sh"
 execute_script "rofi-wayland.sh"
 execute_script "ags.sh"
+
+sleep 1
 execute_script "hyprlang.sh"
 execute_script "hyprcursor.sh"
 
