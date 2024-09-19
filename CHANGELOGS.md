@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 19 Sep 2024
+- Added fastfetch on tty. However, will be disabled if user decided to install pokemon colorscripts
+
 ## 14 Sep 2024
 - Added Essential Packages final check in lieu of errors from Install log files in Install-Logs directory
 - nwg-look is now in ocular universe repo
