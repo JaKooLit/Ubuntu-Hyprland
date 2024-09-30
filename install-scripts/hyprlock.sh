@@ -46,7 +46,7 @@ fi
 printf "${NOTE} Installing hyprlock...\n"
 if git clone --recursive -b $lock_tag https://github.com/hyprwm/hyprlock.git; then
     cd hyprlock || exit 1
-    if [ "$ADD_PATCHES" == "Y"]; then
+    if [ "$ADD_PATCHES" == "Y" ]; then
       patch -p1 < "$PARENT_DIR"/patch/hyprlock-v0.3.1.patch || exit 1
     fi
 	cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build

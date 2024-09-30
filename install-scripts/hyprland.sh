@@ -33,7 +33,7 @@ fi
 
 if git clone --recursive -b $hyprland_tag "https://github.com/hyprwm/Hyprland"; then
   cd "Hyprland" || exit 1
-  if [ "$ADD_PATCHES" == "Y"]; then
+  if [ "$ADD_PATCHES" == "Y" ]; then
     patch -p1 < "$PARENT_DIR"/patch/Hyprland-v0.39.4.patch
   fi
   make all
