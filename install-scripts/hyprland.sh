@@ -20,6 +20,8 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprland.log"
 MLOG="install-$(date +%d-%H%M%S)_hyprland2.log"
 
+ADD_PATCHES=$1
+
 # Clone, build, and install Hyprland using Cmake
 printf "${NOTE} Cloning Hyprland...\n"
 
@@ -31,6 +33,9 @@ fi
 
 if git clone --recursive -b $hyprland_tag "https://github.com/hyprwm/Hyprland"; then
   cd "Hyprland" || exit 1
+  if [ "$ADD_PATCHES" == "Y"]; then
+    patch -p1 < "$PARENT_DIR"/patch/Hyprland-v0.39.4.patch
+  fi
   make all
   if sudo make install 2>&1 | tee -a "$MLOG"; then
     printf "${OK} Hyprland installed successfully.\n" 2>&1 | tee -a "$MLOG"

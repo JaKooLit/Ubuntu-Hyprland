@@ -78,6 +78,7 @@ sddm=""
 thunar=""
 xdph=""
 zsh=""
+add_patches=""
 
 # Export PKG_CONFIG_PATH for libinput
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
@@ -151,6 +152,8 @@ ask_yes_no "-Installing on Asus ROG Laptops?" rog
 printf "\n"
 ask_yes_no "-Do you want to download and install pre-configured Hyprland-dotfiles?" dots
 printf "\n"
+ask_yes_no "-Do you want to add additional patches backported from upstream?" add_patches
+printf "\n"
 
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
@@ -197,7 +200,7 @@ execute_script "hyprlang.sh"
 execute_script "hyprcursor.sh"
 
 sleep 1
-execute_script "hyprland.sh"
+execute_script "hyprland.sh" add_patches
 
 
 #execute_script "cliphist.sh"
@@ -240,7 +243,7 @@ fi
 
 # re-install scripts it failed in some occasions
 execute_script "rofi-wayland.sh"
-execute_script "hyprlock.sh"
+execute_script "hyprlock.sh" add_patches
 execute_script "hypridle.sh"
 
 # input
