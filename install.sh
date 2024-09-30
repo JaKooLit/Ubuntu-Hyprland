@@ -200,7 +200,7 @@ execute_script "hyprlang.sh"
 execute_script "hyprcursor.sh"
 
 sleep 1
-execute_script "hyprland.sh" "$add_patches"
+execute_script "hyprland.sh $add_patches"
 
 
 #execute_script "cliphist.sh"
@@ -243,7 +243,7 @@ fi
 
 # re-install scripts it failed in some occasions
 execute_script "rofi-wayland.sh"
-execute_script "hyprlock.sh" "$add_patches"
+execute_script "hyprlock.sh $add_patches"
 execute_script "hypridle.sh"
 
 # input
