@@ -117,11 +117,12 @@ ask_custom_option() {
 # Function to execute a script if it exists and make it executable
 execute_script() {
     local script="$1"
+    local parameter="$2"
     local script_path="$script_directory/$script"
     if [ -f "$script_path" ]; then
         chmod +x "$script_path"
         if [ -x "$script_path" ]; then
-            "$script_path"
+            "$script_path" "$parameter"
         else
             echo "Failed to make script '$script' executable."
         fi
@@ -200,7 +201,7 @@ execute_script "hyprlang.sh"
 execute_script "hyprcursor.sh"
 
 sleep 1
-execute_script "hyprland.sh $add_patches"
+execute_script "hyprland.sh" "$add_patches"
 
 
 #execute_script "cliphist.sh"
@@ -243,7 +244,7 @@ fi
 
 # re-install scripts it failed in some occasions
 execute_script "rofi-wayland.sh"
-execute_script "hyprlock.sh $add_patches"
+execute_script "hyprlock.sh" "$add_patches"
 execute_script "hypridle.sh"
 
 # input
