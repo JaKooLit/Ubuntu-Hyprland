@@ -58,5 +58,5 @@ else
     echo -e "${ERROR} Download failed for hyprlock." 2>&1 | tee -a "$LOG"
 fi
 
-clear
+
 
