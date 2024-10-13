@@ -172,15 +172,40 @@ function runtime() {
 
 # Ask for Prompt
 while true; do
-	read -p "Do you wish to excuete? (Yy/Nn): " yn
+	read -p "Do you wish to remove all non-core packages? (Yy/Nn): " yn
 	case $yn in
-		[Yy]* ) runtime; break;;
-		[Nn]* ) exit;;
+		[Yy]* ) echo "I love you?"; break;;
+		[Nn]* ) break;;
 		* ) echo "Invalid Command. Please type either yes(y) or no(n)"
 			echo; continue;;
 	esac
 done
 
+
+# Ask for permission to remove Wallpapers
+## Looks for the Wallpaper directory existance. If not found, skips.
+echo "--------------"
+while true; do
+    echo "Wallpapers are usually installed over '/home/Pictures/wallpapers/'"
+    read -p "Do you wish to remove all added Wallpapers? (Yy/Nn): " yn
+    case $yn in
+        [Yy]* ) 
+            # Find the Directory
+            if [[ -d ~/Pictures/wallpapers ]]; then
+                echo "Performing a 'sudo rm -r' command. Auth required."
+                sudo rm -r ~/Pictures/wallpapers;
+            else
+                echo "Directory Not Found. Skipping Wallpaper Deletion"
+            fi
+            break;;
+
+        [Nn]* ) break;;
+        * ) echo "Invalid Comand. Please type either yes(y) or no(n)"
+            echo; continue;;
+    esac
+done
+
+
 # Remainder to User for after actions
-echo
+echo "--------------"
 echo "Uninstaller work is completed. Please run 'sudo apt autoremove' to get rid of leftovers"
