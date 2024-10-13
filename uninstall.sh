@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Opening prints
+# Greet the user
 echo "Ubuntu-Hyprland Uninstall program for 24.10"
-
-# YOU! YES YOU! EDIT THIS VARIABLE SO THAT YOU DON'T MESS YOUR SYSTEM BY REMOVING THE WRONG ONE!
-# Note: ALL THESE PACKAGES ARE INSTALLED BY THE SCRIPT. THIS IS TESTED ON A FRESTLY INSTALLED UBUNUTO DISTRO.
-# DO NOT USE IT ON A DIFFERENT DISTRO WITHOUT BEING SURE WHICH PACKAGES YOU ARE USING.
+echo "-----------------------"
+# YOU! YES YOU! EDIT THE 'packages' VARIABLE SO THAT YOU DON'T MESS YOUR SYSTEM BY REMOVING THE WRONG ONE!
+## Note: ALL THESE PACKAGES ARE INSTALLED BY THE SCRIPT. THIS IS TESTED ON A FRESTLY INSTALLED UBUNUTO DISTRO.
+### DO NOT USE IT ON A DIFFERENT DISTRO WITHOUT BEING SURE WHICH PACKAGES YOU ARE USING.
 
 # List of packages to remove
 # Important Non-Core Packages excluded are : Curl, zsh, file-roller, pavucontrol, zsh-common
@@ -136,6 +136,7 @@ packages=(
     "zplug"
 )
 
+
 # List all selected packages
 echo "The following packages will be uninstalled."
 echo "If you don't want a specific package to be uninstalled, edit uninstaller.sh and edit 'packages' variable"
@@ -158,6 +159,7 @@ function is_package_installed() {
     fi
 }
 
+
 # Loop through the packages and remove them
 function runtime() {
 	for package in "${packages[@]}"; do
@@ -174,7 +176,7 @@ function runtime() {
 while true; do
 	read -p "Do you wish to remove all non-core packages? (Yy/Nn): " yn
 	case $yn in
-		[Yy]* ) echo "I love you?"; break;;
+		[Yy]* ) runtime; break;;
 		[Nn]* ) break;;
 		* ) echo "Invalid Command. Please type either yes(y) or no(n)"
 			echo; continue;;
@@ -183,7 +185,7 @@ done
 
 
 # Ask for permission to remove Wallpapers
-## Looks for the Wallpaper directory existance. If not found, skips.
+## Looks for the Wallpaper directory at ~/home/Pictures/wallpapers. If not found, skips.
 echo "--------------"
 while true; do
     echo "Wallpapers are usually installed over '/home/Pictures/wallpapers/'"
@@ -204,6 +206,11 @@ while true; do
             echo; continue;;
     esac
 done
+
+
+# to do: Locate directory of Ubuntu-Hyprland and remove it.
+# to do: Make the code more robust. Ask once.
+# to do: Purge option. Let the user choose if they want a classic 'remove' or '--purge'
 
 
 # Remainder to User for after actions
