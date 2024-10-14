@@ -10,7 +10,9 @@ echo "-----------------------"
 # List of packages to remove
 # Important Non-Core Packages excluded are : Curl, zsh, file-roller, pavucontrol, zsh-common
 # Script tested on Ubunuto 24.10
-
+allow_remove_packages=0
+allow_remove_wallpapers=0 
+allow_remove_gitDirectory=0
 packages=(
     "bison"
     "blueman"
@@ -136,17 +138,57 @@ packages=(
     "zplug"
 )
 
+function list_packages() {
+    # List all selected packages
+    for package in "${packages[@]}"; do
+        echo "$package"
+    done
 
-# List all selected packages
-echo "The following packages will be uninstalled."
-echo "If you don't want a specific package to be uninstalled, edit uninstaller.sh and edit 'packages' variable"
-echp "Wallpapers are not going to be uninstalled."
-echo "--------------"
-for package in "${packages[@]}"; do
-	echo "$package"
-done
+    echo "-----------------------"
+    echo "* The following packages listed above will be uninstalled."
+    echo "* If you don't want a specific package to be uninstalled, find uninstall.sh and edit 'packages' variable"
+    echo "-----------------------"
+}
 
-echo "--------------"
+
+# Getting all user response once rather than waiting for process to end.
+function get_user_response() {
+    
+    # Remove Packages?
+    list_packages
+    while true; do
+        read -p "Do you wish to remove all non-core packages? (Yy/Nn): " yn
+        case $yn in
+            [Yy]* ) allow_remove_packages=1; break;;
+            [Nn]* ) break;;
+            * ) echo "Invalid Command. Please type either yes(y) or no(n)"
+                echo; continue;;
+        esac
+    done
+
+    # Remove Wallpapers?
+    while true; do
+        read -p "Do you wish to remove all downloadeded wallpapers? (Yy/Nn): " yn
+        case $yn in
+            [Yy]* ) allow_remove_wallpapers=1; break;;
+            [Nn]* ) break;;
+            * ) echo "Invalid Command. Please type either yes(y) or no(n)"
+                echo; continue;;
+        esac
+    done
+
+    # Remove Ubuntu-Hyprland directory?
+    # while true; do
+    #     read -p "PEAPDSearDo you wish to remove Ubuntu-Hyprland? (Yy/Nn): " yn
+    #     case $yn in
+    #         [Yy]* ) allow_remove_gitDirectory=1; break;;
+    #         [Nn]* ) break;;
+    #         * ) echo "Invalid Command. Please type either yes(y) or no(n)"
+    #             echo; continue;;
+    #     esac
+    # done
+}
+
 
 
 # Function to check if a package is installed
@@ -161,7 +203,7 @@ function is_package_installed() {
 
 
 # Loop through the packages and remove them
-function runtime() {
+function remove_package() {
 	for package in "${packages[@]}"; do
 		if is_package_installed "$package"; then
 			echo "Removing $package..."
@@ -172,47 +214,44 @@ function runtime() {
 	done
 }
 
-# Ask for Prompt
-while true; do
-	read -p "Do you wish to remove all non-core packages? (Yy/Nn): " yn
-	case $yn in
-		[Yy]* ) runtime; break;;
-		[Nn]* ) break;;
-		* ) echo "Invalid Command. Please type either yes(y) or no(n)"
-			echo; continue;;
-	esac
-done
+
+function main() {
+    # Update Variables
+    get_user_response
+
+    # Remove package
+    if [ $allow_remove_packages -eq 1 ]; then
+        # remove_package
+        echo "Hi 1"
+    fi
+
+    # Remove wallpapers
+    if [ $allow_remove_wallpapers -eq 1 ]; then
+        if [[ -d ~/Pictures/wallpapers_test ]]; then
+            echo "Hi 2"
+            # echo "Performing a 'sudo rm -r' command. Auth required."
+            # sudo rm -r ~/Pictures/wallpapers;
+        else
+            echo "Directory Not Found. Skipping Wallpaper Deletion"
+        fi
+    fi
 
 
-# Ask for permission to remove Wallpapers
-## Looks for the Wallpaper directory at ~/home/Pictures/wallpapers. If not found, skips.
-echo "--------------"
-while true; do
-    echo "Wallpapers are usually installed over '/home/Pictures/wallpapers/'"
-    read -p "Do you wish to remove all added Wallpapers? (Yy/Nn): " yn
-    case $yn in
-        [Yy]* ) 
-            # Find the Directory
-            if [[ -d ~/Pictures/wallpapers ]]; then
-                echo "Performing a 'sudo rm -r' command. Auth required."
-                sudo rm -r ~/Pictures/wallpapers;
-            else
-                echo "Directory Not Found. Skipping Wallpaper Deletion"
-            fi
-            break;;
+}
 
-        [Nn]* ) break;;
-        * ) echo "Invalid Comand. Please type either yes(y) or no(n)"
-            echo; continue;;
-    esac
-done
+main
 
 
 # to do: Locate directory of Ubuntu-Hyprland and remove it.
+# IF 2 directory results are found, script will ignore it and advise user to delete it manually
+
+
+
+
 # to do: Make the code more robust. Ask once.
 # to do: Purge option. Let the user choose if they want a classic 'remove' or '--purge'
 
 
 # Remainder to User for after actions
-echo "--------------"
+echo "-----------------------"
 echo "Uninstaller work is completed. Please run 'sudo apt autoremove' to get rid of leftovers"
