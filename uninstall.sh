@@ -12,7 +12,6 @@ echo "-----------------------"
 # Script tested on Ubunuto 24.10
 allow_remove_packages=0
 allow_remove_wallpapers=0 
-allow_remove_gitDirectory=0
 packages=(
     "bison"
     "blueman"
@@ -150,7 +149,6 @@ function list_packages() {
     echo "-----------------------"
 }
 
-
 # Getting all user response once rather than waiting for process to end.
 function get_user_response() {
     
@@ -176,20 +174,7 @@ function get_user_response() {
                 echo; continue;;
         esac
     done
-
-    # Remove Ubuntu-Hyprland directory?
-    # while true; do
-    #     read -p "PEAPDSearDo you wish to remove Ubuntu-Hyprland? (Yy/Nn): " yn
-    #     case $yn in
-    #         [Yy]* ) allow_remove_gitDirectory=1; break;;
-    #         [Nn]* ) break;;
-    #         * ) echo "Invalid Command. Please type either yes(y) or no(n)"
-    #             echo; continue;;
-    #     esac
-    # done
 }
-
-
 
 # Function to check if a package is installed
 function is_package_installed() {
@@ -200,7 +185,6 @@ function is_package_installed() {
         return 1
     fi
 }
-
 
 # Loop through the packages and remove them
 function remove_package() {
@@ -214,44 +198,39 @@ function remove_package() {
 	done
 }
 
-
 function main() {
     # Update Variables
     get_user_response
 
     # Remove package
     if [ $allow_remove_packages -eq 1 ]; then
-        # remove_package
-        echo "Hi 1"
+        remove_package
     fi
 
     # Remove wallpapers
     if [ $allow_remove_wallpapers -eq 1 ]; then
-        if [[ -d ~/Pictures/wallpapers_test ]]; then
-            echo "Hi 2"
-            # echo "Performing a 'sudo rm -r' command. Auth required."
-            # sudo rm -r ~/Pictures/wallpapers;
+        if [[ -d ~/Pictures/wallpapers ]]; then
+            echo "Performing a 'sudo rm -r' command. Auth required."
+            sudo rm -r ~/Pictures/wallpapers;
         else
             echo "Directory Not Found. Skipping Wallpaper Deletion"
         fi
     fi
-
-
 }
 
 main
 
-
-# to do: Locate directory of Ubuntu-Hyprland and remove it.
-# IF 2 directory results are found, script will ignore it and advise user to delete it manually
-
-
-
-
-# to do: Make the code more robust. Ask once.
-# to do: Purge option. Let the user choose if they want a classic 'remove' or '--purge'
-
+# TO DO: Remove pokemon-colorscripts by either accessing its directory from Ubuntu-Hyprland or doing it manually
+# TO DO: Give users the purge option. Once selected, it will remove all config files related to packages.
+# TO DO: Remove Hypridle, Rofi, swwww etc. from system 
 
 # Remainder to User for after actions
 echo "-----------------------"
-echo "Uninstaller work is completed. Please run 'sudo apt autoremove' to get rid of leftovers"
+if [ $allow_remove_packages -eq 1 ] || [ $allow_remove_wallpapers -eq 1 ]; then
+    echo "Uninstaller work is completed. Please run 'sudo apt autoremove' to get rid of leftovers"
+else
+    echo "Uninstall work aborted."
+fi
+
+echo "pokemon-colorscripts, rofi, hypridle, swww etc. are not removed yet. You can remove pokemon-colorscripts via your cloned Ubuntu-Hyprland directory."
+
