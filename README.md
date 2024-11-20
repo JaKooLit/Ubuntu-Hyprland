@@ -36,6 +36,8 @@ Branches below are still on early stages
 > Example below for downloading from 24.10 Branch
 
 ```bash
+# Ensure required dependencies are installed  
+sudo apt update && sudo apt install -y rofi  
 git clone -b 24.10 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland
 cd ~/Ubuntu-Hyprland
 chmod +x install.sh
