@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 10 Dec 2024
+- updated swww.sh to download from version v0.9.5
+
 ## 20 Nov 2024
 - switched to download rofi-wayland from releases instead from upstream
 

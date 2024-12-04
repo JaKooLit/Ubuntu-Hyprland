@@ -51,7 +51,7 @@ if [ -d "swww" ]; then
   git pull origin main 2>&1 | tee -a "$MLOG"
 else
   printf "${NOTE} Cloning swww repository...\n"
-  if git clone --recursive https://github.com/Horus645/swww.git; then
+  if git clone --recursive -b $swww_tag https://github.com/Horus645/swww.git; then
     cd swww || exit 1
   else
     echo -e "${ERROR} Download failed for swww" 2>&1 | tee -a "$LOG"
