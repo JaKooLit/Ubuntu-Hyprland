@@ -21,8 +21,6 @@
 - This also means if Ubuntu decide to have another major update say 24.04.2 or .3 etc.. 
 
 
-### ALPHA - BETA - RC BRANCHES
-Branches below are still on early stages
 <h4 align="left">
 <img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />  <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10"> Ubuntu 24.10 Oracular Oriole Hyprland install script branch </a><br><br>
 </h4>
