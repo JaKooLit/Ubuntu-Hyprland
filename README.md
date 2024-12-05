@@ -34,7 +34,8 @@ Branches below are still on early stages
 > [!IMPORTANT]
 > Make SURE you include the branch by adding -b BRANCH.
 > Example below for downloading from 24.10 Branch
-> Change to 24.04 if you are running ubuntu 24.04.x
+>
+> Change to 24.04 if you are running ubuntu 24.04.x  -b 24.04
 
 ```bash
 git clone -b 24.10 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland
