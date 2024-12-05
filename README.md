@@ -31,8 +31,6 @@
 
 > [!IMPORTANT]
 > Make SURE you include the branch by adding -b BRANCH.
-> Example below for downloading from 24.10 Branch
-
 
 
 ## 💥 For Ubuntu 24.04 (Includes 24.04.1 or 24.04.2 etc)
