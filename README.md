@@ -35,8 +35,8 @@
 
 ## 💥 For Ubuntu 24.04 (Includes 24.04.1 or 24.04.2 etc)
 ```bash
-git clone -b 24.04 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland
-cd ~/Ubuntu-Hyprland
+git clone -b 24.04 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-24.04
+cd ~/Ubuntu-Hyprland-24.04
 chmod +x install.sh
 ./install.sh
 ```
@@ -44,8 +44,8 @@ chmod +x install.sh
 
 ## 💢 For Ubuntu 24.10
 ```bash
-git clone -b 24.10 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland
-cd ~/Ubuntu-Hyprland
+git clone -b 24.10 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-24.10
+cd ~/Ubuntu-Hyprland-24.10
 chmod +x install.sh
 ./install.sh
 ```
