@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 17 Dec 2024
+- updated link for swww.sh
+
 ## 10 Dec 2024
 - updated swww.sh to download from version v0.9.5
 
