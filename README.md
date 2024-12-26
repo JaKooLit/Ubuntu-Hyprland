@@ -8,7 +8,7 @@
 <div align="center">
 
 ## 💌 JaKooLit's Ubuntu Hyprland Install Script 💌
-#### For Ubuntu 24.10 Oracular Oriole
+#### For Ubuntu 25.04 Plucky Puffin
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
 
@@ -140,8 +140,8 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 ## ✨ to use this script
 > clone this repo (latest commit only) by using git. Change directory, make executable and run the script
 ```bash
-git clone --depth=1 -b 24.10 https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-24.10
-cd ~/Ubuntu-Hyprland-24.10
+git clone --depth=1 -b 25.04 https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-25.04
+cd ~/Ubuntu-Hyprland-25.04
 chmod +x install.sh
 ./install.sh
 ```
@@ -171,7 +171,6 @@ source ~/.zshrc
 - swww [`LINK`](https://github.com/Horus645/swww)
 - hyprlock [`LINK`](https://github.com/hyprwm/hyprlock)
 - hypridle [`LINK`](https://github.com/hyprwm/hypridle)
-- xdg-desktop-portal-hyprland [`LINK`](https://github.com/hyprwm/xdg-desktop-portal-hyprland)
 - rofi-wayland [`LINK`](https://github.com/lbonn/rofi)
 
 > [!TIP]
