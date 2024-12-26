@@ -26,6 +26,11 @@
 </h4>
 
 
+### Alpha -  Ubuntu 25.04 Plucky Puffin
+<h4 align="left">
+<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />  <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.04"> Ubuntu 25.04 Plucky Puffin Hyprland install script branch </a><br><br>
+</h4>
+
 ## ✨ How to install?
 > clone repo including the branch.
 
@@ -46,6 +51,14 @@ chmod +x install.sh
 ```bash
 git clone -b 24.10 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-24.10
 cd ~/Ubuntu-Hyprland-24.10
+chmod +x install.sh
+./install.sh
+```
+
+## 💫 For Ubuntu 25.04 (NOTE: STILL ON ALPHA STAGE)
+```bash
+git clone -b 25.04 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-25.04
+cd ~/Ubuntu-Hyprland-25.04
 chmod +x install.sh
 ./install.sh
 ```
