@@ -16,7 +16,7 @@ echo " \_| (_| o |\ (_) (_) |_ |  |_ "
 printf "\n%.0s" {1..2}
 
 # Welcome message
-echo "$(tput setaf 6)Welcome to JaKooLit's Ubuntu 24.10 Hyprland Install Script!$(tput sgr0)"
+echo "$(tput setaf 6)Welcome to JaKooLit's Ubuntu 25.04 Hyprland Install Script!$(tput sgr0)"
 echo
 echo "$(tput setaf 166)ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) $(tput sgr0)"
 echo
