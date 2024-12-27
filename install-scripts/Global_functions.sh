@@ -31,7 +31,7 @@ install_package() {
     sudo apt-get install -y "$1" 2>&1 | tee -a "$LOG"
     # Making sure the package is installed
     if sudo dpkg -l | grep -q -w "$1" ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
+      echo -e "\e[1A\e[K${OK} Package ${!YELLOW}$1${RESET} has been successfully installed!"
     else
       # Something is missing, exiting to review the log
       echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry, I have tried :("
