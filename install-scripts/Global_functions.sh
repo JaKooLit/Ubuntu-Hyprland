@@ -30,7 +30,7 @@ install_package() {
         sudo apt-get install -y "$1" 2>&1 | tee -a "$LOG"
         # Making sure the package is installed
         if sudo dpkg -l | grep -q -w "$1"; then
-            echo -e "\e[1A\e[K${OK} Package ${!YELLOW}$1${RESET} has been successfully installed!"
+            echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
         else
             # Something is missing, exiting to review the log
             echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry, I have tried :("
@@ -47,7 +47,7 @@ re_install_package() {
     if sudo apt-get install --reinstall -y "$1" 2>&1 | tee -a "$LOG"; then
         # Check if the package was installed successfully
         if dpkg -l | grep -q -w "$1"; then
-            echo -e "${OK} $1 was installed successfully."
+            echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
         else
             # Package was not found, installation failed
             echo -e "${ERROR} $1 failed to install. Please check the install.log. You may need to install it manually. Sorry, I have tried :("
