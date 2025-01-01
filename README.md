@@ -8,7 +8,7 @@
 <div align="center">
 
 ## 💌 JaKooLit's Ubuntu Hyprland Install Script 💌
-#### For Ubuntu 24.10 Oracular Oriole
+### For Ubuntu 24.10 Oracular Oriole
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
 
@@ -41,8 +41,11 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 </div>
 
+> [!WARNING] 
+> This script does NOT include uninstallation of packages.
+
 > [!IMPORTANT]
-> install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script. This script does NOT include uninstallation of packages
+> install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script. 
 
 > [!NOTE]
 > Main reason why I have not included an uninstallation script is simple. Some packages maybe already installed on your system by default. If I create an uninstall script with packages that I have set to install, you may end up a unrecoverable system. 
@@ -54,14 +57,10 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 - Do not run this installer as sudo or as root
 - This Installer requires a user with a priviledge to install packages
 - This is only 24.10 Oracular Oriole. Check [`MAIN BRANCH`](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/main) for other Ubuntu Versions 
-- If you have login Manager already like GDM (gnome login manager), I highly advice not to install SDDM. But if you decide to install SDDM, see here [`Issue 2 - SDDM`](https://github.com/JaKooLit/Debian-Hyprland/issues/2)
-
-> [!IMPORTANT]
-> If you are using Gnome already, DO NOT install the SDDM. The GDM Login Manager works well with Hyprland. For some reason, during installation, you will be asked which login manager you wanted to use. But during my test, nothing happened.
 
 > [!WARNING] 
-> If you have GDM already as log-in manager, DO NOT install SDDM
-> You will encounter issues. See [`Issue 2 - SDDM`](https://github.com/JaKooLit/Debian-Hyprland/issues/2)
+> If you have GDM already as log-in manager, DO NOT install SDDM. GDM (default) Ubuntu Login Manager works well with Hyprland
+> If you install SDDM, you will encounter issues. See [`Issue 2 - SDDM`](https://github.com/JaKooLit/Debian-Hyprland/issues/2)
 
 ### Gallery and Videos
 <details>
@@ -119,8 +118,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 
 #### ✨  Some notes on this installer / Prerequisites
-- This script is meant to install for Ubuntu 24.10 Oracular Oriole
-- If you are using gnome already, DO NOT install SDDM. GDM will work. Apart from GDM and SDDM, any other Login Manager may not work nor launch Hyprland. However, hyprland can be launched through tty by type Hyprland
+- This script is ONLY meant to install Hyprland for Ubuntu 24.10 Oracular Oriole
 - 🕯️ network-manager-gnome (nm-applet) has been removed from the packages to install. This is because it is known to restart the networkmanager causing issues in the installation process. After you boot up, inorder to get the network-manager applet, install network-manager-gnome. `sudo apt install network-manager-gnome` See below if your network or wifi became unmanaged after installation
 - If you have nvidia, and wanted to use proprietary drivers, uninstall nouveau first (if installed). This script will be installing proprietary nvidia drivers and will not deal with removal of nouveau.
 - NVIDIA users / owners, after installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
