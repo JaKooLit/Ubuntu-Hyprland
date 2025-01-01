@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 01 Jan 2025
+- Switched to download dots from KooL's Hyprland dots specific branch
+
 ## 26 Dec 2024
 - Removal of Bibata Ice cursor on assets since its integrated in the GTK Themes and Icons extract from a separate repo
 
