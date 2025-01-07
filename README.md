@@ -1,8 +1,8 @@
 
 <div align="center">
 
-## 💌 JaKooLit's Ubuntu Hyprland Install Script 💌
-### For Ubuntu-Hyprland
+# 💌 KooL's Ubuntu Hyprland Install Script 💌
+## For Ubuntu-Hyprland
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="400" />
@@ -15,7 +15,7 @@
 </div>
 
 ### BRANCHES on this Repo
-- Branches on this repo will be same as Ubuntu Versions.
+- Branches on this repo corresponds Ubuntu Versions.
 
 <h4 align="left">
 <img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Objects/File Folder.webp" alt="File Folder" width="38" height="38" />   <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04"> 👉 Ubuntu 24.04 LTS Noble Numbat Hyprland install script branch </a><br><br>
