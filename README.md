@@ -25,6 +25,10 @@
 - Latest Hyprland version that is compatible with Ubuntu 24.04 is Hyprland v0.39.1. Reason is that some dependencies are old so newer Hyprland wont build on it. 
 - This is the reason why I have to set a specific release version on Hyprland packages including its eco-system and pre-configured DOTS as it is most likely wayland protocol wont be updated since its an LTS version.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="200" />
+</p>
+
 <div align="center">
 👇 KOOL's Hyprland-Dots related Links 👇
 <br/>
@@ -38,6 +42,10 @@
   <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ"><kbd> <br> FAQ <br> </kbd></a>&ensp;&ensp;
   <a href="https://discord.gg/9JEgZsfhex"><kbd> <br> Discord <br> </kbd></a>
 </div><br>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="200" />
+</p>
 
 <h3 align="center">
 	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
