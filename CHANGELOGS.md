@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 07 Jan 2025
+- added fastfetch for Ubuntu
+- default oh-my-zsh theme was changed to `funky`
+
 ## 26 Dec 2024
 - Removal of Bibata Ice cursor on assets since its integrated in the GTK Themes and Icons extract from a separate repo
 

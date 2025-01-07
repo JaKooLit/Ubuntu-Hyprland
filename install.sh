@@ -260,6 +260,11 @@ fi
 
 clear
 
+# copy fastfetch config if ubuntu is not present
+if [ ! -f "$HOME/.config/fastfetch/ubuntu.png" ]; then
+    cp -r assets/fastfetch "$HOME/.config/"
+fi
+
 printf "\n%.0s" {1..2}
 # final check essential packages if it is installed
 execute_script "03-Final-Check.sh"
