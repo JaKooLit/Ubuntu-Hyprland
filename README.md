@@ -1,19 +1,25 @@
 <div align="center">
-<br> 
-  <a href="#-announcement-"><kbd> <br> Read this First <br> </kbd></a>&ensp;&ensp;
-  <a href="#-to-use-this-script"><kbd> <br> How to Use this Script <br> </kbd></a>&ensp;&ensp;
-  <a href="#gallery-and-videos"><kbd> <br> Gallery <br> </kbd></a>&ensp;&ensp;
- </div><br>
+
+# 💌 KooL's Ubuntu Hyprland Install Script 💌
+## For Ubuntu 24.10 Oracular Oriole
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="400" />
+</p>
 
 <div align="center">
-
-## 💌 JaKooLit's Ubuntu Hyprland Install Script 💌
-### For Ubuntu 24.10 Oracular Oriole
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
 
 <br/>
 </div>
+
+<div align="center">
+<br> 
+  <a href="#-announcement-"><kbd> <br> Read this First <br> </kbd></a>&ensp;&ensp;
+  <a href="#-to-use-this-script"><kbd> <br> How to Use this Script <br> </kbd></a>&ensp;&ensp;
+  <a href="#gallery-and-videos"><kbd> <br> Gallery <br> </kbd></a>&ensp;&ensp;
+ </div><br>
 
 <div align="center">
 👇 KOOL's Hyprland-Dots related Links 👇
