@@ -4,7 +4,6 @@
 
 thunar=(
   ffmpegthumbnailer
-  file-roller
   thunar 
   thunar-volman 
   tumbler 
