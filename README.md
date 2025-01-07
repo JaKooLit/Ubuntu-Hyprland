@@ -1,22 +1,21 @@
 
 <div align="center">
 
-# 💌 KooL's Ubuntu Hyprland Install Script 💌
-### For Ubuntu Linux
+## 💌 JaKooLit's Ubuntu Hyprland Install Script 💌
+### For Ubuntu-Hyprland
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="400" />
 </p>
 
-<div align="center">
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
 
 <br/>
 </div>
 
-## NOTE: BRANCHES on this Repo
-- Branches on this repo refer or corresponds Ubuntu Versions. 
+### BRANCHES on this Repo
+- Branches on this repo will be same as Ubuntu Versions.
 
 <h4 align="left">
 <img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Objects/File Folder.webp" alt="File Folder" width="38" height="38" />   <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04"> 👉 Ubuntu 24.04 LTS Noble Numbat Hyprland install script branch </a><br><br>
