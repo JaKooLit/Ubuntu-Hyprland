@@ -16,7 +16,7 @@ ags=(
 )
 
 # specific tags to download
-ags_tag="v1.8.2"
+ags_tag="v1.9.0"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -46,7 +46,7 @@ sudo npm install --global typescript 2>&1 | tee -a "$LOG"
 
 # ags
 
-printf "${NOTE} Install and Compiling Aylurs GTK shell\n"
+printf "${NOTE} Install and Compiling Aylurs GTK shell $ags_tag .. \n"
 
 # Check if folder exists and remove it
 if [ -d "ags" ]; then
