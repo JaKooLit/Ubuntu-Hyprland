@@ -127,6 +127,8 @@ ask_yes_no "-Do you want to configure Bluetooth?" bluetooth
 printf "\n"
 ask_yes_no "-Do you want to install Thunar file manager?" thunar
 printf "\n"
+ask_yes_no "-Install AGS (aylur's gtk shell) v1 for Desktop Like Overview?" ags
+printf "\n"
 ask_yes_no "-Install & configure SDDM log-in Manager plus (OPTIONAL) SDDM Theme?" sddm
 printf "\n"
 ask_yes_no "-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)" xdph
@@ -183,7 +185,6 @@ execute_script "wallust.sh"
 execute_script "fonts.sh"
 execute_script "swww.sh"
 execute_script "rofi-wayland.sh"
-execute_script "ags.sh"
 execute_script "hyprland.sh"
 execute_script "hyprlock.sh"
 execute_script "hypridle.sh"
@@ -204,6 +205,10 @@ fi
 if [ "$thunar" == "Y" ]; then
     execute_script "thunar.sh"
 fi
+
+if [ "$ags" == "Y" ]; then
+    execute_script "ags.sh"
+fiv
 
 if [ "$sddm" == "Y" ]; then
     execute_script "sddm.sh"
