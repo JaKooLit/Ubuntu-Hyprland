@@ -224,6 +224,9 @@ source ~/.zshrc
 - for the install part, kindly open issue on this repo
 - for the Pre-configured Hyprland dots / configuration, submit issue [`here`](https://github.com/JaKooLit/Hyprland-Dots/issues)
 
+#### 🎞️ AGS Overview DEMO
+- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
+
 #### ⌨ Keybinds
 - Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
 
