@@ -29,9 +29,8 @@ printf "\n%.0s" {1..4}
 echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT NOTICE!!!! $(tput sgr0)" 
 echo "$(tput bold)$(tput setaf 7)Latest Hyprland compatible with Ubuntu 24.04 is only up to v0.39.1 $(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)This was due to old version is wayland-protocols available in Ubuntu Repo $(tput sgr0)"
-echo "$(tput bold)$(tput setaf 7)Because of the above, the latest Hyprland-Dots compatible will only be v2.2.13 $(tput sgr0)"
-echo "$(tput bold)$(tput setaf 7)Newer dots may not be compatible.$(tput sgr0)"
-echo "$(tput bold)$(tput setaf 7)This would also mean that support for this project might slowdown$(tput sgr0)"
+echo "$(tput bold)$(tput setaf 7)Because of the above, the latest KooL's Hyprland-Dots may not be fully compatible $(tput sgr0)"
+echo "$(tput bold)$(tput setaf 7)This would also mean that support for this project might be slow$(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)Please be guided$(tput sgr0)"
 printf "\n%.0s" {1..3}
 
@@ -139,6 +138,8 @@ ask_yes_no "-Do you want to configure Bluetooth?" bluetooth
 printf "\n"
 ask_yes_no "-Do you want to install Thunar file manager?" thunar
 printf "\n"
+ask_yes_no "-Install AGS (aylur's gtk shell) v1 for Desktop Like Overview?" ags
+printf "\n"
 ask_yes_no "-Install & configure SDDM log-in Manager plus (OPTIONAL) SDDM Theme?" sddm
 printf "\n"
 ask_yes_no "-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)" xdph
@@ -190,7 +191,6 @@ execute_script "fonts.sh"
 execute_script "swappy.sh"
 execute_script "swww.sh"
 execute_script "rofi-wayland.sh"
-execute_script "ags.sh"
 
 sleep 1
 execute_script "hyprlang.sh"
@@ -216,6 +216,10 @@ fi
 
 if [ "$thunar" == "Y" ]; then
     execute_script "thunar.sh"
+fi
+
+if [ "$ags" == "Y" ]; then
+    execute_script "ags.sh"
 fi
 
 if [ "$sddm" == "Y" ]; then
@@ -247,7 +251,7 @@ execute_script "hypridle.sh"
 execute_script "InputGroup.sh"
 
 if [ "$dots" == "Y" ]; then
-    execute_script "dotfiles.sh"
+    execute_script "dotfiles-branch.sh"
 fi
 
 # Clean up

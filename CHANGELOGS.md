@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 30 Jan 2025
+- AGS v1 installation is now optional.
+- switched to a specific branch on KooL's Hyprland-Dots to make it easier to update
+
 ## 12 Jan 2025
 - switch to final version of aylurs-gtk-shell-v1
 
