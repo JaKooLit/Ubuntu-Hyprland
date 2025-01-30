@@ -212,7 +212,7 @@ source ~/.zshrc
 - Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
 
 #### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://www.youtube.com/watch?v=ir9NfMcZBzA)
+- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
 
 #### 🔧 Proper way to re-installing a particular script from install-scripts directory
 - CD into Ubuntu-Hyprland Folder and then ran the below command. 
