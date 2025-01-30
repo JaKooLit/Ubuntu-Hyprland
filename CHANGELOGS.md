@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 30 Jan 2025
+- AGS (aylur's GTK shell) v1 for desktop overview is now optional
+
 ## 12 Jan 2025
 - switch to final version of aylurs-gtk-shell-v1
 
