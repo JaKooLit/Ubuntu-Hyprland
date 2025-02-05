@@ -98,6 +98,11 @@ while [ "$valid_input" != true ]; do
       sudo cp -r assets/sddm.png /usr/share/sddm/themes/sequoia_2/backgrounds/default
       sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' /usr/share/sddm/themes/sequoia_2/theme.conf 
 
+      # Copy Nerd Fonts (necessary for icons to properly show)
+      printf "\n%s - Copying nerd font to /usr inoder for the new theme to have a proper icons\n" "${NOTE}"
+      sudo cp -r "$HOME/.local/share/fonts/JetBrainsMonoNerd" /usr/local/share/fonts/
+      fc-cache -fv | tee -a "$LOG" >&2
+      
   	  echo -e "\e[1A\e[K${OK} - ${MAGENTA}Additional SDDM Theme${RESET} successfully installed" | tee -a "$LOG" >&2
       
     else
