@@ -42,7 +42,7 @@ show_progress() {
         sleep 0.3  
     done
 
-    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s \n" "$package_name" ""
+    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s \n\n" "$package_name" ""
     tput cnorm  
 }
 

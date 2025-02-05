@@ -157,13 +157,12 @@ ask_yes_no "-Install ${YELLOW}zsh${RESET}, ${YELLOW}oh-my-zsh${RESET} & (Optiona
 printf "\n"
 ask_yes_no "-Installing on ${YELLOW}Asus ROG laptops${RESET}?" rog
 printf "\n"
-ask_yes_no "-Do you want to download pre-configured ${YELLOW}KooL Hyprland dotfiles?${RESET}" dots
+ask_yes_no "-Do you want to download pre-configured ${YELLOW}KooL's Hyprland dotfiles?${RESET}" dots
 printf "\n"
 
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
 
-printf "\n%.0s" {1..2}
 # check if any known login managers are active when users choose to install sddm
 if [ "$sddm" == "y" ] || [ "$sddm" == "Y" ]; then
     # List of services to check
