@@ -24,6 +24,7 @@ dependencies=(
   libdeflate-dev
   libdisplay-info-dev
   libdrm-dev
+  libegl-dev
   libegl1-mesa-dev
   libgbm-dev
   libgdk-pixbuf-2.0-dev
