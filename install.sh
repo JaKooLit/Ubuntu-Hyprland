@@ -148,6 +148,7 @@ ask_yes_no "-Do you want to configure ${YELLOW}Bluetooth${RESET}?" bluetooth
 printf "\n"
 ask_yes_no "-Do you want to install ${YELLOW}Thunar file manager${RESET}?" thunar
 printf "\n"
+printf "${NOTE} ${YELLOW}AGS Desktop Overview DEMO link on README${RESET}\n"
 ask_yes_no "-Install ${YELLOW}AGS (aylur's GTK shell) v1${RESET} for Desktop-Like Overview?" ags
 printf "\n"
 ask_yes_no "-Install & configure ${YELLOW}SDDM${RESET} login manager, plus (OPTIONAL) SDDM theme?" sddm

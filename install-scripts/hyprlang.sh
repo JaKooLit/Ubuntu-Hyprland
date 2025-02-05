@@ -34,7 +34,7 @@ if git clone --recursive -b $lang_tag https://github.com/hyprwm/hyprlang.git; th
     cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
     cmake --build ./build --config Release --target hyprlang -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
     if sudo cmake --install ./build 2>&1 | tee -a "$MLOG" ; then
-        printf "${OK} ${YELLOW}hyprlang $lang_tag${MAGENTA} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+        printf "${OK} ${YELLOW}hyprlang $lang_tag${MAGENTA} has been successfully installed.\n" 2>&1 | tee -a "$MLOG"
     else
         echo -e "${ERROR} Installation failed for ${YELLOW}hyprlang $lang_tag${RESET}" 2>&1 | tee -a "$MLOG"
     fi

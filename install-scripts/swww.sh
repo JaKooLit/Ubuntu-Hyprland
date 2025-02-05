@@ -10,7 +10,7 @@ if command -v swww &>/dev/null; then
         exit 0
     fi
 else
-    echo -e "${ERROR} ${MAGENTA}swww${RESET} is not installed. Proceeding with installation."
+    echo -e "${NOTE} ${MAGENTA}swww${RESET} is not installed. Proceeding with installation."
 fi
 
 

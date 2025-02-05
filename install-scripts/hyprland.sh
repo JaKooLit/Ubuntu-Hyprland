@@ -32,7 +32,7 @@ if git clone --recursive -b $hyprland_tag "https://github.com/hyprwm/Hyprland"; 
   cd "Hyprland" || exit 1
   make all
   if sudo make install 2>&1 | tee -a "$MLOG"; then
-    printf "${OK} ${MAGENTA}hyprland $hyprland_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+    printf "${OK} ${MAGENTA}hyprland $hyprland_tag${RESET} has been successfully installed.\n" 2>&1 | tee -a "$MLOG"
   else
     echo -e "${ERROR} Installation failed for ${YELLOW}hyprland $hyprland_tag${RESET}" 2>&1 | tee -a "$MLOG"
   fi

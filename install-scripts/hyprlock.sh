@@ -42,7 +42,7 @@ if git clone --recursive -b $lock_tag https://github.com/hyprwm/hyprlock.git; th
 	cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build
 	cmake --build ./build --config Release --target hyprlock -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
     if sudo cmake --install build 2>&1 | tee -a "$MLOG" ; then
-        printf "${OK} ${MAGENTA}hyprlock $lock_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+        printf "${OK} ${MAGENTA}hyprlock $lock_tag${RESET} has been successfully installed.\n" 2>&1 | tee -a "$MLOG"
     else
         echo -e "${ERROR} Installation failed for ${YELLOW}hyprlock $lock_tag${RESET}" 2>&1 | tee -a "$MLOG"
     fi

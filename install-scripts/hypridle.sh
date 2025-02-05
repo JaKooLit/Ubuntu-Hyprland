@@ -46,7 +46,7 @@ if git clone --recursive -b $idle_tag https://github.com/hyprwm/hypridle.git; th
 	cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build
 	cmake --build ./build --config Release --target hypridle -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
     if sudo cmake --install ./build 2>&1 | tee -a "$MLOG" ; then
-        printf "${OK} ${MAGENTA}hypridle $idle_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+        printf "${OK} ${MAGENTA}hypridle $idle_tag${RESET} has been successfully installed.\n" 2>&1 | tee -a "$MLOG"
     else
         echo -e "${ERROR} Installation failed for ${YELLOW}hypridle $idle_tag${RESET}" 2>&1 | tee -a "$MLOG"
     fi

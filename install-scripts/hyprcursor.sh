@@ -43,15 +43,15 @@ if git clone --recursive -b $cursor_tag https://github.com/hyprwm/hyprcursor.git
 		cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
 		cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
     if sudo cmake --install ./build 2>&1 | tee -a "$MLOG" ; then
-        printf "${OK} ${MAGENTA}hyprcursor${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+        printf "${OK} ${MAGENTA}hyprcursor $cursor_tag${RESET} has been successfully installed.\n" 2>&1 | tee -a "$MLOG"
     else
-        echo -e "${ERROR} Installation failed for ${YELLOW}hyprcursor${RESET}" 2>&1 | tee -a "$MLOG"
+        echo -e "${ERROR} Installation failed for ${YELLOW}hyprcursor $cursor_tag${RESET}" 2>&1 | tee -a "$MLOG"
     fi
     #moving the addional logs to Install-Logs directory
     mv $MLOG ../Install-Logs/ || true 
     cd ..
 else
-    echo -e "${ERROR} Download failed for hyprcursor." 2>&1 | tee -a "$LOG"
+    echo -e "${ERROR} Download failed for ${YELLOW}hyprcursor $cursor_tag${RESET}" 2>&1 | tee -a "$LOG"
 fi
 
 printf "\n%.0s" {1..2}
