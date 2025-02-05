@@ -83,16 +83,28 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypr-pkgs.log"
 
+
+# conflicting packages removal
+overall_failed=0
+printf "\n%s - ${SKY_BLUE}Removing some packages${RESET} as it conflicts with KooL's Hyprland Dots \n" "${NOTE}"
+for PKG in "${uninstall[@]}"; do
+  uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    overall_failed=1
+  fi
+done
+
+if [ $overall_failed -ne 0 ]; then
+  echo -e "${ERROR} Some packages failed to uninstall. Please check the log."
+fi
+
+printf "\n%.0s" {1..1}
+
 # Installation of main components
 printf "\n%s - Installing ${SKY_BLUE}KooL's hyprland necessary packages${RESET} .... \n" "${NOTE}"
 
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
   install_package "$PKG1" "$LOG"
-done
-
-printf "\n%s - ${SKY_BLUE}Uninstalling some packages${RESET} inorder for dots to work properly \n" "${NOTE}"
-for PKG in "${uninstall[@]}"; do
-  uninstall_package "$PKG" "$LOG"
 done
 
 printf "\n%.0s" {1..1}

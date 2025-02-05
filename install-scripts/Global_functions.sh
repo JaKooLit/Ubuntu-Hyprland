@@ -96,14 +96,23 @@ re_install_package() {
 }
 
 
-# Function for uninstalling packages
+# Function for removing packages
 uninstall_package() {
+  local pkg="$1"
+
+  # Checking if package is installed
   if sudo dpkg -l | grep -q -w "^ii  $1" ; then
-    sudo apt-get autoremove -y "$1" >> "$LOG" 2>&1
+    echo -e "${NOTE} Uninstalling $pkg ..."
+    sudo apt autoremove -y "$1" >> "$LOG" 2>&1 | grep -v "error: target not found"
+    
     if ! dpkg -l | grep -q -w "^ii  $1" ; then
       echo -e "\e[1A\e[K${OK} ${MAGENTA}$1${RESET} was uninstalled."
     else
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the uninstall.log."
+      echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. Please check the log."
+      return 1
     fi
+  else
+    echo -e "${INFO} Package $pkg not installed, skipping."
   fi
+  return 0
 }
