@@ -97,6 +97,10 @@ dependencies=(
   xwayland
 )
 
+build_dep=(
+  wlroots
+)
+
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -111,23 +115,16 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_dependencies.log"
 
 # Installation of main dependencies
-printf "\n%s - Installing main dependencies.... \n" "${NOTE}"
+printf "\n%s - Installing ${SKY_BLUE}main dependencies....${RESET} \n" "${NOTE}"
 
 for PKG1 in "${dependencies[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  install_package "$PKG1" "$LOG"
 done
 
-# Install dependencies for wlroots
-sudo apt build-dep wlroots
-export PATH=$PATH:/usr/local/go/bin
+printf "\n%.0s" {1..1}
 
-# Install up-to-date Rust
-echo "Installing most up to Rust compiler..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 2>&1 | tee -a "$LOG"
-source "$HOME/.cargo/env"
+for PKG1 in "${build_dep[@]}"; do
+  build_dep "$PKG1" "$LOG"
+done
 
-clear
+printf "\n%.0s" {1..2}

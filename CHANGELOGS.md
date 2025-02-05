@@ -1,5 +1,10 @@
 ## Changelogs
 
+## 04 Feb 2025
+- offering a new SDDM theme from here [SDDM](https://codeberg.org/minMelody/sddm-sequoia)
+- some tweaking on install-scripts except the compiling part. It will not show progress for much cleaner work
+- script will automatically detect if you have nvidia but script still offer if you want to set up for user
+
 ## 30 Jan 2025
 - AGS v1 installation is now optional.
 - switched to a specific branch on KooL's Hyprland-Dots to make it easier to update

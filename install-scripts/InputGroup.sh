@@ -1,6 +1,10 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# Adding user in input group for waybar keyboard state module #
+# Adding users into input group #
+
+if [[ $USE_PRESET = [Yy] ]]; then
+  source ./preset.sh
+fi
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -16,39 +20,36 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_input.log"
 
 while true; do
-    echo "${WARN} This script will add your user to the 'input' group."
-    echo "${NOTE} Please note that adding yourself to the 'input' group might be necessary for waybar keyboard-state functionality."
-
-    printf "\n%.0s" {1..2}
+    echo "${WARN} This script will add your ${YELLOW}user${RESET} to the ${MAGENTA}input${RESET} group."
+    echo "${NOTE} Please note that adding yourself to the ${MAGENTA}input${RESET} group might be necessary for ${MAGENTA}waybar keyboard-state functionality${RESET} ."
     
-    read -p "${YELLOW}Do you want to proceed? (y/n): ${RESET}" choice
+    printf "\n%.0s" {1..1}
+    
+    if [[ -z $input_group_choid ]]; then
+      read -p "${YELLOW}Do you want to proceed? (y/n): ${RESET}" input_group_choid
+    fi
 
-    if [[ $choice == "y" || $choice == "Y" ]]; then
-        # Check if the 'input' group exists
+    if [[ $input_group_choid == "y" || $input_group_choid == "Y" ]]; then
         if grep -q '^input:' /etc/group; then
-            echo "${OK} 'input' group exists." 2>&1 | tee -a "$LOG"
+            echo "${OK} ${MAGENTA}input${RESET} group exists."
         else
-            echo "${NOTE} 'input' group doesn't exist. Creating 'input' group..." 2>&1 | tee -a "$LOG"
+            echo "${NOTE} ${MAGENTA}input${RESET} group doesn't exist. Creating ${MAGENTA}input${RESET} group..."
             sudo groupadd input
 
-            # Log the creation of the 'input' group
-            echo "${NOTE} 'input' group created" 2>&1 | tee -a "$LOG"
+            echo "${MAGENTA}input${RESET} group created" >> "$LOG"
         fi
 
-        # Add the user to the input group
         sudo usermod -aG input "$(whoami)"
-        echo "${OK} User added to the 'input' group. Changes will take effect after you log out and log back in." 2>&1 | tee -a "$LOG"
+        echo "${OK} ${YELLOW}user${RESET} added to the ${MAGENTA}input${RESET} group. Changes will take effect after you log out and log back in."
 
-        # Log the addition of the user to the 'input' group
-        echo "${NOTE} - User added to 'input' group" 2>&1 | tee -a "$LOG"
-        break  # Break out of the loop if 'yes' is chosen
-
-    elif [[ $choice == "n" || $choice == "N" ]]; then
-        echo "${NOTE} No changes made. Exiting the script." 2>&1 | tee -a "$LOG"
-        break  # Break out of the loop if 'no' is chosen
+        echo "User added to 'input' group" >> "$LOG"
+        break 
+    elif [[ $input_group_choid == "n" || $input_group_choid == "N" ]]; then
+        echo "${NOTE} No changes made. Exiting the script."
+        break 
     else
         echo "${ERROR} Invalid choice. Please enter 'y' for yes or 'n' for no."
     fi
 done
 
-clear
+printf "\n%.0s" {1..2}

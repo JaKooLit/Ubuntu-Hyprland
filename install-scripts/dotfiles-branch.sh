@@ -29,4 +29,4 @@ else
   fi
 fi
 
-clear
+printf "\n%.0s" {1..2}

@@ -24,39 +24,34 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprlock.log"
 MLOG="install-$(date +%d-%H%M%S)_hyprlock2.log"
 
 # Installation of dependencies
-printf "\n%s - Installing hyprlock dependencies.... \n" "${NOTE}"
+printf "\n%s - Installing ${SKY_BLUE}hyprlock $lock_tag${RESET} dependencies.... \n" "${NOTE}"
 
 for PKG1 in "${lock[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  install_package "$PKG1" "$LOG"
 done
 
 # Check if hyprlidle folder exists and remove it
 if [ -d "hyprlock" ]; then
-    printf "${NOTE} Removing existing hyprlock folder...\n"
     rm -rf "hyprlock"
 fi
 
 # Clone and build hyprlock
-printf "${NOTE} Installing hyprlock...\n"
+printf "${NOTE} Compiling and Installing ${YELLOW}hyprlock $lock_tag${RESET} from source ...\n"
 if git clone --recursive -b $lock_tag https://github.com/hyprwm/hyprlock.git; then
     cd hyprlock || exit 1
 	cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build
 	cmake --build ./build --config Release --target hyprlock -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
     if sudo cmake --install build 2>&1 | tee -a "$MLOG" ; then
-        printf "${OK} hyprlock installed successfully.\n" 2>&1 | tee -a "$MLOG"
+        printf "${OK} ${MAGENTA}hyprlock $lock_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
-        echo -e "${ERROR} Installation failed for hyprlock." 2>&1 | tee -a "$MLOG"
+        echo -e "${ERROR} Installation failed for ${YELLOW}hyprlock $lock_tag${RESET}" 2>&1 | tee -a "$MLOG"
     fi
     #moving the addional logs to Install-Logs directory
     mv $MLOG ../Install-Logs/ || true 
     cd ..
 else
-    echo -e "${ERROR} Download failed for hyprlock." 2>&1 | tee -a "$LOG"
+    echo -e "${ERROR} Download failed for ${YELLOW}hyprlock $lock_tag${RESET}" 2>&1 | tee -a "$LOG"
 fi
 
-
+printf "\n%.0s" {1..2}
 

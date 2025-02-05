@@ -24,40 +24,37 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypridle.log"
 MLOG="install-$(date +%d-%H%M%S)_hypridle2.log"
 
 # Installation of dependencies
-printf "\n%s - Installing hypridle dependencies.... \n" "${NOTE}"
+printf "\n%s - Installing ${YELLOW}hypridle dependencies${RESET} .... \n" "${INFO}"
 
 for PKG1 in "${idle[@]}"; do
   install_package "$PKG1" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
+    echo -e "\e[1A\e[K${ERROR} - ${YELLOW}$PKG1${RESET} Package installation failed, Please check the installation logs"
     exit 1
   fi
 done
 
 # Check if hypridle folder exists and remove it
 if [ -d "hypridle" ]; then
-    printf "${NOTE} Removing existing hypridle folder...\n"
     rm -rf "hypridle"
 fi
 
 # Clone and build 
-printf "${NOTE} Installing hypridle...\n"
+printf "${INFO} Installing ${YELLOW}hypridle $idle_tag${RESET} ...\n"
 if git clone --recursive -b $idle_tag https://github.com/hyprwm/hypridle.git; then
     cd hypridle || exit 1
 	cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build
 	cmake --build ./build --config Release --target hypridle -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
     if sudo cmake --install ./build 2>&1 | tee -a "$MLOG" ; then
-        printf "${OK} hypridle installed successfully.\n" 2>&1 | tee -a "$MLOG"
+        printf "${OK} ${MAGENTA}hypridle $idle_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
-        echo -e "${ERROR} Installation failed for hypridle." 2>&1 | tee -a "$MLOG"
+        echo -e "${ERROR} Installation failed for ${YELLOW}hypridle $idle_tag${RESET}" 2>&1 | tee -a "$MLOG"
     fi
     #moving the addional logs to Install-Logs directory
     mv $MLOG ../Install-Logs/ || true 
     cd ..
 else
-    echo -e "${ERROR} Download failed for hypridle." 2>&1 | tee -a "$LOG"
+    echo -e "${ERROR} Download failed for ${YELLOW}hypridle $idle_tag${RESET}" 2>&1 | tee -a "$LOG"
 fi
 
-
-
-
+printf "\n%.0s" {1..2}
