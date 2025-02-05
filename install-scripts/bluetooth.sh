@@ -3,8 +3,8 @@
 # Bluetooth #
 
 blue=(
-    bluez
-    blueman
+  bluez
+  blueman
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -21,16 +21,12 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_bluetooth.log"
 
 # Bluetooth
-printf "${NOTE} Installing Bluetooth Packages...\n"
-for BLUE in "${blue[@]}"; do
-    install_package "$BLUE" 2>&1 | tee -a "$LOG"
-    if [ $? -ne 0 ]; then
-        echo -e "\e[1A\e[K${ERROR} - $BLUE Package installation failed, Please check the installation logs"
-        exit 1
-    fi
-done
+printf "${NOTE} Installing ${SKY_BLUE}Bluetooth${RESET} Packages...\n"
+ for BLUE in "${blue[@]}"; do
+   install_package "$BLUE" "$LOG"
+  done
 
-printf " Activating Bluetooth Services...\n"
+printf " Activating ${YELLOW}Bluetooth${RESET} Services...\n"
 sudo systemctl enable --now bluetooth.service 2>&1 | tee -a "$LOG"
 
-clear
+printf "\n%.0s" {1..2}
