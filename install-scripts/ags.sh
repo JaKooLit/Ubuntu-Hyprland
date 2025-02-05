@@ -1,7 +1,6 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# Aylur's GTK Shell v 1.9.0 #
-# for desktop overview
+# Aylur's GTK Shell #
 
 # Check if AGS is installed
 if command -v ags &>/dev/null; then
@@ -19,10 +18,19 @@ ags=(
     libgjs-dev 
     gjs 
     libgtk-layer-shell-dev 
-    libgtk-3-dev 
+    libgtk-3-dev
+    libpam0g-dev 
     libpulse-dev 
     libdbusmenu-gtk3-dev 
     libsoup-3.0-dev
+)
+
+f_ags=(
+    npm
+)
+
+build_dep=(
+    pam
 )
 
 # specific tags to download
@@ -42,24 +50,29 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_ags.log"
 MLOG="install-$(date +%d-%H%M%S)_ags2.log"
 
-printf "\n%.0s" {1..1}
-
 # Installation of main components
-printf "\n%s - Installing ${BLUE}Aylur's GTK shell $ags_tag${RESET} Dependencies \n" "${NOTE}"
+printf "\n%s - Installing ${BLUE}Aylur's GTK shell $ags_tag${RESET} Dependencies \n" "${INFO}"
 
 # Installing ags Dependencies
 for PKG1 in "${ags[@]}"; do
-    install_package "$PKG1" "$LOG"
-    if [ $? -ne 0 ]; then
-        echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-        exit 1
-    fi
+  install_package "$PKG1" "$LOG"
 done
+
+for force_ags in "${f_ags[@]}"; do
+   re_install_package "$force_ags" 2>&1 | tee -a "$LOG"
+  done
 
 printf "\n%.0s" {1..1}
 
-# ags v1
-printf "${NOTE} Install and Compiling ${BLUE}Aylur's GTK shell $ags_tag${RESET}..\n"
+for PKG1 in "${build_dep[@]}"; do
+  build_dep "$PKG1" "$LOG"
+done
+
+#install typescript by npm
+sudo npm install --global typescript 2>&1 | tee -a "$LOG"
+
+# ags
+printf "${INFO} Install and Compiling ${BLUE}Aylur's GTK shell $ags_tag${RESET} .. \n"
 
 # Check if folder exists and remove it
 if [ -d "ags" ]; then
@@ -67,24 +80,23 @@ if [ -d "ags" ]; then
     rm -rf "ags"
 fi
 
-printf "\n%.0s" {1..1}
-printf "${INFO} Kindly Standby...cloning and compiling ${BLUE}Aylur's GTK shell $ags_tag${RESET}...\n"
-printf "\n%.0s" {1..1}
-# Clone repository with the specified tag and capture git output into MLOG
+# Clone nwg-look repository with the specified tag
 if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.git; then
     cd ags || exit 1
-    npm install
-    meson setup build
-   if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
-    printf "\n${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
-  else
-    echo -e "\n${ERROR} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Installation failed\n " 2>&1 | tee -a "$MLOG"
-   fi
+    # Build and install ags
+	npm install
+	meson setup build
+    if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
+        printf "${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+    else
+        echo -e "${ERROR} Installation failed for ${YELLOW}Aylur's GTK shell $ags_tag${RESET}" 2>&1 | tee -a "$MLOG"
+    fi
+
     # Move logs to Install-Logs directory
     mv "$MLOG" ../Install-Logs/ || true
     cd ..
 else
-    echo -e "\n${ERROR} Failed to download ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Please check your connection\n" 2>&1 | tee -a "$LOG"
+    echo -e "${ERROR} Failed to download ${YELLOW}Aylur's GTK shell $ags_tag${RESET} . Please check your connection" 2>&1 | tee -a "$LOG"
     mv "$MLOG" ../Install-Logs/ || true
     exit 1
 fi

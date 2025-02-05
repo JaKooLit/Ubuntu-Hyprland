@@ -49,6 +49,11 @@ hyprland_dep=(
     libpam0g-dev
     hyprcursor-util
 )
+
+build_dep=(
+  wlroots
+)
+
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -63,25 +68,16 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_dependencies.log"
 
 # Installation of main dependencies
-printf "\n%s - Installing main dependencies.... \n" "${NOTE}"
+printf "\n%s - Installing ${SKY_BLUE}main dependencies....${RESET} \n" "${NOTE}"
 
-for PKG1 in "${dependencies[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+for PKG1 in "${dependencies[@]}" "${hyprland_dep[@]}"; do
+  install_package "$PKG1" "$LOG"
 done
 
-# Installation of main dependencies
-printf "\n%s - Installing hyprland dependencies.... \n" "${NOTE}"
+printf "\n%.0s" {1..1}
 
-for PKG1 in "${hyprland_dep[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+for PKG1 in "${build_dep[@]}"; do
+  build_dep "$PKG1" "$LOG"
 done
 
-clear
+printf "\n%.0s" {1..2}
