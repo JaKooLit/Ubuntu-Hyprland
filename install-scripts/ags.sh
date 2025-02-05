@@ -51,7 +51,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_ags.log"
 MLOG="install-$(date +%d-%H%M%S)_ags2.log"
 
 # Installation of main components
-printf "\n%s - Installing ${BLUE}Aylur's GTK shell $ags_tag${RESET} Dependencies \n" "${INFO}"
+printf "\n%s - Installing ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET} Dependencies \n" "${INFO}"
 
 # Installing ags Dependencies
 for PKG1 in "${ags[@]}"; do
@@ -72,7 +72,7 @@ done
 sudo npm install --global typescript 2>&1 | tee -a "$LOG"
 
 # ags
-printf "${INFO} Install and Compiling ${BLUE}Aylur's GTK shell $ags_tag${RESET} .. \n"
+printf "${NOTE} Install and Compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}..\n"
 
 # Check if folder exists and remove it
 if [ -d "ags" ]; then
