@@ -29,11 +29,11 @@ fi
 show_progress() {
     local pid=$1
     local package_name=$2
-    local spin_chars=("●○○○○○" "○●○○○○" "○○●○○○" "○○○●○○" "○○○○●○" "○○○○○●" \
-                      "○○○○●○" "○○○●○○" "○○●○○○" "○●○○○○")  # Growing & Shrinking Dots
+    local spin_chars=("●○○○○○○○○○" "○●○○○○○○○○" "○○●○○○○○○○" "○○○●○○○○○○" "○○○○●○○○○" \
+                      "○○○○○●○○○○" "○○○○○○●○○○" "○○○○○○○●○○" "○○○○○○○○●○" "○○○○○○○○○●") 
     local i=0
 
-    tput civis  # Hide cursor
+    tput civis 
     printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ..." "$package_name"
 
     while ps -p $pid &> /dev/null; do
@@ -42,7 +42,7 @@ show_progress() {
         sleep 0.3  
     done
 
-    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s\n" "$package_name" ""
+    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s \n" "$package_name" ""
     tput cnorm  
 }
 
