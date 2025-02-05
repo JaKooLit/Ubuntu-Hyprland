@@ -18,6 +18,8 @@ dependencies=(
     golang
     hwdata
     jq
+    libegl-dev
+    libegl1-mesa-dev
     meson
     ninja-build
     openssl
