@@ -137,6 +137,7 @@ if lspci | grep -i "nvidia" &> /dev/null; then
     ask_yes_no "-Do you want script to configure ${YELLOW}NVIDIA${RESET} for you?" nvidia
     printf "\n"
 fi
+printf "\n"
 ask_yes_no "-Install ${YELLOW}GTK themes${RESET} (required for Dark/Light function)?" gtk_themes
 printf "\n"
 ask_yes_no "-Do you want to configure ${YELLOW}Bluetooth${RESET}?" bluetooth
@@ -151,6 +152,8 @@ printf "\n"
 ask_yes_no "-Install ${YELLOW}XDG-DESKTOP-PORTAL-HYPRLAND${RESET}? (For proper Screen Share, e.g., OBS)" xdph
 printf "\n"
 ask_yes_no "-Install ${YELLOW}nwg-look? (a GTK Theming app - lxappearance-like) ${RESET} $WARN! This Package Takes long time to build!" nwg
+printf "\n"
+ask_yes_no "-Install ${YELLOW}zsh${RESET}, ${YELLOW}oh-my-zsh${RESET} & (Optional) ${YELLOW}pokemon-colorscripts${RESET}?" zsh
 printf "\n"
 ask_yes_no "-Installing on ${YELLOW}Asus ROG laptops${RESET}?" rog
 printf "\n"
