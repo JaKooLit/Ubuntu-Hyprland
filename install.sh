@@ -39,16 +39,15 @@ echo
 echo "${YELLOW}NOTE: You will be required to answer some questions during the installation! ${RESET}"
 echo
 echo "${YELLOW}NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! ${RESET}"
-echo
 
-printf "\n%.0s" {1..4}
+printf "\n%.0s" {1..2}
 echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT NOTICE!!!! $(tput sgr0)" 
 echo "$(tput bold)$(tput setaf 7)Latest Hyprland compatible with Ubuntu 24.04 is only up to v0.39.1 $(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)This was due to old version is wayland-protocols available in Ubuntu Repo $(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)Because of the above, the latest KooL's Hyprland-Dots may not be fully compatible $(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)This would also mean that support for this project might be slow$(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)Please be guided$(tput sgr0)"
-printf "\n%.0s" {1..3}
+printf "\n%.0s" {1..1}
 
 read -p "$(tput setaf 6)Would you like to proceed? (y/n): $(tput sgr0)" proceed
 
@@ -64,15 +63,13 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
-printf "\n%.0s" {1..1}
-
 # install pciutils if detected not installed. Necessary for detecting GPU
 if ! dpkg -l | grep -w pciutils > /dev/null; then
     echo "pciutils is not installed. Installing..."
     sudo apt-get install -y pciutils
 fi
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 # Function to colorize prompts
 colorize_prompt() {
     local color="$1"
