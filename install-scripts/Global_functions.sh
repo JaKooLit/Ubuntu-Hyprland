@@ -101,13 +101,13 @@ uninstall_package() {
 
   # Checking if package is installed
   if sudo dpkg -l | grep -q -w "^ii  $1" ; then
-    echo -e "${NOTE} Uninstalling $pkg ..."
+    echo -e "${NOTE} removing $pkg ..."
     sudo apt autoremove -y "$1" >> "$LOG" 2>&1 | grep -v "error: target not found"
     
     if ! dpkg -l | grep -q -w "^ii  $1" ; then
-      echo -e "\e[1A\e[K${OK} ${MAGENTA}$1${RESET} was uninstalled."
+      echo -e "\e[1A\e[K${OK} ${MAGENTA}$1${RESET} removed."
     else
-      echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. No actions required."
+      echo -e "\e[1A\e[K${ERROR} $pkg Removal failed. No actions required."
       return 1
     fi
   else
