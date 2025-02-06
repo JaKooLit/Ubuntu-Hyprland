@@ -1,9 +1,12 @@
 ## Changelogs
 
+## 06 Feb 2025
+- added semi-unattended function.
+- move all the initial questions at the beginning
+
 ## 04 Feb 2025
-- offering a new SDDM theme from here [SDDM](https://codeberg.org/minMelody/sddm-sequoia)
-- some tweaking on install-scripts except the compiling part. It will not show progress for much cleaner work
-- script will automatically detect if you have nvidia but script still offer if you want to set up for user
+- Re-coded for better visibility
+- script will automatically detect if you have nvidia but script still offer if you want to set up for use
 
 ## 30 Jan 2025
 - AGS v1 installation is now optional.
