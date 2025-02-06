@@ -2,15 +2,6 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Aylur's GTK Shell #
 
-# Check if AGS is installed
-if command -v ags &>/dev/null; then
-    AGS_VERSION=$(ags -v | awk '{print $NF}') 
-    if [[ "$AGS_VERSION" == "1.9.0" ]]; then
-        printf "${INFO} ${MAGENTA}Aylur's GTK Shell v1.9.0${RESET} is already installed. Skipping installation."
-        exit 0
-    fi
-fi
-
 ags=(
     node-typescript 
     npm 
@@ -49,6 +40,16 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_ags.log"
 MLOG="install-$(date +%d-%H%M%S)_ags2.log"
+
+# Check if AGS is installed
+if command -v ags &>/dev/null; then
+    AGS_VERSION=$(ags -v | awk '{print $NF}') 
+    if [[ "$AGS_VERSION" == "1.9.0" ]]; then
+        printf "${INFO} ${MAGENTA}Aylur's GTK Shell v1.9.0${RESET} is already installed. Skipping installation."
+        printf "\n%.0s" {1..2}
+        exit 0
+    fi
+fi
 
 # Installation of main components
 printf "\n%s - Installing ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET} Dependencies \n" "${INFO}"
