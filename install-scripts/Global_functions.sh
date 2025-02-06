@@ -46,6 +46,7 @@ show_progress() {
     tput cnorm  
 }
 
+
 # Function for installing packages with a progress bar
 install_package() { 
   if sudo dpkg -l | grep -q -w "$1" ; then

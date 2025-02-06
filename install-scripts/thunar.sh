@@ -31,34 +31,6 @@ printf "${NOTE} Installing ${SKY_BLUE}Thunar${RESET} Packages...\n\n"
     install_package "$THUNAR" "$LOG"
   done
 
-printf "\n%.0s" {1..2}
-
-if [[ $USE_PRESET = [Yy] ]]; then
-  source ./preset.sh
-fi
-
-# Confirm if wanted to set as default
-while true; do
-    if [[ -z $thunar_choice ]]; then
-        read -p "${CAT} want to set ${MAGENTA}Thunar${RESET} as the default file manager? (y/n): " thunar_choice
-    fi
-    case "$thunar_choice" in
-        [Yy]*)
-            xdg-mime default thunar.desktop inode/directory
-            xdg-mime default thunar.desktop application/x-wayland-gnome-saved-search
-            echo "${OK} ${MAGENTA}Thunar${RESET} is now set as the default file manager." | tee -a "$LOG"
-            break
-            ;;
-        [Nn]*)
-            echo "${NOTE} You chose not to set ${MAGENTA}Thunar${RESET} as the default file manager." | tee -a "$LOG"
-            break
-            ;;
-        *)
-            echo "${WARN} Invalid input. Please enter 'y' or 'n'."
-            ;;
-    esac
-done
-
 printf "\n%.0s" {1..1}
 
  # Check for existing configs and copy if does not exist

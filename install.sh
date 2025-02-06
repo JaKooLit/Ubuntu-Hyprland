@@ -27,6 +27,17 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
+# Check if --preset argument is provided
+if [[ "$1" == "--preset" ]]; then
+    
+    # nvidia
+    if [[ "$2" == "--nvidia" ]]; then
+        sed -i 's/^nvidia=".*"/nvidia="Y"/' preset.sh
+    fi
+    
+    source ./preset.sh
+fi
+
 printf "\n%.0s" {1..2}  
 echo -e "\e[35m
 	╦╔═┌─┐┌─┐╦    ╦ ╦┬ ┬┌─┐┬─┐┬  ┌─┐┌┐┌┌┬┐
@@ -86,6 +97,16 @@ script_directory=install-scripts
 
 # Function to ask a yes/no question and set the response in a variable
 ask_yes_no() {
+  if [[ ! -z "${!2}" ]]; then
+    echo "$(colorize_prompt "$CAT"  "$1 (Preset): ${!2}")" 
+    if [[ "${!2}" = [Yy] ]]; then
+      return 0
+    else
+      return 1
+    fi
+  else
+    eval "$2=''" 
+  fi
     while true; do
         read -p "$(colorize_prompt "$CAT"  "$1 (y/n): ")" choice
         case "$choice" in
@@ -119,7 +140,7 @@ execute_script() {
     if [ -f "$script_path" ]; then
         chmod +x "$script_path"
         if [ -x "$script_path" ]; then
-            "$script_path"
+            env USE_PRESET=$use_preset  "$script_path"
         else
             echo "Failed to make script '$script' executable."
         fi
@@ -131,33 +152,38 @@ execute_script() {
 # Collect user responses to all questions
 # Check if nvidia is present
 if lspci | grep -i "nvidia" &> /dev/null; then
+    printf "\n"
     printf "${INFO} ${YELLOW}NVIDIA GPU${RESET} detected in your system \n"
+    printf "${NOTE} Script will install ${YELLOW}nvidia-dkms nvidia-utils and nvidia-settings${RESET} \n"
     ask_yes_no "-Do you want script to configure ${YELLOW}NVIDIA${RESET} for you?" nvidia
 fi
+
 printf "\n"
 ask_yes_no "-Install ${YELLOW}GTK themes${RESET} (required for Dark/Light function)?" gtk_themes
+
 printf "\n"
 ask_yes_no "-Do you want to configure ${YELLOW}Bluetooth${RESET}?" bluetooth
+
 printf "\n"
 ask_yes_no "-Do you want to install ${YELLOW}Thunar file manager${RESET}?" thunar
+
+if [[ "$thunar" == "Y" ]]; then
+    ask_yes_no "-Set ${YELLOW}Thunar${RESET} as the default file manager?" thunar_choice
+fi
+
+# Input group
 printf "\n"
-printf "${NOTE} ${YELLOW}AGS Desktop Overview DEMO link on README${RESET}\n"
+if ! groups "$(whoami)" | grep -q '\binput\b'; then
+    printf "${NOTE} adding to ${YELLOW}input${RESET} group might be necessary for ${YELLOW}waybar keyboard-state functionality${RESET} \n"
+    ask_yes_no "-Would you like to be added to the ${YELLOW}input${RESET} group?" input_group
+fi
+
+printf "\n"
+printf "${NOTE} ${YELLOW}AGS Desktop Overview DEMO link${RESET} on README\n"
 ask_yes_no "-Install ${YELLOW}AGS (aylur's GTK shell) v1${RESET} for Desktop-Like Overview?" ags
-printf "\n"
-ask_yes_no "-Install & configure ${YELLOW}SDDM${RESET} login manager, plus (OPTIONAL) SDDM theme?" sddm
-printf "\n"
-ask_yes_no "-Install ${YELLOW}XDG-DESKTOP-PORTAL-HYPRLAND${RESET}? (For proper Screen Share, e.g., OBS)" xdph
-printf "\n"
-ask_yes_no "-Install ${YELLOW}zsh${RESET}, ${YELLOW}oh-my-zsh${RESET} & (Optional) ${YELLOW}pokemon-colorscripts${RESET}?" zsh
-printf "\n"
-ask_yes_no "-Installing on ${YELLOW}Asus ROG laptops${RESET}?" rog
-printf "\n"
-ask_yes_no "-Do you want to download pre-configured ${YELLOW}KooL's Hyprland dotfiles?${RESET}" dots
-printf "\n"
 
-# Ensuring all in the scripts folder are made executable
-chmod +x install-scripts/*
-
+printf "\n"
+ask_yes_no "-Install & configure ${YELLOW}SDDM${RESET} as login manager?" sddm
 # check if any known login managers are active when users choose to install sddm
 if [ "$sddm" == "y" ] || [ "$sddm" == "Y" ]; then
     # List of services to check
@@ -173,9 +199,33 @@ if [ "$sddm" == "y" ] || [ "$sddm" == "Y" ]; then
         fi
     done
 fi
+if [[ "$sddm" == "Y" ]]; then
+    ask_yes_no "-Download and Install ${YELLOW}SDDM Theme?${RESET} " sddm_theme
+fi
 
+printf "\n"
+ask_yes_no "-Install ${YELLOW}XDG-DESKTOP-PORTAL-HYPRLAND?${RESET} (For proper Screen Share, e.g., OBS)" xdph
 
+printf "\n"
+ask_yes_no "-Install ${YELLOW}zsh${RESET} with ${YELLOW}oh-my-zsh?${RESET}" zsh
+
+if [[ "$zsh" == "Y" ]]; then
+    ask_yes_no "-Add ${YELLOW}Pokemon color scripts?${RESET} in your terminal?" pokemon_choice
+fi
+
+printf "\n"
+ask_yes_no "-Installing on ${YELLOW}Asus ROG laptops?${RESET}" rog
+
+printf "\n"
+ask_yes_no "-Do you want to add pre-configured ${YELLOW}KooL's Hyprland dotfiles?${RESET}" dots
+
+printf "\n"
+
+# Ensuring all in the scripts folder are made executable
+chmod +x install-scripts/*
 sleep 1
+
+
 sudo apt update
 
 # execute pre clean up
@@ -185,7 +235,6 @@ execute_script "02-pre-cleanup.sh"
 execute_script "00-dependencies.sh"
 execute_script "01-hypr-pkgs.sh"
 
-#execute_script "imagemagick.sh" #this is for compiling from source. 07 Sep 2024
 
 # install wallust
 execute_script "wallust.sh"
@@ -213,6 +262,9 @@ fi
 if [ "$thunar" == "Y" ]; then
     execute_script "thunar.sh"
 fi
+if [ "$thunar_choice" == "Y" ]; then
+    execute_script "thunar_default.sh"
+fi
 
 if [ "$ags" == "Y" ]; then
     execute_script "ags.sh"
@@ -220,6 +272,9 @@ fi
 
 if [ "$sddm" == "Y" ]; then
     execute_script "sddm.sh"
+fi
+if [ "$sddm_theme" == "Y" ]; then
+    execute_script "sddm_theme.sh"
 fi
 
 if [ "$xdph" == "Y" ]; then
@@ -229,10 +284,13 @@ fi
 if [ "$zsh" == "Y" ]; then
     execute_script "zsh.sh"
 fi
+if [ "$pokemon_choice" == "Y" ]; then
+    execute_script "zsh_pokemon.sh"
+fi
 
-#if [ "$nwg" == "Y" ]; then
-#    execute_script "nwg-look.sh"
-#fi
+if [ "$input_group" == "Y" ]; then
+    execute_script "InputGroup.sh"
+fi
 
 if [ "$rog" == "Y" ]; then
     execute_script "rog.sh"
@@ -243,8 +301,6 @@ execute_script "rofi-wayland.sh"
 execute_script "hyprlock.sh"
 execute_script "hypridle.sh"
 
-# input
-execute_script "InputGroup.sh"
 
 if [ "$dots" == "Y" ]; then
     execute_script "dotfiles-branch.sh"
@@ -276,36 +332,38 @@ if dpkg -l | grep -qw hyprland; then
     printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed. Please see above!"
     printf "\n${CAT} Ignore this message if it states ${YELLOW}All essential packages${RESET} are installed as per above\n"
     sleep 2
+    printf "\n%.0s" {1..2}
+
+    printf "${SKY_BLUE}Thank you${RESET} for using ${MAGENTA}KooL's Hyprland Dots${RESET}. ${YELLOW}Enjoy and Have a good day!${RESET}"
+    printf "\n%.0s" {1..2}
+
     printf "\n${NOTE} You can start Hyprland by typing ${SKY_BLUE}Hyprland${RESET} (IF SDDM is not installed) (note the capital H!).\n"
     printf "\n${NOTE} However, it is ${YELLOW}highly recommended to reboot${RESET} your system.\n\n"
 
-    # Prompt user to reboot
     read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
 
-    # Normalize user input to lowercase
     HYP=$(echo "$HYP" | tr '[:upper:]' '[:lower:]')
 
     if [[ "$HYP" == "y" || "$HYP" == "yes" ]]; then
         echo "${INFO} Rebooting now..."
-        systemctl reboot # Optionally reboot if the user agrees
+        systemctl reboot 
     elif [[ "$HYP" == "n" || "$HYP" == "no" ]]; then
-        echo "${INFO} You can reboot later at any time."
+        echo "${OK} You choose NOT to reboot"
+        printf "\n%.0s" {1..1}
+        # Check if NVIDIA GPU is present
+        if lspci | grep -i "nvidia" &> /dev/null; then
+            echo "${INFO} HOWEVER ${YELLOW}NVIDIA GPU${RESET} detected. Reminder that you must REBOOT your SYSTEM..."
+            printf "\n%.0s" {1..1}
+        fi
     else
         echo "${WARN} Invalid response. Please answer with 'y' or 'n'. Exiting."
         exit 1
     fi
-
-    # Check if NVIDIA GPU is present
-    if lspci | grep -i "nvidia" &> /dev/null; then
-        echo "${INFO} ${YELLOW}NVIDIA GPU${RESET} detected. Reminder that you must REBOOT your SYSTEM..."
-    else
-        echo -e "\n${CAT} Thanks for using ${MAGENTA}KooL's Hyprland Dots${RESET}. Enjoy and Have a good day!"
-        printf "\n%.0s" {1..3}
-        exit 0
-    fi
 else
     # Print error message if neither package is installed
-    printf "\n${WARN} Hyprland failed to install. Please check 00_CHECK-time_installed.log and other files in the Install-Logs/ directory...\n\n"
-    printf "\n%.0s" {1..2}
+    printf "\n${WARN} Hyprland is NOT installed. Please check 00_CHECK-time_installed.log and other files in the Install-Logs/ directory..."
+    printf "\n%.0s" {1..3}
     exit 1
 fi
+
+printf "\n%.0s" {1..2}

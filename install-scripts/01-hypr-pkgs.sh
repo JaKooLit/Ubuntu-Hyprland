@@ -86,7 +86,6 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypr-pkgs.log"
 
-
 # conflicting packages removal
 overall_failed=0
 printf "\n%s - ${SKY_BLUE}Removing some packages${RESET} as it conflicts with KooL's Hyprland Dots \n" "${NOTE}"
@@ -109,6 +108,8 @@ printf "\n%s - Installing ${SKY_BLUE}KooL's hyprland necessary packages${RESET} 
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
   install_package "$PKG1" "$LOG"
 done
+
+printf "\n%.0s" {1..1}
 
 for PKG2 in "${force[@]}"; do
   re_install_package "$PKG2" "$LOG"
