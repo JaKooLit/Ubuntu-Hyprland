@@ -30,7 +30,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_sddm.log"
 # Install SDDM (no-recommends)
 printf "\n%s - Installing ${SKY_BLUE}SDDM and dependencies${RESET} .... \n" "${NOTE}"
 for PKG1 in "${sddm1[@]}" ; do
-  sudo apt-get install --no-install-recommends -y "$PKG1" | tee -a "$LOG"
+  sudo apt install --no-install-recommends -y "$PKG1" | tee -a "$LOG"
 done
 
 # Installation of additional sddm stuff
@@ -40,9 +40,9 @@ done
 
 # Check if other login managers are installed and disabling their service before enabling sddm
 for login_manager in lightdm gdm lxdm lxdm-gtk3; do
-  if sudo apt-get list installed "$login_manager" &>> /dev/null; then
-    echo "Disabling $login_manager..."
-    sudo systemctl disable "$login_manager" 2>&1 | tee -a "$LOG"
+  if sudo apt list installed "$login_manager" > /dev/null; then
+    echo "disabling $login_manager..."
+    sudo systemctl disable "$login_manager.service" 2>&1 | tee -a "$LOG"
   fi
 done
 
