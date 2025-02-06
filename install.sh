@@ -66,7 +66,7 @@ fi
 # install pciutils if detected not installed. Necessary for detecting GPU
 if ! dpkg -l | grep -w pciutils > /dev/null; then
     echo "pciutils is not installed. Installing..."
-    sudo apt-get install -y pciutils
+    sudo apt install -y pciutils
     printf "\n%.0s" {1..1}
 fi
 
