@@ -108,7 +108,7 @@ uninstall_package() {
     if ! dpkg -l | grep -q -w "^ii  $1" ; then
       echo -e "\e[1A\e[K${OK} ${MAGENTA}$1${RESET} was uninstalled."
     else
-      echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. Please check the log."
+      echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. No actions required."
       return 1
     fi
   else
