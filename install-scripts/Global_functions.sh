@@ -52,7 +52,7 @@ install_package() {
   echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else 
     (
-      stdbuf -oL sudo apt-get install -y "$1" 2>&1
+      stdbuf -oL sudo apt install -y "$1" 2>&1
     ) >> "$LOG" 2>&1 &
     PID=$!
     show_progress $PID "$1" 
@@ -80,7 +80,7 @@ build_dep() {
 # Function for re-installing packages with a progress bar
 re_install_package() {
     (
-        stdbuf -oL sudo apt-get install --reinstall -y "$1" 2>&1
+        stdbuf -oL sudo apt install --reinstall -y "$1" 2>&1
     ) >> "$LOG" 2>&1 &
     
     PID=$!
