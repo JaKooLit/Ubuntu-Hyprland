@@ -4,7 +4,7 @@
 # Use only Y for Yes and N for No . If you put other letter, the script will fail
 
 
-###-Configure NVIDIA
+###-Would you like script to Configure NVIDIA for you?
 nvidia="N"
 
 ###-Install GTK themes (required for Dark/Light function)?
@@ -22,6 +22,7 @@ thunar_choice="Y"
 ### Adding user to the 'input' group might be necessary for waybar keyboard-state functionality
 input_group="Y"
 
+### Desktop overview Demo Link in README
 ### Install AGS (aylur's GTK shell) v1 for Desktop-Like Overview?" 
 ags="Y"
 
@@ -33,6 +34,7 @@ sddm_theme="Y"
 ###-Install XDG-DESKTOP-PORTAL-HYPRLAND? (For proper Screen Share ie OBS)
 xdph="Y"
 
+### Shell extension. Bash alternative
 ###-Install zsh, oh-my-zsh
 zsh="Y"
 
@@ -42,6 +44,7 @@ pokemon_choice="Y"
 ### Install nwg-look? (a GTK Theming app - lxappearance-like) 
 nwg="Y"
 
+### This will install ASUSCTL & SUPERGFXCTL
 ###-Installing on Asus ROG Laptops?
 rog="N"
 
