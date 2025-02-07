@@ -1,11 +1,7 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# Bluetooth #
+# Thunar-default #
 
-blue=(
-  bluez
-  blueman
-)
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -18,15 +14,12 @@ cd "$PARENT_DIR" || exit 1
 source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
-LOG="Install-Logs/install-$(date +%d-%H%M%S)_bluetooth.log"
+LOG="Install-Logs/install-$(date +%d-%H%M%S)_thunar-default.log"
 
-# Bluetooth
-printf "${NOTE} Installing ${SKY_BLUE}Bluetooth${RESET} Packages...\n"
- for BLUE in "${blue[@]}"; do
-   install_package "$BLUE" "$LOG"
-  done
-
-printf " Activating ${YELLOW}Bluetooth${RESET} Services...\n"
-sudo systemctl enable --now bluetooth.service 2>&1 | tee -a "$LOG"
+printf "${INFO} Setting ${SKY_BLUE}Thunar${RESET} as default file manager...\n"  
+ 
+xdg-mime default thunar.desktop inode/directory
+xdg-mime default thunar.desktop application/x-wayland-gnome-saved-search
+echo "${OK} ${MAGENTA}Thunar${RESET} is now set as the default file manager." | tee -a "$LOG"
 
 printf "\n%.0s" {1..2}

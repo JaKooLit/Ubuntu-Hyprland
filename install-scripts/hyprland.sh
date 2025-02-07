@@ -27,18 +27,15 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprland.log"
 source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Hyprland
-printf "${NOTE} Installing Hyprland extra packages .......\n"
+printf "${NOTE} Installing ${SKY_BLUE}Hyprland packages${RESET} .......\n"
  for HYPR in "${hypr[@]}"; do
-   install_package "$HYPR" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $HYPR Package installation failed, Please check the installation logs"; exit 1; }
+   install_package "$HYPR" "$LOG"
 done
-
 
 # force
-printf "${NOTE} Force Installing Hyprland .......\n"
+printf "${NOTE} Reinstalling ${SKY_BLUE}Hyprland packages${RESET}  .......\n"
  for HYPR1 in "${f_hypr[@]}"; do
-   re_install_package "$HYPR1" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $HYPR1 Package installation failed, Please check the installation logs"; exit 1; }
+   re_install_package "$HYPR1" "$LOG"
 done
 
-clear 
+printf "\n%.0s" {1..2} 
