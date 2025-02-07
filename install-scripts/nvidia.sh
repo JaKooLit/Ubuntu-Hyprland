@@ -26,14 +26,6 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_nvidia.log"
 MLOG="install-$(date +%d-%H%M%S)_nvidia2.log"
 
-## adding the deb source for nvidia driver
-# Create a backup of the sources.list file
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup 2>&1 | tee -a "$LOG"
-
-## UBUNTU - NVIDIA (comment this two by adding # you dont need this!)
-# Add the comment and repository entry to sources.list
-#echo "## for nvidia" | sudo tee -a /etc/apt/sources.list 2>&1 | tee -a "$LOG"
-#echo "deb http://deb.debian.org/debian/ trixie main contrib non-free non-free-firmware" | sudo tee -a /etc/apt/sources.list 2>&1 | tee -a "$LOG"
 
 # Update the package list
 sudo apt update
@@ -52,13 +44,13 @@ add_to_file() {
 }
 
 # Install additional Nvidia packages
-printf "${YELLOW} Installing Nvidia packages...\n"
+printf "${YELLOW} Installing ${SKY_BLUE}Nvidia packages${RESET} ...\n"
   for NVIDIA in "${nvidia_pkg[@]}"; do
-    install_package "$NVIDIA" 2>&1 | tee -a "$LOG"
+    install_package "$NVIDIA" "$LOG"
   done
 
-
-printf "${YELLOW} nvidia-stuff to /etc/default/grub..."
+# adding additional nvidia-stuff
+printf "${YELLOW} adding ${SKY_BLUE}nvidia-stuff${RESET} to /etc/default/grub..."
 
   # Additional options to add to GRUB_CMDLINE_LINUX
   additional_options="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 rcutree.rcu_idle_gp_delay=1"
@@ -101,4 +93,4 @@ printf "${YELLOW} nvidia-stuff to /etc/default/grub..."
     echo "Modules file ($modules_file) not found." 2>&1 | tee -a "$LOG"
    fi
 
-clear
+printf "\n%.0s" {1..2}

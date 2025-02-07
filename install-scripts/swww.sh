@@ -2,11 +2,23 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # SWWW - Wallpaper Utility #
 
+# Check if 'swww' is installed
+if command -v swww &>/dev/null; then
+    SWWW_VERSION=$(swww -V | awk '{print $NF}')
+    if [[ "$SWWW_VERSION" == "0.9.5" ]]; then
+        echo -e "${OK} ${MAGENTA}swww v0.9.5${RESET} is already installed. Skipping installation."
+        exit 0
+    fi
+else
+    echo -e "${NOTE} ${MAGENTA}swww${RESET} is not installed. Proceeding with installation."
+fi
+
+
 swww=(
-  liblz4-dev
+    liblz4-dev
 )
 
-#specific branch or release
+# specific branch or release
 swww_tag="v0.9.5"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -24,39 +36,25 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_swww.log"
 MLOG="install-$(date +%d-%H%M%S)_swww2.log"
 
 # Installation of swww compilation needed
-printf "\n%s - Installing swww dependencies.... \n" "${NOTE}"
+printf "\n%s - Installing ${SKY_BLUE}swww $swww_tag and dependencies${RESET} .... \n" "${NOTE}"
 
 for PKG1 in "${swww[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+    install_package "$PKG1" "$LOG"
 done
 
-printf "${NOTE} Force installing packages...\n"
- for FORCE in "${swww[@]}"; do
-   sudo apt-get --reinstall install -y "$FORCE" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $FORCE Package installation failed, Please check the installation logs"; exit 1; }
-  done
-
-printf "\n\n"
-
-printf "${NOTE} Installing swww\n"
+printf "\n%.0s" {1..2}
 
 # Check if swww folder exists
 if [ -d "swww" ]; then
-  printf "${NOTE} swww folder exists. Pulling latest changes...\n"
-  cd swww || exit 1
-  git pull origin main 2>&1 | tee -a "$MLOG"
-else
-  printf "${NOTE} Cloning swww repository...\n"
-  if git clone --recursive -b $swww_tag https://github.com/LGFae/swww.git; then
     cd swww || exit 1
-  else
-    echo -e "${ERROR} Download failed for swww" 2>&1 | tee -a "$LOG"
-    exit 1
-  fi
+    git pull origin main 2>&1 | tee -a "$MLOG"
+else
+    if git clone --recursive -b $swww_tag https://github.com/LGFae/swww.git; then
+        cd swww || exit 1
+    else
+        echo -e "${ERROR} Download failed for ${YELLOW}swww $swww_tag${RESET}" 2>&1 | tee -a "$LOG"
+        exit 1
+    fi
 fi
 
 # Proceed with the rest of the installation steps
@@ -94,4 +92,4 @@ sudo cp -r completions/_swww /usr/share/zsh/site-functions/_swww 2>&1 | tee -a "
 mv "$MLOG" ../Install-Logs/ || true 
 cd - || exit 1
 
-clear
+printf "\n%.0s" {1..2}

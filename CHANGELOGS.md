@@ -1,5 +1,13 @@
 ## Changelogs
 
+## 06 Feb 2025
+- added semi-unattended function.
+- move all the initial questions at the beginning
+
+## 04 Feb 2025
+- Re-coded for better visibility
+- script will automatically detect if you have nvidia but script still offer if you want to set up for use
+
 ## 30 Jan 2025
 - AGS v1 installation is now optional.
 - switched to a specific branch on KooL's Hyprland-Dots to make it easier to update

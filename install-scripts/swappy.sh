@@ -22,49 +22,34 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_swappy.log"
 MLOG="install-$(date +%d-%H%M%S)_swappy2.log"
 
-printf "${NOTE} Installing swappy..\n"
+printf "${NOTE} Installing ${SKY_BLUE}swappy dependencies${RESET} ..\n"
 
 for PKG1 in "${swappy[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  re_install_package "$PKG1" "$LOG"
 done
 
-# Force reinstall above as seems its giving issue as swappy cant be build
-for PKG1 in "${swappy[@]}"; do
-  sudo apt-get --reinstall install "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package re-installation failed, Please check the installation logs"
-    exit 1
-  fi
-done
-
-printf "${NOTE} Installing swappy from source...\n"  
+printf "${NOTE} Installing ${SKY_BLUE}swappy${RESET} from source...\n"  
 
 # Check if folder exists and remove it
 if [ -d "swappy" ]; then
-    printf "${NOTE} deleting existing swappy folder...\n"
     rm -rf "swappy"
 fi
 
 # Clone and build swappy
-printf "${NOTE} Installing swappy...\n"
 if git clone --depth 1 https://github.com/jtheoof/swappy.git; then
     cd swappy || exit 1
 	meson setup build
 	ninja -C build
     if sudo ninja -C build install 2>&1 | tee -a "$MLOG" ; then
-        printf "${OK} swappy installed successfully.\n" 2>&1 | tee -a "$MLOG"
+        printf "${OK} ${MAGENTA}swappy${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
-        echo -e "${ERROR} Installation failed for swappy." 2>&1 | tee -a "$MLOG"
+        echo -e "${ERROR} Installation failed for ${YELLOW}swappy${RESET}" 2>&1 | tee -a "$MLOG"
     fi
     #moving the addional logs to Install-Logs directory
     mv $MLOG ../Install-Logs/ || true 
     cd ..
 else
-    echo -e "${ERROR} Download failed for swappy." 2>&1 | tee -a "$LOG"
+    echo -e "${ERROR} Download failed for ${YELLOW}swappy${RESET}" 2>&1 | tee -a "$LOG"
 fi
 
-clear
+printf "\n%.0s" {1..2}

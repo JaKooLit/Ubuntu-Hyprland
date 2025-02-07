@@ -68,4 +68,4 @@ install_and_log "asusctl" "https://gitlab.com/asus-linux/asusctl.git"
 # Download and build supergfxctl
 install_and_log "supergfxctl" "https://gitlab.com/asus-linux/supergfxctl.git"
 
-clear
+printf "\n%.0s" {1..2}

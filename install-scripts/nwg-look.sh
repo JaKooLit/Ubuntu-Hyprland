@@ -26,41 +26,37 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +'%d-%H%M%S')_nwg-look.log"
 MLOG="install-$(date +'%d-%H%M%S')_nwg-look2.log"
 
+printf "${NOTE} Installing ${YELLOW}nwg-look $nwg_tag${RESET} dependencies ...\n"
 # Installing NWG-Look Dependencies
 for PKG1 in "${nwg_look[@]}"; do
   install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
 done
 
-printf "${NOTE} Installing nwg-look\n"
+printf "\n%.0s" {1..1}
 
+printf "${NOTE} Compiling and Installing ${YELLOW}nwg-look $nwg_tag${RESET} from source ...\n"
 # Check if nwg-look folder exists and remove it
 if [ -d "nwg-look" ]; then
-    printf "${NOTE} Removing existing nwg-look folder...\n"
     rm -rf "nwg-look"
 fi
 
 # Clone nwg-look repository with the specified tag
 if git clone --recursive -b "$nwg_tag" --depth 1 https://github.com/nwg-piotr/nwg-look.git; then
     cd nwg-look || exit 1
-    # Build nwg-look
     make build
     if sudo make install 2>&1 | tee -a "$MLOG"; then
-        printf "${OK} nwg-look installed successfully.\n" 2>&1 | tee -a "$MLOG"
+        printf "${OK} ${MAGENTA}nwg-look $nwg_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
-        echo -e "${ERROR} Installation failed for nwg-look" 2>&1 | tee -a "$MLOG"
+        echo -e "${ERROR} Installation failed for ${YELLOW}nwg-look $nwg_tag${RESET}" 2>&1 | tee -a "$MLOG"
     fi
 
     # Move logs to Install-Logs directory
     mv "$MLOG" ../Install-Logs/ || true
     cd ..
 else
-    echo -e "${ERROR} Failed to download nwg-look. Please check your connection" 2>&1 | tee -a "$LOG"
+    echo -e "${ERROR} Failed to download ${YELLOW}nwg-look $nwg_tag${RESET} Please check your connection" 2>&1 | tee -a "$LOG"
     mv "$MLOG" ../Install-Logs/ || true
     exit 1
 fi
 
-clear
+printf "\n%.0s" {1..2}

@@ -21,11 +21,10 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprland.log"
 MLOG="install-$(date +%d-%H%M%S)_hyprland2.log"
 
 # Clone, build, and install Hyprland using Cmake
-printf "${NOTE} Cloning Hyprland...\n"
+printf "${INFO} Compiling and Installing ${YELLOW}hyprland $hyprland_tag${RESET} from source ...\n"
 
 # Check if Hyprland folder exists and remove it
 if [ -d "Hyprland" ]; then
-  printf "${NOTE} Removing existing Hyprland folder...\n"
   rm -rf "Hyprland" 2>&1 | tee -a "$LOG"
 fi
 
@@ -33,19 +32,19 @@ if git clone --recursive -b $hyprland_tag "https://github.com/hyprwm/Hyprland"; 
   cd "Hyprland" || exit 1
   make all
   if sudo make install 2>&1 | tee -a "$MLOG"; then
-    printf "${OK} Hyprland installed successfully.\n" 2>&1 | tee -a "$MLOG"
+    printf "${OK} ${MAGENTA}hyprland $hyprland_tag${RESET} has been successfully installed.\n" 2>&1 | tee -a "$MLOG"
   else
-    echo -e "${ERROR} Installation failed for Hyprland." 2>&1 | tee -a "$MLOG"
+    echo -e "${ERROR} Installation failed for ${YELLOW}hyprland $hyprland_tag${RESET}" 2>&1 | tee -a "$MLOG"
   fi
   mv $MLOG ../Install-Logs/ || true   
   cd ..
 else
-  echo -e "${ERROR} Download failed for Hyprland." 2>&1 | tee -a "$LOG"
+  echo -e "${ERROR} Download failed for ${YELLOW}hyprland $hyprland_tag${RESET}" 2>&1 | tee -a "$LOG"
 fi
 
 wayland_sessions_dir=/usr/share/wayland-sessions
 [ ! -d "$wayland_sessions_dir" ] && { printf "$CAT - $wayland_sessions_dir not found, creating...\n"; sudo mkdir -p "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"; }
 sudo cp assets/hyprland.desktop "$wayland_sessions_dir/" 2>&1 | tee -a "$LOG"
 
-clear
+printf "\n%.0s" {1..2}
 

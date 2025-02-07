@@ -24,28 +24,25 @@ printf "${NOTE} Installing hyprlang...\n"
 
 # Check if hyprlang folder exists and remove it
 if [ -d "hyprlang" ]; then
-    printf "${NOTE} Removing existing hyprlang folder...\n"
     rm -rf "hyprlang"
 fi
 
 # Clone and build hyprlang
-printf "${NOTE} Installing hyprlang...\n"
+printf "${NOTE} Compiling and Installing ${YELLOW}hyprlang $lang_tag${RESET} from source ...\n"
 if git clone --recursive -b $lang_tag https://github.com/hyprwm/hyprlang.git; then
     cd hyprlang || exit 1
     cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
     cmake --build ./build --config Release --target hyprlang -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
     if sudo cmake --install ./build 2>&1 | tee -a "$MLOG" ; then
-        printf "${OK} hyprlang installed successfully.\n" 2>&1 | tee -a "$MLOG"
+        printf "${OK} ${YELLOW}hyprlang $lang_tag${MAGENTA} has been successfully installed.\n" 2>&1 | tee -a "$MLOG"
     else
-        echo -e "${ERROR} Installation failed for hyprlang." 2>&1 | tee -a "$MLOG"
+        echo -e "${ERROR} Installation failed for ${YELLOW}hyprlang $lang_tag${RESET}" 2>&1 | tee -a "$MLOG"
     fi
     #moving the addional logs to Install-Logs directory
     mv $MLOG ../Install-Logs/ || true 
     cd ..
 else
-    echo -e "${ERROR} Download failed for hyprlang." 2>&1 | tee -a "$LOG"
+    echo -e "${ERROR} Download failed for ${YELLOW}hyprlang $lang_tag${RESET}" 2>&1 | tee -a "$LOG"
 fi
 
-
-clear
-
+printf "\n%.0s" {1..2}

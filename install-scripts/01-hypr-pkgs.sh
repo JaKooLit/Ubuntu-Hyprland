@@ -57,7 +57,8 @@ hypr_package_2=(
 )
 
 # packages to force reinstall 
-force_reinstall=(
+force=(
+  imagemagick
   wayland-protocols
 )
 
@@ -82,37 +83,44 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypr-pkgs.log"
 
-# Installation of main components
-printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
 
-for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
-done
-
-printf "\n%s - Checking if mako or dunst are installed and removing for swaync to work properly \n" "${NOTE}"
-
+# conflicting packages removal
+overall_failed=0
+printf "\n%s - ${SKY_BLUE}Removing some packages${RESET} as it conflicts with KooL's Hyprland Dots \n" "${NOTE}"
 for PKG in "${uninstall[@]}"; do
   uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation had failed, please check the log"
-    exit 1
+    overall_failed=1
   fi
 done
 
-# reinstall packages
-for PKG2 in "${force_reinstall[@]}"; do
-  re_install_package "$PKG2" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - force re-installing $PKG2 had failed, please check the log"
-    exit 1
-  fi
+if [ $overall_failed -ne 0 ]; then
+  echo -e "${ERROR} Some packages failed to uninstall. Please check the log."
+fi
+
+printf "\n%.0s" {1..1}
+
+# Installation of main components
+printf "\n%s - Installing ${SKY_BLUE}KooL's hyprland necessary packages${RESET} .... \n" "${NOTE}"
+
+for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
+  install_package "$PKG1" "$LOG"
 done
+
+printf "\n%.0s" {1..1}
+
+for PKG2 in "${force[@]}"; do
+  re_install_package "$PKG2" "$LOG"
+done
+
+printf "\n%.0s" {1..1}
+
+# Install up-to-date Rust
+echo "${INFO} Installing most ${YELLOW}up to date Rust compiler${RESET} ..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 2>&1 | tee -a "$LOG"
+source "$HOME/.cargo/env"
 
 ## making brightnessctl work
 sudo chmod +s $(which brightnessctl) 2>&1 | tee -a "$LOG" || true
 
-clear
+printf "\n%.0s" {1..2}
