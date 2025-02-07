@@ -2,7 +2,7 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # nwg-look #
 
-# nwg-look is now in trixie repo 14-Sep-2024
+# nwg-look is now in Ubuntu Universe repo 14-Sep-2024
 nwg_look=(
     golang
     libgtk-3-dev
