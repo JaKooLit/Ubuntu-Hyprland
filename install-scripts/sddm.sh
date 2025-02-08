@@ -50,7 +50,7 @@ for PKG2 in "${sddm2[@]}"; do
 done
 
 # Check if other login managers are installed and disable their service before enabling SDDM
-for login_manager in lightdm gdm3 gdm lxdm xdm lxdm-gtk3; do
+for login_manager in lightdm gdm3 gdm lxdm lxdm-gtk3; do
   if sudo apt list --installed "$login_manager" > /dev/null; then
     echo "Disabling $login_manager..."
     sudo systemctl disable "$login_manager.service" >> "$LOG" 2>&1
