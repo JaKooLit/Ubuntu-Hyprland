@@ -13,6 +13,15 @@ sddm2=(
   qt6-svg-dev
 )
 
+# login managers to attempt to disable
+login=(
+  lightdm 
+  gdm3 
+  gdm 
+  lxdm 
+  lxdm-gtk3
+)
+
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -39,7 +48,7 @@ for PKG2 in "${sddm2[@]}"; do
 done
 
 # Check if other login managers are installed and disable their service before enabling SDDM
-for login_manager in lightdm gdm3 gdm lxdm lxdm-gtk3; do
+for login_manager in "${login[@]}"; do
   if sudo apt list --installed "$login_manager" > /dev/null; then
     echo "Disabling $login_manager..."
     sudo systemctl disable "$login_manager.service" >> "$LOG" 2>&1
@@ -47,7 +56,16 @@ for login_manager in lightdm gdm3 gdm lxdm lxdm-gtk3; do
   fi
 done
 
-printf " Activating sddm service........\n"
+# Double check with systemctl
+for manager in "${login[@]}"; do
+  if systemctl is-active --quiet "$manager" > /dev/null 2>&1; then
+    echo "$manager is active, disabling it..." >> "$LOG" 2>&1
+    sudo systemctl disable "$manager" --now >> "$LOG" 2>&1
+  fi
+done
+
+printf "\n%.0s" {1..1}
+printf "${INFO} Activating sddm service........\n"
 sudo systemctl enable sddm
 
 
