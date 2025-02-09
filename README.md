@@ -99,7 +99,8 @@ chmod +x install.sh
 
 ## Some Links of Projects used for this project
 - KooL's Hyprland Dots [`LINK`](https://github.com/JaKooLit/Hyprland-Dots)
-- SDDM Theme ['LINK'](https://github.com/JaKooLit/simple-sddm.git)
+- SDDM Theme [`LINK`](https://github.com/JaKooLit/simple-sddm.git) - for Ubuntu 24.04
+- SDDM Theme [`LINK`](https://codeberg.org/JaKooLit/sddm-sequoia) which is a fork of [`LINK`](https://codeberg.org/minMelody/sddm-sequoia)
 - Wallpapers - which was offered to download at the end of installation ['LINK'](https://github.com/JaKooLit/Wallpaper-Bank)
 - GTK Themes and Icons [`LINK`](https://github.com/JaKooLit/GTK-themes-icons)
 
@@ -107,6 +108,10 @@ chmod +x install.sh
 ## KooL's Hyprland Dots very own wiki
 - KooL's Dots [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki) . In that wiki are FAQ, TIPS, Changelogs, and more
 
+### Gallery and Videos
+#### 🎥 Feb 2025 Video explanation of installation with preset
+- [YOUTUBE-LINK](https://youtu.be/wQ70lo7P6vA?si=_QcbrNKh_Bg0L3wC)
+- [YOUTUBE-Hyprland-Playlist](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)
 
 ### 🛎 *** DEBIAN and UBUNTU Hyprland Dots UPDATING NOTES ***
 > [!IMPORTANT]
