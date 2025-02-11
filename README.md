@@ -117,7 +117,7 @@ chmod +x install.sh
     <img align="center" width="100%" src="https://github.com/JaKooLit/Ubuntu-Hyprland/blob/24.10/Ubuntu.png" />
 
 
-### 🤟 semi-unattended installation (new for 2025)
+### 🤟 semi-unattended installation (new for Feb 2025)
 - edit preset.sh to modify what packages you want. Make sure to change only with Y or N
 - to use preset instead of usual `./install.sh` you can ran like this
 
@@ -175,21 +175,25 @@ source ~/.zshrc
 - some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
 - At this time the packages force to install are the following `imagemagick`
 
-#### 🫥 Improving performance for Older Nvidia Cards using driver 470
-  - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
-  
-#### 🙋  Got a questions regarding the Hyprland Dots configurations? 🙋
+#### 🎞️ AGS Overview DEMO
+- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
+
+#### ✨ TO DO once installation done and dotfiles copied
+- SUPER H for HINT or click on the waybar HINT! Button 
+- Head over to [KooL Hyprland WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki)
+
+#### 🙋 Got a questions regarding the Hyprland Dots or configurations? 🙋
 - Head over to wiki Link [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki)
+
+#### ⌨ Keybinds
+- Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
+
+> [!TIP]
+> KooL Hyprland has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
 
 #### 🙋 👋 Having issues or questions? 
 - for the install part, kindly open issue on this repo
 - for the Pre-configured Hyprland dots / configuration, submit issue [`here`](https://github.com/JaKooLit/Hyprland-Dots/issues)
-
-#### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
-
-#### ⌨ Keybinds
-- Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
 
 #### 🔧 Proper way to re-installing a particular script from install-scripts directory
 - CD into Ubuntu-Hyprland Folder and then ran the below command. 
@@ -222,6 +226,9 @@ log into your account
 env = GBM_BACKEND,nvidia-drm
 env = WLR_RENDERER_ALLOW_SOFTWARE,1
 ```
+
+#### 🫥 Improving performance for Older Nvidia Cards using driver 470
+  - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
 
 #### ❗ other known issues
 > [!NOTE]
