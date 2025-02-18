@@ -40,6 +40,7 @@ dependencies=(
 
 # hyprland dependencies
 hyprland_dep=(
+    bc
     binutils
     libc6
     libcairo2
