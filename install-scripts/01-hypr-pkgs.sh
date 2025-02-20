@@ -21,7 +21,6 @@ hypr_package=(
     imagemagick
     kitty
     nano
-    nwg-look
     pavucontrol
     playerctl
     polkit-kde-agent-1
@@ -53,6 +52,8 @@ hypr_package_2=(
     mousepad
     mpv
     mpv-mpris
+    nwg-look
+    nwg-displays
     nvtop
     pamixer
     qalculate-gtk
