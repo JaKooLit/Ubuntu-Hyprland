@@ -96,6 +96,7 @@ dependencies=(
   wayland-protocols
   xdg-desktop-portal
   xwayland
+  bc
 )
 
 build_dep=(

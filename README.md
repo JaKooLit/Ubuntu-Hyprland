@@ -81,50 +81,9 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 > If you install SDDM, you will encounter issues. See [`Issue 2 - SDDM`](https://github.com/JaKooLit/Debian-Hyprland/issues/2)
 
 ### Gallery and Videos
-<details>
-<summary>
-📷 Screenshots
-</summary>
-
-<p align="center">
-    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Debian/debian.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Debian/debian2.png" />       
-</p>
-
-<p align="center">
-    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/default-waybar.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Debian/debian4.png" />   
-   <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/wlogout-dark.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Distro-Hyprland/Debian/hyprlock.png"" /> 
-   <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/waybar-layout.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-Dots-Showcase/waybar-style.png"" /> 
-</p>
-
-
-#### ❕ Installed on Ubuntu 24.04 LTS with Nvidia Laptop 😷 
-![alt text](https://github.com/JaKooLit/screenshots/blob/main/Distro-Hyprland/Ubuntu/Ubuntu-24.04-nvidia.png)
-
-
-#### 📷 More updated Screenshots Here [`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-Dots-Showcase)
-
-#### 📷 Older Screenshots: v1[`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots/Debian) & v2[`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots/Debian-v2)
-
-</details>
-
-<details>
-<summary>
-📽️ Youtube Videos
-</summary>
-
-#### ✨ Youtube presentation [`V1`](https://youtu.be/hGEWOif5D4Y?si=WQ-PrPwEhM5Og76Q)
-#### ✨ Youtube presentation [`V2`](https://youtu.be/Qc4VP9JFh2Y)
-
-#### ✨ A video walk through my dotfiles[`Link`](https://youtu.be/fO-RBHvVEcc?si=ijqxxnq_DLiyO8xb)
-#### ✨ A video walk through of My Hyprland-Dots v2[`Link`](https://youtu.be/yaVurRoXc-s?si=iDnBC5S3thPBX3ZE)
-
-#### 💯💯 Check out Installation Video coverage by KSK royal (Ubuntu 23.10 + nvidia)
-- [`Link`](https://youtu.be/PMQf9gAt8FE?si=eCBqwXaej-1XXIh_)
-
-#### 💯💯 Check out Installation Video coverage by KSK royal (Kali Linux xfce + nvidia). He have details regarding installing timeshift and switching to sddm from lightdm. He also covers removal of nouveau in favor of proprietary nvidia drivers
-- [`Link`](https://youtu.be/NtpRtSBjz3I?si=YGkS75u_7cW5D_zu)
-
-</details>
+#### 🎥 Feb 2025 Video explanation of installation with preset
+- [YOUTUBE-LINK](https://youtu.be/wQ70lo7P6vA?si=_QcbrNKh_Bg0L3wC)
+- [YOUTUBE-Hyprland-Playlist](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)
 
 ### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots/tree/Ubuntu-24.04-Dots) . During installation, if you opt to copy pre-configured dots, it will be downloaded from that centralized repo.
@@ -170,7 +129,7 @@ chmod +x install.sh
     <img align="center" width="100%" src="https://github.com/JaKooLit/Ubuntu-Hyprland/blob/24.04/Ubuntu24.04.png" />
 
 
-### 🤟 semi-unattended installation (new for 2025)
+### 🤟 semi-unattended installation (new for Feb 2025)
 - edit preset.sh to modify what packages you want. Make sure to change only with Y or N
 - to use preset instead of usual `./install.sh` you can ran like this
 
@@ -194,7 +153,7 @@ zsh
 source ~/.zshrc
 ```
 - reboot or logout
-- by default `funky` theme is installed. You can find more themes from this [`OH-MY-ZSH-THEMES`](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
+- by default `agnosterzak` theme is installed. Which is from external oh-my-zsh theme. You can find more themes from this [`OH-MY-ZSH-THEMES`](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
 - to change the theme, `SUPER SHIFT O` , choose  desired theme, and close and open terminal. 
 - or manually edit `~/.zshrc` . Look for ZSH_THEME="desired theme"
 
@@ -231,21 +190,25 @@ source ~/.zshrc
 - some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
 - At this time the packages force to install are the following `imagemagick`
 
-#### 🫥 Improving performance for Older Nvidia Cards using driver 470
-  - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
-  
-#### 🙋  Got a questions regarding the Hyprland Dots configurations? 🙋
+#### 🎞️ AGS Overview DEMO
+- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
+
+#### ✨ TO DO once installation done and dotfiles copied
+- SUPER H for HINT or click on the waybar HINT! Button 
+- Head over to [KooL Hyprland WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki)
+
+#### 🙋 Got a questions regarding the Hyprland Dots or configurations? 🙋
 - Head over to wiki Link [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki)
+
+#### ⌨ Keybinds
+- Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
+
+> [!TIP]
+> KooL Hyprland has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
 
 #### 🙋 👋 Having issues or questions? 
 - for the install part, kindly open issue on this repo
 - for the Pre-configured Hyprland dots / configuration, submit issue [`here`](https://github.com/JaKooLit/Hyprland-Dots/issues)
-
-#### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
-
-#### ⌨ Keybinds
-- Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
 
 #### 🔧 Proper way to re-installing a particular script from install-scripts directory
 - CD into Ubuntu-Hyprland Folder and then ran the below command. 
@@ -298,7 +261,9 @@ cd ~/Ubuntu-Hyprland
 - [ ] pyprland is a hit and miss. Drop down not working, zooming is hit and miss
 - [ ] See note above about Hyprland-Dots newer version incompatibility
 
-
+#### 🫥 Improving performance for Older Nvidia Cards using driver 470
+  - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
+  
 #### 📒 Final Notes
 - join my discord channel [`Discord`](https://discord.com/invite/9JEgZsfhex)
 - Feel free to copy, re-distribute, and use this script however you want. Would appreciate if you give me some loves by crediting my work :)
