@@ -49,9 +49,4 @@ if [ -d "$HOME/.oh-my-zsh/themes" ]; then
     cp -r assets/add_zsh_theme/* ~/.oh-my-zsh/themes >> "$LOG" 2>&1
 fi
 
-# copy additional oh-my-zsh themes from assets
-if [ -d "$HOME/.oh-my-zsh/themes" ]; then
-    cp -r assets/add_zsh_theme/* ~/.oh-my-zsh/themes >> "$LOG" 2>&1
-fi
-
 printf "\n%.0s" {1..2}
