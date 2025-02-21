@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 22 Feb 2025
+- replaced eog with loupe
+
 ## 18 Feb 2025
 - Change default zsh theme to adnosterzak
 - pokemon coloscript integrated with fastfetch when opted with pokemon to add some bling
