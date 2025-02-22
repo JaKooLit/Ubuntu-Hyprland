@@ -2,6 +2,7 @@
 
 ## 22 Feb 2025
 - replaced eog with loupe
+- changed url for installing oh-my-zsh to get wider coverage. Some countries are blocking github raw url's
 
 ## 18 Feb 2025
 - Change default zsh theme to adnosterzak
