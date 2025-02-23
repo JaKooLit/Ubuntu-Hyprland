@@ -33,6 +33,7 @@ hypr_package=(
     slurp
     swappy
     sway-notification-center
+    unzip
     waybar
     wget
     wl-clipboard
@@ -47,7 +48,7 @@ hypr_package_2=(
     brightnessctl
     btop
     cava
-    eog
+    loupe
     gnome-system-monitor
     mousepad
     mpv
