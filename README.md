@@ -190,6 +190,16 @@ source ~/.zshrc
 > [!TIP]
 > KooL Hyprland has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
 
+
+## 🛎 *** DEBIAN and UBUNTU Hyprland Dots UPDATING NOTES ***
+> [!IMPORTANT]
+> This is very Important for Debian and Ubuntu Dots
+- Some parts of KooL's Hyprland Dots [`LINK`](https://github.com/JaKooLit/Hyprland-Dots) are not compatible on Debian and Ubuntu especially the hyprland settings. 
+- That is the reason the DOTS for those distro's are "fixed" and they are being pulled on different branch of KooL Dots.
+
+- To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki#--debian-and-ubuntu-hyprland-dots-updating-notes-)
+
+
 #### 🙋 👋 Having issues or questions? 
 - for the install part, kindly open issue on this repo
 - for the Pre-configured Hyprland dots / configuration, submit issue [`here`](https://github.com/JaKooLit/Hyprland-Dots/issues)
