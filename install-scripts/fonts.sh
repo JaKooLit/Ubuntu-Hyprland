@@ -52,6 +52,13 @@ mkdir -p ~/.local/share/fonts/JetBrainsMonoNerd 2>&1 | tee -a "$LOG"
 # Extract the new files into the JetBrainsMono folder and log the output
 tar -xJkf JetBrainsMono.tar.xz -C ~/.local/share/fonts/JetBrainsMonoNerd 2>&1 | tee -a "$LOG"
 
+# Victor Mono-Font
+if wget -q https://rubjo.github.io/victor-mono/VictorMonoAll.zip; then
+    mkdir -p "$HOME/.local/share/fonts/VictorMono" && unzip -o -q "VictorMonoAll.zip" -d "$HOME/.local/share/fonts/VictorMono" && echo "Victor Font installed successfully" | tee -a "$LOG"
+else
+    echo -e "\n${ERROR} Failed to download ${YELLOW}Victor Mono Font${RESET} Please check your connection\n" | tee -a "$LOG"
+fi
+
 # Update font cache and log the output
 fc-cache -v 2>&1 | tee -a "$LOG"
 
