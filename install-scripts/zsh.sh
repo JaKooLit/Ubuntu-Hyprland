@@ -4,6 +4,7 @@
 
 zsh=(
     zsh
+    mercurial
     zplug
 )
 
