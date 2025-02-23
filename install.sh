@@ -314,6 +314,9 @@ execute_script "rofi-wayland.sh"
 execute_script "hyprlock.sh"
 execute_script "hypridle.sh"
 
+# nwg-displays added for KooL dots v2.3.12
+execute_script "nwg-displays.sh" 
+
 if [ "$dots" == "Y" ]; then
     execute_script "dotfiles-branch.sh"
 fi
