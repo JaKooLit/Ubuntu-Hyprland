@@ -113,11 +113,10 @@ chmod +x install.sh
 - [YOUTUBE-LINK](https://youtu.be/wQ70lo7P6vA?si=_QcbrNKh_Bg0L3wC)
 - [YOUTUBE-Hyprland-Playlist](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)
 
-### 🛎 *** DEBIAN and UBUNTU Hyprland Dots UPDATING NOTES ***
+## 🛎 *** DEBIAN and UBUNTU Hyprland Dots UPDATING NOTES ***
 > [!IMPORTANT]
 > This is very Important for Debian and Ubuntu Dots
 - Some parts of KooL's Hyprland Dots [`LINK`](https://github.com/JaKooLit/Hyprland-Dots) are not compatible on Debian and Ubuntu especially the hyprland settings. 
-- That is the reason the DOTS for those distro's are "fixed" and they are being pulled on the releases. This releases are NOT in any of the branches of the KooL's Hyprland Dots. 
+- That is the reason the DOTS for those distro's are "fixed" and they are being pulled on different branch of KooL Dots.
 
-- for Debian and Ubuntu if you want to update from newest KooL's dots versions (main branch), after running copy.sh, you will have 100% error which will appear on top. However, Hyprland is very good in pin pointing those errors. 
-- You can simply just remove those lines or add # on those lines. Then, it should be ok.
+- To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki#--debian-and-ubuntu-hyprland-dots-updating-notes-)
