@@ -197,7 +197,7 @@ source ~/.zshrc
 - Some parts of KooL's Hyprland Dots [`LINK`](https://github.com/JaKooLit/Hyprland-Dots) are not compatible on Debian and Ubuntu especially the hyprland settings. 
 - That is the reason the DOTS for those distro's are "fixed" and they are being pulled on different branch of KooL Dots.
 
-- To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki#--debian-and-ubuntu-hyprland-dots-updating-notes-)
+- To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update#%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F---debian-and-ubuntu-hyprland-dots-updating-notes--%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F)
 
 
 #### 🙋 👋 Having issues or questions? 
