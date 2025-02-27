@@ -32,7 +32,7 @@ MLOG="install-$(date +%d-%H%M%S)_hyprlock2.log"
 printf "\n%s - Installing ${YELLOW}hyprlock dependencies${RESET} .... \n" "${INFO}"
 
 for PKG1 in "${lock[@]}"; do
-  install_package "$PKG1" "$LOG"
+  re_install_package "$PKG1" "$LOG"
 done
 
 # Check if hyprlock folder exists and remove it
