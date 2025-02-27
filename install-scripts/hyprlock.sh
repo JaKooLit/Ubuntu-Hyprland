@@ -27,7 +27,7 @@ MLOG="install-$(date +%d-%H%M%S)_hyprlock2.log"
 printf "\n%s - Installing ${SKY_BLUE}hyprlock $lock_tag${RESET} dependencies.... \n" "${NOTE}"
 
 for PKG1 in "${lock[@]}"; do
-  install_package "$PKG1" "$LOG"
+  re_install_package "$PKG1" "$LOG"
 done
 
 # Check if hyprlidle folder exists and remove it

@@ -27,7 +27,7 @@ MLOG="install-$(date +%d-%H%M%S)_hypridle2.log"
 printf "\n%s - Installing ${YELLOW}hypridle dependencies${RESET} .... \n" "${INFO}"
 
 for PKG1 in "${idle[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
+  re_install_package "$PKG1" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - ${YELLOW}$PKG1${RESET} Package installation failed, Please check the installation logs"
     exit 1
