@@ -40,7 +40,6 @@ fi
 printf "\n%.0s" {1..2} 
 
 # Install Wallust using Cargo
-echo "${INFO} Installing ${SKY_BLUE}Wallust using Cargo${RESET} ..." | tee -a "$LOG"
 for WALL in "${wallust[@]}"; do
     cargo_install "$WALL" "$LOG"
     if [ $? -eq 0 ]; then  
@@ -50,7 +49,7 @@ for WALL in "${wallust[@]}"; do
         exit 1
     fi
 done
-
+printf "\n%.0s" {1..1} 
 # Move the newly compiled binary to /usr/local/bin
 echo "Moving Wallust binary to /usr/local/bin..." | tee -a "$LOG"
 if sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin 2>&1 | tee -a "$LOG"; then
