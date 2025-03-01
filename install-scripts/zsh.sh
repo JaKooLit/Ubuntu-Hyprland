@@ -4,6 +4,7 @@
 
 zsh=(
     zsh
+    mercurial
     zplug
 )
 
@@ -86,7 +87,6 @@ if command -v zsh >/dev/null; then
   fi
 
 fi
-
 
 # copy additional oh-my-zsh themes from assets
 if [ -d "$HOME/.oh-my-zsh/themes" ]; then
