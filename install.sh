@@ -157,7 +157,7 @@ if check_services_running; then
 
     # Display the active login manager(s) in the whiptail message box
     whiptail --title "Active non-SDDM login manager(s) detected" \
-        --msgbox "The following non-SDDM login manager(s) are active:\n$active_list\nWARN: DO NOT install or choose to install SDDM & SDDM theme\nOr disable those active services first\nIf you ignored this warning and you choose to install SDDM, script will return to choices in the middle of the installation. FYI" 12 80
+        --msgbox "The following non-SDDM login manager(s) are active:\n\n$active_list\n\nWARN: DO NOT install or choose to install SDDM & SDDM theme in the choices\nOr disable those active services first before running this script\nIf you ignored this warning and you chose to install SDDM, script will return to choices in the middle of the installation.\n 💁‍♂️ For your inforation \n\n 😎 Ja " 20 80
 fi
 
 # Check if NVIDIA GPU is detected
