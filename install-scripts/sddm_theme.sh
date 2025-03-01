@@ -107,8 +107,7 @@ if git clone --depth 1 "$source_theme" "$theme_name"; then
     echo "Failed to copy fonts."
   fi
 
-  # Update font cache and log the output
-  fc-cache -v -f 2>&1 | tee -a "$LOG"
+  fc-cache -fv 2>&1 | tee -a "$LOG"
 
   printf "\n%.0s" {1..1}
   
