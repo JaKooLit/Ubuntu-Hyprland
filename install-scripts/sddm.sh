@@ -8,6 +8,7 @@ sddm1=(
 )
 
 sddm2=(
+  qt6-5compat-dev
   qml6-module-qt5compat-graphicaleffects
   qt6-declarative-dev
   qt6-svg-dev

@@ -249,6 +249,13 @@ cd ~/Ubuntu-Hyprland
 - [ ] pyprland is a hit and miss. Drop down not working, zooming is hit and miss
 - [ ] See note above about Hyprland-Dots newer version incompatibility
 
+## 🛎 *** DEBIAN and UBUNTU Hyprland Dots UPDATING NOTES ***
+> [!IMPORTANT]
+> This is very Important for Debian and Ubuntu Dots
+- Some parts of KooL's Hyprland Dots [`LINK`](https://github.com/JaKooLit/Hyprland-Dots) are not compatible on Debian and Ubuntu especially the hyprland settings. 
+- That is the reason the DOTS for those distro's are "fixed" and they are being pulled on different branch of KooL Dots.
+
+- To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update#%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F---debian-and-ubuntu-hyprland-dots-updating-notes--%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F)
 
 #### 📒 Final Notes
 - join my discord channel [`Discord`](https://discord.com/invite/9JEgZsfhex)
