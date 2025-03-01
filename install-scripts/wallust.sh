@@ -2,6 +2,9 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # wallust - pywal colors replacement #
 
+wallust=(
+  wallust
+)
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -38,15 +41,24 @@ printf "\n%.0s" {1..2}
 
 # Install Wallust using Cargo
 echo "${INFO} Installing ${SKY_BLUE}Wallust using Cargo${RESET} ..." | tee -a "$LOG"
-if cargo install wallust 2>&1 | tee -a "$LOG" ; then
-    echo "${OK} ${MAGENTA}Wallust${RESET} installed successfully." | tee -a "$LOG"
+for WALL in "${wallust[@]}"; do
+    cargo_install "$WALL" "$LOG"
+    if [ $? -eq 0 ]; then  
+        echo "${OK} ${MAGENTA}Wallust${RESET} installed successfully." | tee -a "$LOG"
+    else
+        echo "${ERROR} Installation of ${MAGENTA}$WALL${RESET} failed. Check the log file $LOG for details." | tee -a "$LOG"
+        exit 1
+    fi
+done
 
-    # Move the newly compiled binary to /usr/local/bin
-    echo "Moving Wallust binary to /usr/local/bin..." | tee -a "$LOG"
-    sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin 2>&1 | tee -a "$LOG"
+# Move the newly compiled binary to /usr/local/bin
+echo "Moving Wallust binary to /usr/local/bin..." | tee -a "$LOG"
+if sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin 2>&1 | tee -a "$LOG"; then
+    echo "${OK} Wallust binary moved successfully to /usr/local/bin." | tee -a "$LOG"
 else
-    echo "${ERROR} Wallust installation failed. Check the log file $LOG for details." | tee -a "$LOG"
+    echo "${ERROR} Failed to move Wallust binary. Check the log file $LOG for details." | tee -a "$LOG"
     exit 1
 fi
+
 
 printf "\n%.0s" {1..2}
