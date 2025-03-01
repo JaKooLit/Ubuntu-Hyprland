@@ -186,6 +186,16 @@ source ~/.zshrc
 > [!NOTE] 
 > This script does not setup audio. Kindly set up. If you have not, I recommend pipewire. `sudo apt install -y pipewire`
 
+
+## 🛎 *** DEBIAN and UBUNTU Hyprland Dots UPDATING NOTES ***
+> [!IMPORTANT]
+> This is very Important for Debian and Ubuntu Dots
+- Some parts of KooL's Hyprland Dots [`LINK`](https://github.com/JaKooLit/Hyprland-Dots) are not compatible on Debian and Ubuntu especially the hyprland settings. 
+- That is the reason the DOTS for those distro's are "fixed" and they are being pulled on different branch of KooL Dots.
+
+- To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update#%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F---debian-and-ubuntu-hyprland-dots-updating-notes--%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F)
+
+
 #### ❗ some known issues on this Installer
 - some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
 - At this time the packages force to install are the following `imagemagick`

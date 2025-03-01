@@ -4,6 +4,7 @@
 
 zsh=(
     zsh
+    mercurial
     zplug
 )
 
@@ -91,5 +92,15 @@ fi
 if [ -d "$HOME/.oh-my-zsh/themes" ]; then
     cp -r assets/add_zsh_theme/* ~/.oh-my-zsh/themes >> "$LOG" 2>&1
 fi
+
+
+# Install up-to-date fastfetch
+echo "${INFO} Installing ${YELLOW}up to date fastfetch${RESET} ..."
+curl -s https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest \
+  | grep "browser_download_url.*fastfetch-linux-amd64.deb" \
+  | cut -d '"' -f 4 \
+  | xargs -I {} curl -LO {}
+
+sudo dpkg -i *fastfetch-linux-amd64.deb
 
 printf "\n%.0s" {1..2}

@@ -16,6 +16,7 @@ packages=(
 # Local packages that should be in /usr/local/bin/
 local_pkgs_installed=(
   rofi
+  nwg-displays
   hypridle
   hyprlock
   wallust
