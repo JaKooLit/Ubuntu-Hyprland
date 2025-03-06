@@ -3,9 +3,10 @@
 # Zsh and Oh my Zsh + Optional Pokemon ColorScripts#
 
 zsh=(
-    zsh
-    mercurial
-    zplug
+  lsd
+  zsh
+  mercurial
+  zplug
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
