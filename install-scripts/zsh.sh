@@ -3,6 +3,7 @@
 # Zsh and Oh my Zsh + Optional Pokemon ColorScripts#
 
 zsh=(
+    lsd
     zsh
     mercurial
     zplug
