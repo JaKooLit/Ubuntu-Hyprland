@@ -141,9 +141,9 @@ check_services_running() {
     done
 
     if [ ${#active_services[@]} -gt 0 ]; then
-        return 0  
+        return 0  # Return 0 if active services are found
     else
-        return 1  
+        return 1  # Return 1 if no active services are found
     fi
 }
 
@@ -152,14 +152,14 @@ if check_services_running; then
 
     # Display the active login manager(s) in the whiptail message box
     whiptail --title "Active non-SDDM login manager(s) detected" \
-        --msgbox "The following non-SDDM login manager(s) are active:\n\n$active_list\n\nWARN: DO NOT install or choose to install SDDM & SDDM theme in the choices\nOr disable those active services first before running this script\n\nIf you ignored this warning and you chose to install SDDM, script will return to choices in the middle of the installation.\n\n🏳️ So choose wisely\n\n😎 Ja " 22 80
+        --msgbox "The following login manager(s) are active:\n\n$active_list\n\nIf you want to install SDDM and SDDM theme, stop and disable these active services first before running this script\n\nYour option to install SDDM has now been removed from the option\n\n😎 Ja " 22 80
 fi
 
 # Check if NVIDIA GPU is detected
 nvidia_detected=false
 if lspci | grep -i "nvidia" &> /dev/null; then
     nvidia_detected=true
-    whiptail --title "NVIDIA GPU Detected" --msgbox "NVIDIA GPU detected in your system.\n\nNOTE: The script will install nvidia-dkms, nvidia-utils, and nvidia-settings if you choose to configure." 12 60
+    whiptail --title "NVIDIA GPU Detected" --msgbox "NVIDIA GPU detected in your system.\n\nNOTE: The script will install nvidia drivers via automatic detection if you chose to configure nvidia.\n\nSee the readme." 12 60
 fi
 
 # Initialize the options array for whiptail checklist
@@ -174,7 +174,7 @@ if [ "$nvidia_detected" == "true" ]; then
     )
 fi
 
-# Check if user is already in the 'input' group
+# Add 'input_group' option if user is not in input group
 input_group_detected=false
 if ! groups "$(whoami)" | grep -q '\binput\b'; then
     input_group_detected=true
@@ -188,14 +188,20 @@ if [ "$input_group_detected" == "true" ]; then
     )
 fi
 
+# Conditionally add SDDM and SDDM theme options if no active login manager is found
+if ! check_services_running; then
+    options_command+=(
+        "sddm" "Install & configure SDDM login manager?" "OFF"
+        "sddm_theme" "Download & Install Additional SDDM theme?" "OFF"
+    )
+fi
+
 # Add the remaining static options
 options_command+=(
     "gtk_themes" "Install GTK themes (required for Dark/Light function)" "OFF"
     "bluetooth" "Do you want script to configure Bluetooth?" "OFF"
     "thunar" "Do you want Thunar file manager to be installed?" "OFF"
     "ags" "Install AGS v1 for Desktop-Like Overview" "OFF"
-    "sddm" "Install & configure SDDM login manager?" "OFF"
-    "sddm_theme" "Download & Install Additional SDDM theme?" "OFF"
     "xdph" "Install XDG-DESKTOP-PORTAL-HYPRLAND (for screen share)?" "OFF"
     "zsh" "Install zsh shell with Oh-My-Zsh?" "OFF"
     "pokemon" "Add Pokemon color scripts to your terminal?" "OFF"

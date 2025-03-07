@@ -101,9 +101,8 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm)
 - If you opted to install GTK Themes, Icons, here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons) & Bibata Cursor Modern Ice (assets directory)
 
-#### 🔔 NOTICE TO NVIDIA OWNERS ### 
-> [!IMPORTANT]
-> If you want to use nouveau driver, choose N when asked if you have nvidia gpu. This is because the nvidia installer part, it will blacklist nouveau. Hyprland will still be installed but it will skip blacklisting nouveau.
+#### 
+
 
 ## ✨ to use this script
 > clone this repo (latest commit only) by using git. Change directory, make executable and run the script
@@ -117,22 +116,14 @@ chmod +x install.sh
     <img align="center" width="100%" src="https://github.com/JaKooLit/Ubuntu-Hyprland/blob/25.04/Ubuntu.png" />
 
 
-### 🤟 semi-unattended installation (new for 2025)
-- edit preset.sh to modify what packages you want. Make sure to change only with Y or N
-- to use preset instead of usual `./install.sh` you can ran like this
+### ❇️ Nvidia Drivers & 🔔 NOTICE TO NVIDIA OWNERS
+- If you choose to configure nvidia, driver will be installed via automatic detection / install. See [NVIDIA guide](https://documentation.ubuntu.com/server/how-to/graphics/install-nvidia-drivers/index.html#installing-the-drivers-for-generic-use-e-g-desktop-and-gaming)
+- The command will be executed will be `sudo ubuntu-drivers install`
+- Note that `nouveau` is installed, you need to uninstall it first or DO NOT choose to configure `nvidia`
+- NOTE: that script is also designed to install some other nvidia stuff including blacklist of nouvea. Verify and review `install-scripts/nvidia.sh` or DO not choose to configure nvidia on the option
 
-```bash
-./install.sh --preset
-```
-
-- if you have nvidia you can add --nvidia argument
-
-```bash
-./install.sh --preset --nvidia
-```
-
-- its called semi-unattended it is because you still have to answer some questions when installing KooL's Hyprland Dots
-
+> [!IMPORTANT]
+> If you want to use nouveau driver, choose N when asked if you have nvidia gpu. This is because the nvidia installer part, it will blacklist nouveau. Hyprland will still be installed but it will skip blacklisting nouveau.
 
 #### ✨ for ZSH and OH-MY-ZSH installation
 > installer should auto change your default shell to zsh. However, if it does not, do this
