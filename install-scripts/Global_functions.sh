@@ -70,9 +70,19 @@ install_package() {
 
 # Function for build depencies with a progress bar
 build_dep() { 
-  echo -e "${INFO} building dependencies for ${MAGENTA}$1${RESET} "
+  echo -e "${INFO} building dependencies for ${MAGENTA}$1${RESET}.."
     (
       stdbuf -oL sudo build-dep -y "$1" 2>&1
+    ) >> "$LOG" 2>&1 &
+    PID=$!
+    show_progress $PID "$1" 
+}
+
+# Function for cargo install with a progress bar
+cargo_install() { 
+  echo -e "${INFO} installing ${MAGENTA}$1${RESET} using cargo..."
+    (
+      stdbuf -oL cargo install "$1" 2>&1
     ) >> "$LOG" 2>&1 &
     PID=$!
     show_progress $PID "$1" 

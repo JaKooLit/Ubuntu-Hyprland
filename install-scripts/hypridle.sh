@@ -4,6 +4,8 @@
 
 idle=(
     libsdbus-c++-dev
+    libsdbus-c++2
+    libsdbus-c++-bin
     libhyprlang-dev
 )
 
@@ -11,14 +13,17 @@ idle=(
 idle_tag="v0.1.2"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
-# Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Change the working directory to the parent directory of the script
 PARENT_DIR="$SCRIPT_DIR/.."
-cd "$PARENT_DIR" || exit 1
+cd "$PARENT_DIR" || { echo "${ERROR} Failed to change directory to $PARENT_DIR"; exit 1; }
 
-source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
+# Source the global functions script
+if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
+  echo "Failed to source Global_functions.sh"
+  exit 1
+fi
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypridle.log"
@@ -28,7 +33,7 @@ MLOG="install-$(date +%d-%H%M%S)_hypridle2.log"
 printf "\n%s - Installing ${YELLOW}hypridle dependencies${RESET} .... \n" "${INFO}"
 
 for PKG1 in "${idle[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
+  re_install_package "$PKG1" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - ${YELLOW}$PKG1${RESET} Package installation failed, Please check the installation logs"
     exit 1
