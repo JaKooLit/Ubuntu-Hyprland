@@ -141,9 +141,9 @@ check_services_running() {
     done
 
     if [ ${#active_services[@]} -gt 0 ]; then
-        return 0  # Return 0 if active services are found
+        return 0  
     else
-        return 1  # Return 1 if no active services are found
+        return 1  
     fi
 }
 
@@ -152,14 +152,14 @@ if check_services_running; then
 
     # Display the active login manager(s) in the whiptail message box
     whiptail --title "Active non-SDDM login manager(s) detected" \
-        --msgbox "The following login manager(s) are active:\n\n$active_list\n\nIf you want to install SDDM and SDDM theme, stop and disable these active services first before running this script\n\nYour option to install SDDM has now been removed from the option\n\n😎 Ja " 22 80
+        --msgbox "The following login manager(s) are active:\n\n$active_list\n\nIf you want to install SDDM and SDDM theme, stop and disable first the active services above first before running this script\n\nYour option to install SDDM and SDDM theme has now been removed\n\n😎 Ja " 22 80
 fi
 
 # Check if NVIDIA GPU is detected
 nvidia_detected=false
 if lspci | grep -i "nvidia" &> /dev/null; then
     nvidia_detected=true
-    whiptail --title "NVIDIA GPU Detected" --msgbox "NVIDIA GPU detected in your system.\n\nNOTE: The script will install nvidia drivers via automatic detection if you chose to configure nvidia.\n\nSee the readme." 12 60
+    whiptail --title "NVIDIA GPU Detected" --msgbox "NVIDIA GPU detected in your system.\n\nNOTE: The script will install nvidia drivers via automatic detection if you chose to configure nvidia.\nSee the README" 14 60
 fi
 
 # Initialize the options array for whiptail checklist
