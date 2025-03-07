@@ -117,9 +117,6 @@ cd ~/Ubuntu-Hyprland-25.04
 chmod +x install.sh
 ./install.sh
 ```
-<p align="center">
-    <img align="center" width="100%" src="https://github.com/JaKooLit/Ubuntu-Hyprland/blob/25.04/Ubuntu.png" />
-
 
 ### ❇️ Nvidia Drivers & 🔔 NOTICE TO NVIDIA OWNERS
 - If you choose to configure nvidia, driver will be installed via automatic detection / install. See [NVIDIA guide](https://documentation.ubuntu.com/server/how-to/graphics/install-nvidia-drivers/index.html#installing-the-drivers-for-generic-use-e-g-desktop-and-gaming)
