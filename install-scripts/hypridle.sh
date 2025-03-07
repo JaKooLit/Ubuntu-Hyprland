@@ -3,12 +3,18 @@
 # hypidle #
 
 idle=(
-    libsdbus-c++-dev
-    libhyprlang-dev
+  libsdbus-c++-dev
+  libhyprlang-dev
+  hyprcursor-util
+  libhyprlang-dev
+  libhyprlang2
+  libhyprutils-dev
+  libhyprutils0
+  libhyprcursor-dev
 )
 
 #specific branch or release
-idle_tag="v0.1.2"
+idle_tag="v0.1.3"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

@@ -297,15 +297,15 @@ execute_script "01-hypr-pkgs.sh"
 sleep 1
 execute_script "hyprland.sh"
 sleep 1
-execute_script "hyprlock.sh"
-sleep 1
-execute_script "hypridle.sh"
-sleep 1
 execute_script "wallust.sh"
 sleep 1
 execute_script "swww.sh"
 sleep 1
 execute_script "rofi-wayland.sh"
+sleep 1
+execute_script "hyprlock.sh"
+sleep 1
+execute_script "hypridle.sh"
 
 #execute_script "imagemagick.sh" #this is for compiling from source. 07 Sep 2024
 # execute_script "waybar-git.sh" only if waybar on repo is old
