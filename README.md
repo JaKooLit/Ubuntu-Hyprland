@@ -101,6 +101,12 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm)
 - If you opted to install GTK Themes, Icons, here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons) & Bibata Cursor Modern Ice (assets directory)
 
+## ✨ Auto clone and install
+- you can use this command to automatically clone the installer and ran the script for you
+```bash
+sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/24.10/auto-install.sh)
+```
+
 
 ## ✨ to use this script
 > clone this repo (latest commit only) by using git. Change directory, make executable and run the script
