@@ -122,7 +122,7 @@ sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/24.04/au
 ## ✨ to use this script
 > clone this repo (latest commit only) by using git. Change directory, make executable and run the script
 ```bash
-git clone -b 24.04 --depth 1 https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-24.04
+git clone -b 24.04 --depth=1 https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-24.04
 cd ~/Ubuntu-Hyprland-24.04
 chmod +x install.sh
 ./install.sh

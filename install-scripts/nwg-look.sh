@@ -44,7 +44,7 @@ if [ -d "nwg-look" ]; then
 fi
 
 # Clone nwg-look repository with the specified tag
-if git clone --recursive -b "$nwg_tag" --depth 1 https://github.com/nwg-piotr/nwg-look.git; then
+if git clone --recursive -b "$nwg_tag" --depth=1 https://github.com/nwg-piotr/nwg-look.git; then
     cd nwg-look || exit 1
     make build
     if sudo make install 2>&1 | tee -a "$MLOG"; then
