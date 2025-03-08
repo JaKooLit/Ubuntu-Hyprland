@@ -30,7 +30,7 @@ if [ -d Hyprland-Dots-Ubuntu ]; then
   chmod +x copy.sh
   ./copy.sh 
 else
-  if git clone --depth 1 -b $dots_tag https://github.com/JaKooLit/Hyprland-Dots Hyprland-Dots-Ubuntu; then
+  if git clone --depth=1 -b $dots_tag https://github.com/JaKooLit/Hyprland-Dots Hyprland-Dots-Ubuntu; then
     cd Hyprland-Dots-Ubuntu || exit 1
     chmod +x copy.sh
     ./copy.sh 
