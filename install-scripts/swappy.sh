@@ -39,7 +39,7 @@ if [ -d "swappy" ]; then
 fi
 
 # Clone and build swappy
-if git clone --depth 1 https://github.com/jtheoof/swappy.git; then
+if git clone --depth=1 https://github.com/jtheoof/swappy.git; then
     cd swappy || exit 1
 	meson setup build
 	ninja -C build

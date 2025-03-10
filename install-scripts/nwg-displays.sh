@@ -29,7 +29,7 @@ if [ -d "nwg-displays" ]; then
 fi
 
 # Clone nwg-displays repository with the specified version
-if git clone --recursive -b "$nwg_dag" --depth 1 https://github.com/nwg-piotr/nwg-displays.git; then
+if git clone --recursive -b "$nwg_dag" --depth=1 https://github.com/nwg-piotr/nwg-displays.git; then
     cd nwg-displays || exit 1
     if sudo ./install.sh 2>&1 | tee -a "$MLOG"; then
         printf "${OK} ${MAGENTA}nwg-displays $nwg_dag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"

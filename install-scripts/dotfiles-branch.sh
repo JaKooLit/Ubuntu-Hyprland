@@ -23,13 +23,11 @@ printf "${NOTE} Downloading KooL's Hyprland Dots for Ubuntu 24.04....\n"
 
 if [ -d Hyprland-Dots-Ubuntu-24.04 ]; then
   cd Hyprland-Dots-Ubuntu-24.04
-  git stash
-  git pull
-  git stash apply
+  git stash && git pull
   chmod +x copy.sh
   ./copy.sh 
 else
-  if git clone --depth 1 -b $dots_tag https://github.com/JaKooLit/Hyprland-Dots Hyprland-Dots-Ubuntu-24.04; then
+  if git clone --depth=1 -b $dots_tag https://github.com/JaKooLit/Hyprland-Dots Hyprland-Dots-Ubuntu-24.04; then
     cd Hyprland-Dots-Ubuntu-24.04 || exit 1
     chmod +x copy.sh
     ./copy.sh 

@@ -85,7 +85,7 @@ if [ -d "ags" ]; then
 fi
 
 # Clone nwg-look repository with the specified tag
-if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.git; then
+if git clone --recursive -b "$ags_tag" --depth=1 https://github.com/Aylur/ags.git; then
     cd ags || exit 1
     # Build and install ags
 	npm install
