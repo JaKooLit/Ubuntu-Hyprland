@@ -377,7 +377,7 @@ for option in "${options[@]}"; do
             ;;
         dots)
             echo "${INFO} Installing pre-configured ${SKY_BLUE}KooL Hyprland dotfiles...${RESET}" | tee -a "$LOG"
-            execute_script "dotfiles-main.sh"
+            execute_script "dotfiles-branch.sh"
             ;;
         *)
             echo "Unknown option: $option" | tee -a "$LOG"
