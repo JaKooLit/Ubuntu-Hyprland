@@ -120,3 +120,26 @@ chmod +x install.sh
 - That is the reason the DOTS for those distro's are "fixed" and they are being pulled on different branch of KooL Dots.
 
 - To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update#%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F---debian-and-ubuntu-hyprland-dots-updating-notes--%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F)
+
+
+### 💖 Support
+- a Star on my Github repos would be nice 🌟
+
+- Subscribe to my Youtube Channel [YouTube](https://www.youtube.com/@Ja.KooLit) 
+
+- you can also give support through coffee's or btc 😊
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/jakoolit)
+
+or
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/JaKooLit)
+
+Or you can donate cryto on my btc wallet :)  
+> 1N3MeV2dsX6gQB42HXU6MF2hAix1mqjo8i
+
+![Bitcoin](https://github.com/user-attachments/assets/7ed32f8f-c499-46f0-a53c-3f6fbd343699)
+
+
+## 🥰🥰 💖💖 👍👍👍
+[![Stargazers over time](https://starchart.cc/JaKooLit/Ubuntu-Hyprland.svg?variant=adaptive)](https://starchart.cc/JaKooLit/Ubuntu-Hyprland)
