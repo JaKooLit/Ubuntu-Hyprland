@@ -58,7 +58,6 @@ hypr_package_2=(
     nvtop
     pamixer
     qalculate-gtk
-    vim
 )
 
 # packages to force reinstall 
