@@ -24,13 +24,11 @@ printf "${NOTE} Cloning and Installing ${SKY_BLUE}KooL's Hyprland Dots for Ubunt
 # Check if Hyprland-Dots exists
 if [ -d Hyprland-Dots-Ubuntu ]; then
   cd Hyprland-Dots-Ubuntu
-  git stash
-  git pull
-  git stash apply
+  git stash && git pull
   chmod +x copy.sh
   ./copy.sh 
 else
-  if git clone --depth 1 -b $dots_tag https://github.com/JaKooLit/Hyprland-Dots Hyprland-Dots-Ubuntu; then
+  if git clone --depth=1 -b $dots_tag https://github.com/JaKooLit/Hyprland-Dots Hyprland-Dots-Ubuntu; then
     cd Hyprland-Dots-Ubuntu || exit 1
     chmod +x copy.sh
     ./copy.sh 
