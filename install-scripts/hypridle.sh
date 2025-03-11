@@ -4,7 +4,6 @@
 
 idle=(
     libsdbus-c++-dev
-    libhyprlang-dev
 )
 
 #specific branch or release
