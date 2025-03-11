@@ -127,8 +127,6 @@ packages=(
     "yad" "dialog box" "off"
     "yt-dlp" "video downloader" "off"
     "xarchiver" "Archive Manager" "off"
-    "hypridle" "hyprland idling agent" "off"
-    "hyprlock" "lockscreen" "off"
     "hyprland" "hyprland main package" "off"
 )
 
