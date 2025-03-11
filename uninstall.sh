@@ -51,7 +51,7 @@ remove_packages() {
         # Check if the package is installed using dpkg (apt's underlying tool)
         if dpkg -l | grep -q "^ii  $package "; then
             echo "Removing package: $package"
-            if ! sudo apt remove --purge -y "$package"; then
+            if ! sudo apt remove -y "$package"; then
                 echo "$ERROR Failed to remove package: $package"
             else
                 echo "$OK Successfully removed package: $package"
