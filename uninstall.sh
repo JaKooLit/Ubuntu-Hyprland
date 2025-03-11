@@ -108,9 +108,7 @@ packages=(
     "nwg-displays" "display monitor configuration app" "off"
     "nwg-look" "gtk settings app" "off"
     "pamixer" "pamixer" "off"
-    "pokemon-colorscripts-git" "terminal colorscripts" "off"
     "pavucontrol" "pavucontrol" "off"
-    "pipewire-alsa" "pipewire-alsa" "off"
     "playerctl" "playerctl" "off"
     "qalculate-gtk" "calculater - QT" "off"
     "qt5ct" "qt5ct" "off"
@@ -247,7 +245,6 @@ local=(
   Hyprland 
   hyprpm
   nwg-look
-  pokemon-colorscripts
   rofi
   rofi-sensible-terminal
   swappy
