@@ -106,9 +106,7 @@ packages=(
     "nwg-displays" "display monitor configuration app" "off"
     "nwg-look" "gtk settings app" "off"
     "pamixer" "pamixer" "off"
-    "pokemon-colorscripts-git" "terminal colorscripts" "off"
     "pavucontrol" "pavucontrol" "off"
-    "pipewire-alsa" "pipewire-alsa" "off"
     "playerctl" "playerctl" "off"
     "qalculate-gtk" "calculater - QT" "off"
     "qt5ct" "qt5ct" "off"
@@ -242,7 +240,7 @@ done
 
 printf "\n%.0s" {1..1}
 printf "\n%s${SKY_BLUE}Attempting to remove locally installed packages${RESET}\n" "${NOTE}"
-for file in ags hypridle hyprlock pokemon-colorscripts rofi wallust; do
+for file in ags hypridle hyprlock rofi wallust; do
     if [ -f "/usr/local/bin/$file" ]; then
         sudo rm "/usr/local/bin/$file"
         echo "$file removed."
