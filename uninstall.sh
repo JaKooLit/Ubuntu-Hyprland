@@ -90,9 +90,6 @@ packages=(
     "fastfetch" "fastfetch" "off"
     "ffmpegthumbnailer" "FFmpeg Thumbnailer" "off"
     "grim" "screenshot tool" "off"
-    "hypridle" "hyprland idling agent" "off"
-    "hyprland" "hyprland main package" "off"
-    "hyprlock" "lockscreen" "off"
     "polkit-kde-agent-1" "polkit agent" "off"
     "imagemagick" "imagemagick" "off"
     "inxi" "CLI system information" "off"
@@ -132,6 +129,9 @@ packages=(
     "yad" "dialog box" "off"
     "yt-dlp" "video downloader" "off"
     "xarchiver" "Archive Manager" "off"
+    "hypridle" "hyprland idling agent" "off"
+    "hyprlock" "lockscreen" "off"
+    "hyprland" "hyprland main package" "off"
 )
 
 # Define the list of directories to choose from (with options_command tags)
