@@ -87,12 +87,23 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 #### ✨ Costumize the packages to be installed
 - inside the install-scripts directory, you can edit 00-hypr-pkgs.sh. Do not edit 00-dependencies.sh unless you know what you are doing. Care though as the Hyprland Dots may not work properly!
 
+### 🚩 changing login manager to SDDM
+- if you really want to change login manager, there are couple of things you need to carry out before running this install script
+- first install sddm. the no-install-recommends is suggested else it will pull lots of plasma depencies.
+```bash
+sudo apt install --no-install-recommends -y sddm
+```
+- then ran `sudo dpkg-reconfigure sddm` choose sddm and then reboot.
+- once reboot done, you can ran the script and choose sddm & sddm theme
+- [LINK](https://www.simplified.guide/ubuntu/switch-to-gdm) for some guide
+
 #### 💫 SDDM and GTK Themes offered
 - If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm)
 - If you opted to install GTK Themes, Icons, here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons) & Bibata Cursor Modern Ice (assets directory)
 
 ## ✨ Auto clone and install
 - you can use this command to automatically clone the installer and ran the script for you
+- NOTE: `curl` package is required before running this command
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/24.10/auto-install.sh)
 ```
@@ -162,6 +173,10 @@ source ~/.zshrc
 
 > [!NOTE] 
 > This script does not setup audio. Kindly set up. If you have not, I recommend pipewire. `sudo apt install -y pipewire`
+
+#### ❗ some known issues on this Installer
+- some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
+- At this time the packages force to install are the following `imagemagick`
 
 #### 🎞️ AGS Overview DEMO
 - in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
