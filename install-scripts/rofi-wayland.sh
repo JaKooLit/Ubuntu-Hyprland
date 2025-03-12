@@ -8,6 +8,7 @@ rofi=(
   pandoc
   doxygen
   cppcheck
+  imagemagick
   libmpdclient-dev
   libnl-3-dev
   libasound2-dev

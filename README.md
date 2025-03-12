@@ -87,6 +87,17 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 #### ✨ Costumize the packages to be installed
 - inside the install-scripts directory, you can edit 00-hypr-pkgs.sh. Do not edit 00-dependencies.sh unless you know what you are doing. Care though as the Hyprland Dots may not work properly!
 
+### 🚩 changing login manager to SDDM
+- if you really want to change login manager, there are couple of things you need to carry out before running this install script
+- first install sddm. the no-install-recommends is suggested else it will pull lots of plasma depencies.
+```bash
+sudo apt install --no-install-recommends -y sddm
+```
+- then ran `sudo dpkg-reconfigure sddm` choose sddm and then reboot.
+- once reboot done, you can ran the script and choose sddm & sddm theme
+- [LINK](https://www.simplified.guide/ubuntu/switch-to-gdm) for some guide
+
+
 #### 💫 SDDM and GTK Themes offered
 - If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm)
 - If you opted to install GTK Themes, Icons, here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons) & Bibata Cursor Modern Ice (assets directory)
@@ -95,6 +106,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 ## ✨ Auto clone and install
 - you can use this command to automatically clone the installer and ran the script for you
+- NOTE: `curl` package is required before running this command
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/25.04/auto-install.sh)
 ```
@@ -180,6 +192,14 @@ source ~/.zshrc
 
 > [!TIP]
 > KooL Hyprland has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
+
+## 🛎 *** DEBIAN and UBUNTU Hyprland Dots UPDATING NOTES ***
+> [!IMPORTANT]
+> This is very Important for Debian and Ubuntu Dots
+- Some parts of KooL's Hyprland Dots [`LINK`](https://github.com/JaKooLit/Hyprland-Dots) are not compatible on Debian and Ubuntu especially the hyprland settings. 
+- That is the reason the DOTS for those distro's are "fixed" and they are being pulled on different branch of KooL Dots.
+
+- To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update#%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F---debian-and-ubuntu-hyprland-dots-updating-notes--%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F)
 
 #### 🙋 👋 Having issues or questions? 
 - for the install part, kindly open issue on this repo

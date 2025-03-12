@@ -72,7 +72,7 @@ install_package() {
 build_dep() { 
   echo -e "${INFO} building dependencies for ${MAGENTA}$1${RESET}.."
     (
-      stdbuf -oL sudo build-dep -y "$1" 2>&1
+      stdbuf -oL sudo apt build-dep -y "$1" 2>&1
     ) >> "$LOG" 2>&1 &
     PID=$!
     show_progress $PID "$1" 
