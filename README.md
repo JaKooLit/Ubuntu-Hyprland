@@ -59,14 +59,8 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 </div>
 
-> [!WARNING] 
-> This script does NOT include uninstallation of packages.
-
 > [!IMPORTANT]
-> install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script. 
-
-> [!NOTE]
-> Main reason why I have not included an uninstallation script is simple. Some packages maybe already installed on your system by default. If I create an uninstall script with packages that I have set to install, you may end up a unrecoverable system. 
+> install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script (HIGHLY RECOMMENDED).
 
 > [!CAUTION]
 > Download this script on a directory where you have write permissions. ie. HOME. Or any directory within your home directory. Else script will fail
@@ -75,10 +69,6 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - Do not run this installer as sudo or as root
 - This Installer requires a user with a priviledge to install packages
 - This is only 24.04 LTS Noble Numbat. Check [`MAIN BRANCH`](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/main) for other Ubuntu Versions 
-
-> [!WARNING] 
-> If you have GDM already as log-in manager, DO NOT install SDDM. GDM (default) Ubuntu Login Manager works well with Hyprland
-> If you install SDDM, you will encounter issues. See [`Issue 2 - SDDM`](https://github.com/JaKooLit/Debian-Hyprland/issues/2)
 
 ### Gallery and Videos
 #### 🎥 Feb 2025 Video explanation of installation with preset
@@ -94,9 +84,6 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - the wallpaper offered to be downloaded towards the end is from this [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
 - The dotfiles that will be pulled by this installer is only specific. Since newer dotfiles might not work properly
 
-> [!NOTE]
-> There is a lot of changes on Hyprland v0.40.0. And because of this, the latest Hyprland-Dots compatible for this script will be Hyprland-Dots v2.2.14 [`LINK`](https://github.com/JaKooLit/Hyprland-Dots/releases/tag/v2.2.14)
-
 #### ✨  Some notes on this installer / Prerequisites
 - This script is meant to install Hyprland in Ubuntu 24.04 LTS ONLY!!
 - 🕯️ network-manager-gnome (nm-applet) has been removed from the packages to install. This is because it is known to restart the networkmanager causing issues in the installation process. After you boot up, inorder to get the network-manager applet, install network-manager-gnome. `sudo apt install network-manager-gnome` See below if your network or wifi became unmanaged after installation
@@ -109,6 +96,16 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 #### ✨ Costumize the packages to be installed
 - inside the install-scripts directory, you can edit 00-hypr-pkgs.sh. Do not edit 00-dependencies.sh unless you know what you are doing. Care though as the Hyprland Dots may not work properly!
 
+### 🚩 changing login manager to SDDM
+- if you really want to change login manager, there are couple of things you need to carry out before running this install script
+- first install sddm. the no-install-recommends is suggested else it will pull lots of plasma depencies.
+```bash
+sudo apt install --no-install-recommends -y sddm
+```
+- then ran `sudo dpkg-reconfigure sddm` choose sddm and then reboot.
+- once reboot done, you can ran the script and choose sddm & sddm theme
+- [LINK](https://www.simplified.guide/ubuntu/switch-to-gdm) for some guide
+
 #### 💫 SDDM and GTK Themes offered
 - If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm)
 - If you opted to install GTK Themes, Icons, here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons) & Bibata Cursor Modern Ice (assets directory)
@@ -118,6 +115,10 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - NOTE: `curl` package is required before running this command
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/24.04/auto-install.sh)
+```
+- if you are using say fish or a non-POSIX compliant
+```bash
+curl -sL https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/24.04/auto-install.sh | bash
 ```
 
 ## ✨ to use this script
@@ -129,6 +130,11 @@ chmod +x install.sh
 ./install.sh
 ```
 
+### 💥 💥  UNINSTALL SCRIPT / Removal of Config Files
+- 11 March 2025, due to popular request, created a guided `uninstall.sh` script. USE this with caution as it may render your system unstable.
+- I will not be responsible if your system breaks
+- The best still to revert to previous state of your system is via timeshift of snapper
+
 ### ❇️ Nvidia Drivers & 🔔 NOTICE TO NVIDIA OWNERS
 - If you choose to configure nvidia, driver will be installed via automatic detection / install. See [NVIDIA guide](https://documentation.ubuntu.com/server/how-to/graphics/install-nvidia-drivers/index.html#installing-the-drivers-for-generic-use-e-g-desktop-and-gaming)
 - The command will be executed will be `sudo ubuntu-drivers install`
@@ -136,7 +142,7 @@ chmod +x install.sh
 - NOTE: that script is also designed to install some other nvidia stuff including blacklist of nouvea. Verify and review `install-scripts/nvidia.sh` or DO not choose to configure nvidia on the option
 
 > [!IMPORTANT]
-> If you want to use nouveau driver, choose N when asked if you have nvidia gpu. This is because the nvidia installer part, it will blacklist nouveau. Hyprland will still be installed but it will skip blacklisting nouveau.
+> If you want to use nouveau driver, dont choose nvidia in the option. This is because the nvidia installer part, it will blacklist nouveau. Hyprland will still be installed but it will skip blacklisting nouveau.
 
 #### ✨ for ZSH and OH-MY-ZSH installation
 > installer should auto change your default shell to zsh. However, if it does not, do this
