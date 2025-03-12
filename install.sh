@@ -305,6 +305,8 @@ execute_script "rofi-wayland.sh"
 sleep 1
 execute_script "hyprlock.sh"
 sleep 1
+execute_script "hyprlang.sh"
+sleep 1
 execute_script "hypridle.sh"
 
 #execute_script "imagemagick.sh" #this is for compiling from source. 07 Sep 2024

@@ -53,14 +53,8 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 </div>
 
-> [!WARNING] 
-> This script does NOT include uninstallation of packages.
-
 > [!IMPORTANT]
-> install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script. 
-
-> [!NOTE]
-> Main reason why I have not included an uninstallation script is simple. Some packages maybe already installed on your system by default. If I create an uninstall script with packages that I have set to install, you may end up a unrecoverable system. 
+> install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script (HIGHLY RECOMMENDED)
 
 > [!CAUTION]
 > Download this script on a directory where you have write permissions. ie. HOME. Or any directory within your home directory. Else script will fail
@@ -70,17 +64,13 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - This Installer requires a user with a priviledge to install packages
 - This is only 25.04 Plucky Puffin. Check [`MAIN BRANCH`](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/main) for other Ubuntu Versions 
 
-> [!WARNING] 
-> If you have GDM already as log-in manager, DO NOT install SDDM. GDM (default) Ubuntu Login Manager works well with Hyprland
-> If you install SDDM, you will encounter issues. See [`Issue 2 - SDDM`](https://github.com/JaKooLit/Debian-Hyprland/issues/2)
-
 ### Gallery and Videos
 #### 🎥 Feb 2025 Video explanation of installation with preset
 - [YOUTUBE-LINK](https://youtu.be/wQ70lo7P6vA?si=_QcbrNKh_Bg0L3wC)
 - [YOUTUBE-Hyprland-Playlist](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)
 
 ### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
-- This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy pre-configured dots, it will be downloaded from that centralized repo.
+- This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots/tree/Deb-Untu-Dots) . During installation, if you opt to copy pre-configured dots, it will be downloaded from that centralized repo.
 - Hyprland-Dots use are constantly evolving / improving. you can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)
 - Since the Hyprland-Dots are evolving, some of the screenshots maybe old
 - the wallpaper offered to be downloaded towards the end is from this [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
@@ -97,6 +87,17 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 #### ✨ Costumize the packages to be installed
 - inside the install-scripts directory, you can edit 00-hypr-pkgs.sh. Do not edit 00-dependencies.sh unless you know what you are doing. Care though as the Hyprland Dots may not work properly!
 
+### 🚩 changing login manager to SDDM
+- if you really want to change login manager, there are couple of things you need to carry out before running this install script
+- first install sddm. the no-install-recommends is suggested else it will pull lots of plasma depencies.
+```bash
+sudo apt install --no-install-recommends -y sddm
+```
+- then ran `sudo dpkg-reconfigure sddm` choose sddm and then reboot.
+- once reboot done, you can ran the script and choose sddm & sddm theme
+- [LINK](https://www.simplified.guide/ubuntu/switch-to-gdm) for some guide
+
+
 #### 💫 SDDM and GTK Themes offered
 - If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm)
 - If you opted to install GTK Themes, Icons, here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons) & Bibata Cursor Modern Ice (assets directory)
@@ -109,6 +110,10 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/25.04/auto-install.sh)
 ```
+- if you are using say fish or a non-POSIX compliant
+```bash
+curl -sL https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/25.04/auto-install.sh | bash
+```
 
 ## ✨ to use this script
 > clone this repo (latest commit only) by using git. Change directory, make executable and run the script
@@ -119,6 +124,12 @@ chmod +x install.sh
 ./install.sh
 ```
 
+### 💥 💥  UNINSTALL SCRIPT / Removal of Config Files
+- 11 March 2025, due to popular request, created a guided `uninstall.sh` script. USE this with caution as it may render your system unstable.
+- I will not be responsible if your system breaks
+- The best still to revert to previous state of your system is via timeshift of snapper
+
+
 ### ❇️ Nvidia Drivers & 🔔 NOTICE TO NVIDIA OWNERS
 - If you choose to configure nvidia, driver will be installed via automatic detection / install. See [NVIDIA guide](https://documentation.ubuntu.com/server/how-to/graphics/install-nvidia-drivers/index.html#installing-the-drivers-for-generic-use-e-g-desktop-and-gaming)
 - The command will be executed will be `sudo ubuntu-drivers install`
@@ -126,7 +137,8 @@ chmod +x install.sh
 - NOTE: that script is also designed to install some other nvidia stuff including blacklist of nouvea. Verify and review `install-scripts/nvidia.sh` or DO not choose to configure nvidia on the option
 
 > [!IMPORTANT]
-> If you want to use nouveau driver, choose N when asked if you have nvidia gpu. This is because the nvidia installer part, it will blacklist nouveau. Hyprland will still be installed but it will skip blacklisting nouveau.
+> If you want to use nouveau driver, dont choose nvidia in the option. This is because the nvidia installer part, it will blacklist nouveau. Hyprland will still be installed but it will skip blacklisting nouveau.
+
 
 #### ✨ for ZSH and OH-MY-ZSH installation
 > installer should auto change your default shell to zsh. However, if it does not, do this
@@ -152,6 +164,7 @@ source ~/.zshrc
 - swww [`LINK`](https://github.com/Horus645/swww)
 - hyprlock [`LINK`](https://github.com/hyprwm/hyprlock)
 - hypridle [`LINK`](https://github.com/hyprwm/hypridle)
+- xdg-desktop-portal-hyprland [`LINK`](https://github.com/hyprwm/xdg-desktop-portal-hyprland)
 - rofi-wayland [`LINK`](https://github.com/lbonn/rofi)
 
 > [!TIP]
@@ -163,10 +176,6 @@ source ~/.zshrc
 
 > [!NOTE] 
 > This script does not setup audio. Kindly set up. If you have not, I recommend pipewire. `sudo apt install -y pipewire`
-
-#### ❗ some known issues on this Installer
-- some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
-- At this time the packages force to install are the following `imagemagick`
 
 #### 🎞️ AGS Overview DEMO
 - in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
@@ -184,7 +193,6 @@ source ~/.zshrc
 > [!TIP]
 > KooL Hyprland has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
 
-
 ## 🛎 *** DEBIAN and UBUNTU Hyprland Dots UPDATING NOTES ***
 > [!IMPORTANT]
 > This is very Important for Debian and Ubuntu Dots
@@ -192,17 +200,6 @@ source ~/.zshrc
 - That is the reason the DOTS for those distro's are "fixed" and they are being pulled on different branch of KooL Dots.
 
 - To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update#%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F---debian-and-ubuntu-hyprland-dots-updating-notes--%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F)
-
-### 🚩 changing login manager to SDDM
-- if you really want to change login manager, there are couple of things you need to carry out before running this install script
-- first install sddm. the no-install-recommends is suggested else it will pull lots of plasma depencies.
-```bash
-sudo apt install --no-install-recommends -y sddm
-```
-- then ran `sudo dpkg-reconfigure sddm` choose sddm and then reboot.
-- once reboot done, you can ran the script and choose sddm & sddm theme
-- [LINK](https://www.simplified.guide/ubuntu/switch-to-gdm) for some guide
-
 
 #### 🙋 👋 Having issues or questions? 
 - for the install part, kindly open issue on this repo
@@ -242,7 +239,7 @@ env = WLR_RENDERER_ALLOW_SOFTWARE,1
 
 #### 🫥 Improving performance for Older Nvidia Cards using driver 470
   - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
-  
+
 #### ❗ other known issues
 > [!NOTE]
 > Auto start of Hyprland after login (no SDDM or GDM or any login managers)
@@ -255,12 +252,20 @@ cd ~/Ubuntu-Hyprland
 ./install-scripts/rofi-wayland.sh
 ```
 - [ ] Rofi-wayland is compatible with x11 so no need to worry.
+- [ ] Does not work in Ubuntu 23.10 and older
 - [ ] sddm blackscreen when log-out
 - [ ] Installing SDDM if or any other Login Manager installed. See [`Issue 2 - SDDM`](https://github.com/JaKooLit/Ubuntu-Hyprland/issues/2)
 - [ ] network is down or become unmanaged [`This`](https://askubuntu.com/questions/71159/network-manager-says-device-not-managed) might help
 - [ ] pyprland is a hit and miss. Drop down not working, zooming is hit and miss
 - [ ] See note above about Hyprland-Dots newer version incompatibility
 
+## 🛎 *** DEBIAN and UBUNTU Hyprland Dots UPDATING NOTES ***
+> [!IMPORTANT]
+> This is very Important for Debian and Ubuntu Dots
+- Some parts of KooL's Hyprland Dots [`LINK`](https://github.com/JaKooLit/Hyprland-Dots) are not compatible on Debian and Ubuntu especially the hyprland settings. 
+- That is the reason the DOTS for those distro's are "fixed" and they are being pulled on different branch of KooL Dots.
+
+- To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update#%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F---debian-and-ubuntu-hyprland-dots-updating-notes--%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F)
 
 #### 📒 Final Notes
 - join my discord channel [`Discord`](https://discord.com/invite/9JEgZsfhex)
@@ -304,5 +309,3 @@ Or you can donate cryto on my btc wallet :)
                         
 ## 🥰🥰 💖💖 👍👍👍
 [![Stargazers over time](https://starchart.cc/JaKooLit/Ubuntu-Hyprland.svg?variant=adaptive)](https://starchart.cc/JaKooLit/Ubuntu-Hyprland)
-
-                    
