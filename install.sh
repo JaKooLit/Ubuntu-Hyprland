@@ -151,8 +151,8 @@ if check_services_running; then
     active_list=$(printf "%s\n" "${active_services[@]}")
 
     # Display the active login manager(s) in the whiptail message box
-    whiptail --title "Active non-SDDM login manager(s) detected" \
-        --msgbox "The following login manager(s) are active:\n\n$active_list\n\nIf you want to install SDDM and SDDM theme, stop and disable first the active services above first before running this script\nRefer to README on switching to SDDM if you really want SDDM\n\nNOTE: Your option to install SDDM and SDDM theme has now been removed\n\n- Ja " 27 80
+     whiptail --title "Active non-SDDM login manager(s) detected" \
+        --msgbox "The following login manager(s) are active:\n\n$active_list\n\nIf you want to install SDDM and SDDM theme, stop and disable first the active services above, and reboot before running this script\nRefer to README on switching to SDDM if you really want SDDM\n\nNOTE: Your option to install SDDM and SDDM theme has now been removed\n\n- Ja " 28 80
 fi
 
 # Check if NVIDIA GPU is detected
