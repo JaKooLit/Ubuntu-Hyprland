@@ -25,7 +25,7 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
-# Function that would show a progress
+# Show progress function
 show_progress() {
     local pid=$1
     local package_name=$2
@@ -34,23 +34,23 @@ show_progress() {
     local i=0
 
     tput civis 
-    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ..." "$package_name"
+    printf "\r${INFO} Installing ${YELLOW}%s${RESET} ..." "$package_name"
 
     while ps -p $pid &> /dev/null; do
-        printf "\r${NOTE} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
+        printf "\r${INFO} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
         i=$(( (i + 1) % 10 ))  
         sleep 0.3  
     done
 
-    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s \n\n" "$package_name" ""
+    printf "\r${INFO} Installing ${YELLOW}%s${RESET} ... Done!%-20s \n\n" "$package_name" ""
     tput cnorm  
 }
 
 
 # Function for installing packages with a progress bar
 install_package() { 
-  if sudo dpkg -l | grep -q -w "$1" ; then
-  echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
+  if dpkg -l | grep -q -w "$1" ; then
+    echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else 
     (
       stdbuf -oL sudo apt install -y "$1" 2>&1
@@ -58,12 +58,11 @@ install_package() {
     PID=$!
     show_progress $PID "$1" 
     
-    # Double check if the package was re-installed successfully
+    # Double check if the package successfully installed
     if dpkg -l | grep -q -w "$1"; then
         echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
-        # Package was not found, installation failed
-        echo -e "${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the install.log. You may need to install it manually. Sorry, I have tried :("
+        echo -e "\e[1A\e[K${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the install.log. You may need to install it manually. Sorry, I have tried :("
     fi
   fi
 }
@@ -104,7 +103,6 @@ re_install_package() {
         echo -e "${ERROR} ${YELLOW}$1${RESET} failed to re-install. Please check the install.log. You may need to install it manually. Sorry, I have tried :("
     fi
 }
-
 
 # Function for removing packages
 uninstall_package() {
