@@ -26,7 +26,7 @@ MLOG="install-$(date +%d-%H%M%S)_hyprland2.log"
 # Clone, build, and install Hyprland using Cmake
 printf "${INFO} Compiling and Installing ${YELLOW}hyprland $hyprland_tag${RESET} from source ...\n"
 
-# Check if Hyprland folder exists and remove it
+# Check if Hyprland directory exists and remove it
 if [ -d "Hyprland" ]; then
   rm -rf "Hyprland" 2>&1 | tee -a "$LOG"
 fi

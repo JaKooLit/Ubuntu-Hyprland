@@ -34,7 +34,7 @@ for PKG1 in "${cursor[@]}"; do
   install_package "$PKG1" "$LOG"
 done
 
-# Check if hyprcursor folder exists and remove it
+# Check if hyprcursor directory exists and remove it
 if [ -d "hyprcursor" ]; then
     rm -rf "hyprcursor"
 fi

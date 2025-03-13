@@ -36,7 +36,7 @@ for portal in "${xdg[@]}"; do
     install_package "$portal" "$LOG"
 done
 
-# Check if xdg-desktop-portal-hyprland folder exists and remove it
+# Check if xdg-desktop-portal-hyprland directory exists and remove it
 if [ -d "xdg-desktop-portal-hyprland" ]; then
     rm -rf "xdg-desktop-portal-hyprland"
 fi

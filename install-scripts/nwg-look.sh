@@ -38,7 +38,7 @@ done
 printf "\n%.0s" {1..1}
 
 printf "${NOTE} Compiling and Installing ${YELLOW}nwg-look $nwg_tag${RESET} from source ...\n"
-# Check if nwg-look folder exists and remove it
+# Check if nwg-look directory exists and remove it
 if [ -d "nwg-look" ]; then
     rm -rf "nwg-look"
 fi

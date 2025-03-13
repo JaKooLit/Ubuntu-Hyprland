@@ -47,7 +47,7 @@ done
 
 printf "\n%.0s" {1..2}
 
-# Check if swww folder exists
+# Check if swww directory exists
 if [ -d "swww" ]; then
     cd swww || exit 1
     git pull origin main 2>&1 | tee -a "$MLOG"

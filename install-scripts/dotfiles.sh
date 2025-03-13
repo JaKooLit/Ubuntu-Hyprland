@@ -56,7 +56,7 @@ if curl -L "$tarball_url" -o "Hyprland-Dots-${specific_version}.tar.gz"; then
   chmod +x copy.sh
   ./copy.sh 
 
-  echo -e "${OK} Hyprland-Dots-${specific_version} release downloaded, extracted, and processed successfully. Check JaKooLit-Hyprland-Dots folder for more detailed install logs" 2>&1 | tee -a "../Install-Logs/install-$(date +'%d-%H%M%S')_dotfiles.log"
+  echo -e "${OK} Hyprland-Dots-${specific_version} release downloaded, extracted, and processed successfully. Check JaKooLit-Hyprland-Dots directory for more detailed install logs" 2>&1 | tee -a "../Install-Logs/install-$(date +'%d-%H%M%S')_dotfiles.log"
 else
   echo -e "${ERROR} Failed to download Hyprland-Dots-${specific_version} release." 2>&1 | tee -a "../Install-Logs/install-$(date +'%d-%H%M%S')_dotfiles.log"
   exit 1

@@ -33,7 +33,7 @@ done
 
 printf "${NOTE} Installing ${SKY_BLUE}swappy${RESET} from source...\n"  
 
-# Check if folder exists and remove it
+# Check if directory exists and remove it
 if [ -d "swappy" ]; then
     rm -rf "swappy"
 fi
