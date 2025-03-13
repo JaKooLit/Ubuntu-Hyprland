@@ -39,7 +39,7 @@ for PKG1 in "${idle[@]}"; do
   fi
 done
 
-# Check if hypridle folder exists and remove it
+# Check if hypridle directory exists and remove it
 if [ -d "hypridle" ]; then
     rm -rf "hypridle"
 fi
