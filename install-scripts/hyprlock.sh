@@ -38,7 +38,7 @@ for PKG1 in "${lock[@]}"; do
   re_install_package "$PKG1" "$LOG"
 done
 
-# Check if hyprlock folder exists and remove it
+# Check if hyprlock directory exists and remove it
 if [ -d "hyprlock" ]; then
     rm -rf "hyprlock"
 fi

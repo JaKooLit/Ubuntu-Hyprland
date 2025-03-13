@@ -26,7 +26,7 @@ MLOG="install-$(date +%d-%H%M%S)_hyprlang2.log"
 # Installation of dependencies
 printf "\n%s - Installing ${YELLOW}hyprlang dependencies${RESET} .... \n" "${INFO}"
 
-# Check if hyprlang folder exists and remove it
+# Check if hyprlang directory exists and remove it
 if [ -d "hyprlang" ]; then
     rm -rf "hyprlang"
 fi

@@ -64,7 +64,7 @@ printf "\n%.0s" {1..2}
 # Clone and build rofi - wayland
 printf "${NOTE} Installing ${SKY_BLUE}rofi-wayland${RESET}...\n"
 
-# Check if rofi folder exists
+# Check if rofi directory exists
 if [ -d "rofi-$rofi_tag" ]; then
   rm -rf "rofi-$rofi_tag"
 fi
