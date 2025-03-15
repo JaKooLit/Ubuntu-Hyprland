@@ -81,10 +81,6 @@ chmod +x install.sh
 ./install.sh
 ```
 
-- Below picture is a sample and some short explanation
-<p align="center">
-    <img align="center" width="100%" src="https://github.com/JaKooLit/Ubuntu-Hyprland/blob/24.10/Ubuntu.png" />
-
 > [!IMPORTANT]
 > Read through the Readme on each Branches for installation
 
