@@ -10,6 +10,7 @@ dependencies=(
     cmake
     cmake-extras
     curl
+    findutils
     gawk
     gettext
     git
