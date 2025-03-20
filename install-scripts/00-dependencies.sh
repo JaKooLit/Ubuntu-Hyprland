@@ -8,6 +8,7 @@ dependencies=(
   cmake
   cmake-extras
   curl
+  findutils
   gawk
   gettext
   gir1.2-graphene-1.0
