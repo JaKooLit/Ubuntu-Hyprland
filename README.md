@@ -102,14 +102,13 @@ sudo apt install --no-install-recommends -y sddm
 - If you opted to install GTK Themes, Icons, here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons) & Bibata Cursor Modern Ice (assets directory)
 
 ## ✨ Auto clone and install
+> [!CAUTION] 
+> If you are using FISH SHELL, DO NOT use this function. Clone and ran install.sh instead
+
 - you can use this command to automatically clone the installer and ran the script for you
 - NOTE: `curl` package is required before running this command
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/24.10/auto-install.sh)
-```
-- if you are using say fish or a non-POSIX compliant
-```bash
-curl -sL https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/24.10/auto-install.sh | bash
 ```
 
 ## ✨ to use this script
