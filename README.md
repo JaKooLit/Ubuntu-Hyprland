@@ -105,14 +105,13 @@ sudo apt install --no-install-recommends -y sddm
 #### 
 
 ## ✨ Auto clone and install
+> [!CAUTION] 
+> If you are using FISH SHELL, DO NOT use this function. Clone and ran install.sh instead
+
 - you can use this command to automatically clone the installer and ran the script for you
 - NOTE: `curl` package is required before running this command
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/25.04/auto-install.sh)
-```
-- if you are using say fish or a non-POSIX compliant
-```bash
-curl -sL https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/25.04/auto-install.sh | bash
 ```
 
 ## ✨ to use this script
