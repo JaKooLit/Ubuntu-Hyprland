@@ -10,6 +10,7 @@ dependencies=(
     cmake
     cmake-extras
     curl
+    findutils
     gawk
     gettext
     git
@@ -31,6 +32,7 @@ dependencies=(
     python3-pyquery
     qt6-base-dev
     spirv-tools
+    unzip
     vulkan-validationlayers
     vulkan-utility-libraries-dev
     wayland-protocols
