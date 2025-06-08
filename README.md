@@ -7,7 +7,7 @@
   <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="400" />
 </p>
 
-![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
+![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Ubuntu-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/kool-tech-world"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%kool-tech-world"> </a>
 
 <br/>
 </div>
@@ -34,7 +34,7 @@
   <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
   <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd> <br> Keybinds <br> </kbd></a>&ensp;&ensp;
   <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ"><kbd> <br> FAQ <br> </kbd></a>&ensp;&ensp;
-  <a href="https://discord.gg/9JEgZsfhex"><kbd> <br> Discord <br> </kbd></a>
+  <a href="https://discord.gg/kool-tech-world"><kbd> <br> Discord <br> </kbd></a>
 </div><br>
 
 <p align="center">
@@ -105,14 +105,13 @@ sudo apt install --no-install-recommends -y sddm
 #### 
 
 ## ✨ Auto clone and install
+> [!CAUTION] 
+> If you are using FISH SHELL, DO NOT use this function. Clone and ran install.sh instead
+
 - you can use this command to automatically clone the installer and ran the script for you
 - NOTE: `curl` package is required before running this command
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/25.04/auto-install.sh)
-```
-- if you are using say fish or a non-POSIX compliant
-```bash
-curl -sL https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/25.04/auto-install.sh | bash
 ```
 
 ## ✨ to use this script
@@ -206,7 +205,7 @@ source ~/.zshrc
 - for the Pre-configured Hyprland dots / configuration, submit issue [`here`](https://github.com/JaKooLit/Hyprland-Dots/issues)
 
 #### 🔧 Proper way to re-installing a particular script from install-scripts directory
-- CD into Ubuntu-Hyprland Folder and then ran the below command. 
+- CD into Ubuntu-Hyprland directory and then ran the below command. 
 - i.e. `./install-scripts/gtk-themes.sh` - For reinstall GTK Themes or
 - `./install-scripts/sddm.sh` - For reinstall sddm
 > [!IMPORTANT]
@@ -256,7 +255,6 @@ cd ~/Ubuntu-Hyprland
 - [ ] sddm blackscreen when log-out
 - [ ] Installing SDDM if or any other Login Manager installed. See [`Issue 2 - SDDM`](https://github.com/JaKooLit/Ubuntu-Hyprland/issues/2)
 - [ ] network is down or become unmanaged [`This`](https://askubuntu.com/questions/71159/network-manager-says-device-not-managed) might help
-- [ ] pyprland is a hit and miss. Drop down not working, zooming is hit and miss
 - [ ] See note above about Hyprland-Dots newer version incompatibility
 
 ## 🛎 *** DEBIAN and UBUNTU Hyprland Dots UPDATING NOTES ***
@@ -268,14 +266,15 @@ cd ~/Ubuntu-Hyprland
 - To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update#%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F---debian-and-ubuntu-hyprland-dots-updating-notes--%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F)
 
 #### 📒 Final Notes
-- join my discord channel [`Discord`](https://discord.com/invite/9JEgZsfhex)
+- join my discord channel [`Discord`](https://discord.com/invite/kool-tech-world)
 - Feel free to copy, re-distribute, and use this script however you want. Would appreciate if you give me some loves by crediting my work :)
 
 
-#### ⏩ Contributing
+#### ✍️ Contributing
 - As stated above, these script does not contain actual config files. These are only the installer of packages
-- The development branch of this script is pulling the latest "stable" releases of the Hyprland-Dotfiles.
-- If you want to contribute and/or test the Hyprland-Dotfiles (development branch), [`Hyprland-Dots-Development`](https://github.com/JaKooLit/Hyprland-Dots/tree/development) 
+- If you want to contribute and/or test the Hyprland-Dotfiles (development branch), [`Hyprland-Dots-Development`](https://github.com/JaKooLit/Hyprland-Dots/tree/development)
+- Want to contribute on KooL-Hyprland-Dots Click [`HERE`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CONTRIBUTING.md) for a guide how to contribute
+- Want to contribute on This Installer? Click [`HERE`](https://github.com/JaKooLit/Ubuntu-Hyprland/blob/25.04/CONTRIBUTING.md) for a guide how to contribute
 
 
 #### 👍👍👍 Thanks and Credits!

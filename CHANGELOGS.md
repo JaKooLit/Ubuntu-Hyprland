@@ -1,7 +1,11 @@
 ## CHANGELOGS
 
+## 20 March 2025
+- added findutils as dependencies
+
 ## 11 March 2025
 - Added uninstall script
+- forked AGS v1 into JakooLit repo. This is just incase Aylur decide to take down v1
 
 ## 06 March 2025
 - Switched to whiptail version for Y & N questions
