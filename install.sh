@@ -20,7 +20,7 @@ SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
 # Display warning message
-echo -e "${WARNING}NOTE:${RESET} Hyprland on Repo is extremely outdated and will not be supported anymore."
+echo -e "${WARNING}NOTE:${RESET} Hyprland on Ubuntu Repo is extremely outdated and will not be supported anymore."
 echo -e "Use this at your own risk." 
 echo -e "${WARNING}Any issues will not be dealt with${RESET}"
 echo
