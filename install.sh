@@ -19,6 +19,24 @@ BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
+# Display warning message
+echo -e "${WARNING}NOTE:${RESET} Hyprland on Ubuntu Repo is extremely outdated and will not be supported anymore."
+echo -e "Use this at your own risk." 
+echo -e "${WARNING}Any issues will not be dealt with${RESET}"
+echo
+
+# Prompt user to continue or exit
+read -rp "Do you want to continue with the installation? [y/N]: " confirm
+case "$confirm" in
+    [yY][eE][sS]|[yY])
+        echo -e "${OK} Continuing with installation..."
+        ;;
+    *)
+        echo -e "${NOTE} You chose not to continue. Exiting..."
+        exit 1
+        ;;
+esac
+
 # Create Directory for Install Logs
 if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
