@@ -8,8 +8,11 @@ sddm1=(
 )
 
 sddm2=(
-  qt6-5compat-dev
-  qml6-module-qt5compat-graphicaleffects
+  libqt6svg6
+  qt6-virtualkeyboard-plugin
+  libqt6multimedia6
+  qml6-module-qtquick-controls
+  qml6-module-qtquick-effects
   qt6-declarative-dev
   qt6-svg-dev
 )
