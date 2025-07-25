@@ -52,6 +52,8 @@ case "$confirm" in
         ;;
     *)
         echo -e "${NOTE} You chose not to continue. Exiting..."
+        echo
+        echo
         exit 1
         ;;
 esac
