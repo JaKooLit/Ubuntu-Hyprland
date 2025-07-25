@@ -34,7 +34,9 @@ print_color $WARNING "
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
     Hyprland version that will be build using this script repo extremely outdated (V0.39)
+    
     No Plan to update this nor continue to update this nor even to support it
+    
     Use this script at your own risk.
     Any issues will not be dealt with
 "
@@ -42,7 +44,7 @@ printf "\n%.0s" {1..2}
 
 
 # Prompt user to continue or exit
-read -rp "Do you want to continue with the installation? [y/N]: " confirm
+read -rp "$YELLOW Do you still want to continue with Hyprland installation using this script? [y/N]: " confirm
 case "$confirm" in
     [yY][eE][sS]|[yY])
         echo -e "${OK} Continuing with installation..."
