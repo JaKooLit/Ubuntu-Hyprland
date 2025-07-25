@@ -23,7 +23,7 @@ fi
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_sddm_theme.log"
     
 # SDDM-themes
-printf "${INFO} Installing ${SKY_BLUE}Simple SDDM v2 Theme${RESET}\n"
+printf "${INFO} Installing ${SKY_BLUE}Additional SDDM Theme${RESET}\n"
 
 # Check if /usr/share/sddm/themes/$theme_name exists and remove if it does
 if [ -d "/usr/share/sddm/themes/$theme_name" ]; then
@@ -51,7 +51,6 @@ if git clone --depth=1 "$source_theme" "$theme_name"; then
 
   # Move cloned theme to the themes directory
   sudo mv "$theme_name" "/usr/share/sddm/themes/$theme_name" 2>&1 | tee -a "$LOG"
-
 
   # setting up SDDM theme
   sddm_conf="/etc/sddm.conf"
@@ -104,7 +103,7 @@ if git clone --depth=1 "$source_theme" "$theme_name"; then
   # Replace current background from assets
   sudo cp -r assets/sddm.png "/usr/share/sddm/themes/$theme_name/Backgrounds/default" 2>&1 | tee -a "$LOG"
   sudo sed -i 's|^wallpaper=".*"|wallpaper="Backgrounds/default"|' "/usr/share/sddm/themes/$theme_name/theme.conf" 2>&1 | tee -a "$LOG"
-
+  
   printf "\n%.0s" {1..1}
   printf "${NOTE} copying ${YELLOW}JetBrains Mono Nerd Font${RESET} to ${YELLOW}/usr/local/share/fonts${RESET} .......\n"
   printf "${NOTE} necessary for the new SDDM theme to work properly........\n"
@@ -122,8 +121,8 @@ if git clone --depth=1 "$source_theme" "$theme_name"; then
   fc-cache -v -f 2>&1 | tee -a "$LOG"
 
   printf "\n%.0s" {1..1}
-  
-  echo "${OK} - ${MAGENTA}Additional ${YELLOW}$theme_name${RESET} SDDM Theme${RESET} successfully installed." | tee -a "$LOG"
+
+  echo "${OK} - ${MAGENTA}Additional ${YELLOW}$theme_name SDDM Theme${RESET} successfully installed." | tee -a "$LOG"
 
 else
 

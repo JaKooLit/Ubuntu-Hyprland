@@ -9,12 +9,12 @@ sddm1=(
 
 sddm2=(
   libqt6svg6
+  qt6-declarative-dev
+  qt6-svg-dev
   qt6-virtualkeyboard-plugin
   libqt6multimedia6
   qml6-module-qtquick-controls
   qml6-module-qtquick-effects
-  qt6-declarative-dev
-  qt6-svg-dev
 )
 
 # login managers to attempt to disable
@@ -56,23 +56,26 @@ done
 
 # Check if other login managers are installed and disable their service before enabling SDDM
 for login_manager in "${login[@]}"; do
-  if sudo apt list --installed "$login_manager" > /dev/null; then
+  if dpkg -l | grep -q "^ii  $login_manager"; then
     echo "Disabling $login_manager..."
-    sudo systemctl disable "$login_manager.service" >> "$LOG" 2>&1
+    sudo systemctl disable "$login_manager.service" >> "$LOG" 2>&1 || echo "Failed to disable $login_manager" >> "$LOG"
     echo "$login_manager disabled."
   fi
 done
 
 # Double check with systemctl
 for manager in "${login[@]}"; do
-  if systemctl is-active --quiet "$manager" > /dev/null 2>&1; then
-    echo "$manager is active, disabling it..." >> "$LOG" 2>&1
-    sudo systemctl disable "$manager" --now >> "$LOG" 2>&1
+  if systemctl is-active --quiet "$manager.service" > /dev/null 2>&1; then
+    echo "$manager.service is active, disabling it..." >> "$LOG" 2>&1
+    sudo systemctl disable "$manager.service" --now >> "$LOG" 2>&1 || echo "Failed to disable $manager.service" >> "$LOG"
+  else
+    echo "$manager.service is not active" >> "$LOG" 2>&1
   fi
 done
 
 printf "\n%.0s" {1..1}
 printf "${INFO} Activating sddm service........\n"
+sudo systemctl set-default graphical.target 2>&1 | tee -a "$LOG"
 sudo systemctl enable sddm.service 2>&1 | tee -a "$LOG"
 
 wayland_sessions_dir=/usr/share/wayland-sessions
