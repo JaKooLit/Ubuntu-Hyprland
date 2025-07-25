@@ -20,12 +20,26 @@ SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
 
-# Display warning message
-echo -e "${WARNING}NOTE:${RESET} Hyprland version that will be build using this script repo extremely outdated (V0.39)."
-echo -e "${NOTE} No Plan to update this nor continue to update this nor even to support it" 
-echo -e "$NOTE} Use this script at your own risk." 
-echo -e "${WARNING}Any issues will not be dealt with${RESET}"
-echo
+# Function to print colorful text
+print_color() {
+    printf "%b%s%b\n" "$1" "$2" "$RESET"
+}
+
+
+# Warning: End of Life Support
+printf "\n%.0s" {1..2}
+print_color $WARNING "
+    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+              END OF SUPPORT - JULY 25 2025
+    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+
+    Hyprland version that will be build using this script repo extremely outdated (V0.39)
+    No Plan to update this nor continue to update this nor even to support it
+    Use this script at your own risk.
+    Any issues will not be dealt with
+"
+printf "\n%.0s" {1..2}
+
 
 # Prompt user to continue or exit
 read -rp "Do you want to continue with the installation? [y/N]: " confirm
