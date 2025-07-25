@@ -21,8 +21,9 @@ RESET="$(tput sgr0)"
 
 
 # Display warning message
-echo -e "${WARNING}NOTE:${RESET} Hyprland used on this repo extremely outdated and will not be supported anymore."
-echo -e "Use this at your own risk." 
+echo -e "${WARNING}NOTE:${RESET} Hyprland version that will be build using this script repo extremely outdated (V0.39)."
+echo -e "${NOTE} No Plan to update this nor continue to update this nor even to support it" 
+echo -e "$NOTE} Use this script at your own risk." 
 echo -e "${WARNING}Any issues will not be dealt with${RESET}"
 echo
 
