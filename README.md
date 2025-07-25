@@ -63,6 +63,9 @@ cd ~/Ubuntu-Hyprland-24.04
 chmod +x install.sh
 ./install.sh
 ```
+> [!IMPORTANT]
+> 25 July 2025
+> End of Support for Ubuntu 24.04 - Hyprland project
 
 
 ## 💢 For Ubuntu 24.10
