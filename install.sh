@@ -30,7 +30,11 @@ print_color() {
 printf "\n%.0s" {1..2}
 print_color $WARNING "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-              END OF SUPPORT - JULY 25 2025
+                KooL's UBUNTU 24.04 - Hyprland 
+              
+                END OF SUPPORT - JULY 25 2025
+
+                            NOTICE
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
     Hyprland version that will be build using this script repo extremely outdated (V0.39)
