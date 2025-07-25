@@ -38,7 +38,8 @@ print_color $WARNING "
     No Plan to update this nor continue to update this nor even to support it
     
     Use this script at your own risk.
-    Any issues will not be dealt with
+    
+    BE WARNED!!!!!  Any issues will NOT be dealt with anymore
 "
 printf "\n%.0s" {1..2}
 
