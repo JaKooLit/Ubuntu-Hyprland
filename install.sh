@@ -37,13 +37,13 @@ print_color $WARNING "
                             NOTICE
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-    Hyprland version that will be build using this script repo extremely outdated (V0.39)
+    Hyprland version that will be built using this script is extremely outdated (V0.39)
     
-    No Plan to update this nor continue to update this nor even to support it
+    No Plan to update this nor continue to update this nor even to support it if you encounter any issues
     
     Use this script at your own risk.
     
-    BE WARNED!!!!!  Any issues will NOT be dealt with anymore
+    BE WARNED!!!!!  Any issues will NOT be dealt with NOR even entertain it
 "
 printf "\n%.0s" {1..2}
 
@@ -55,8 +55,9 @@ case "$confirm" in
         echo -e "${OK} Continuing with installation..."
         ;;
     *)
-        echo -e "${NOTE} You chose not to continue. Exiting..."
         echo
+        echo
+        echo -e "${NOTE} You chose not to continue. Exiting..."
         echo
         exit 1
         ;;
