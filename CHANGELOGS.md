@@ -1,5 +1,8 @@
 ## CHANGELOGS
 
+## 08 Aug 2025
+- End of Support
+
 ## 21 June 2025
 - Added a warning message that support is now very limited
 

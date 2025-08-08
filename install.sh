@@ -19,20 +19,44 @@ BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
+# Function to print colorful text
+print_color() {
+    printf "%b%s%b\n" "$1" "$2" "$RESET"
+}
+
 # Display warning message
-echo -e "${WARNING}NOTE:${RESET} Hyprland on Ubuntu Repo is extremely outdated and will not be supported anymore."
-echo -e "Use this at your own risk." 
-echo -e "${WARNING}Any issues will not be dealt with${RESET}"
-echo
+printf "\n%.0s" {1..2}
+print_color $WARNING "
+    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+                KooL's UBUNTU 25.04 - Hyprland 
+              
+                END OF SUPPORT - AUGUST 2025
+
+                            NOTICE
+    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+
+    Hyprland version that will be built using this script is extremely outdated (V0.41.2)
+    
+    No Plan to update this nor continue to update this nor even to support it if you encounter any issues
+    
+    Use this script at your own risk.
+    
+    BE WARNED!!!!!  Any issues will NOT be dealt with NOR even entertain it
+"
+printf "\n%.0s" {1..2}
+
 
 # Prompt user to continue or exit
-read -rp "Do you want to continue with the installation? [y/N]: " confirm
+read -rp "$YELLOW Do you still want to continue with Hyprland installation using this script? [y/N]: " confirm
 case "$confirm" in
     [yY][eE][sS]|[yY])
         echo -e "${OK} Continuing with installation..."
         ;;
     *)
+        echo
+        echo
         echo -e "${NOTE} You chose not to continue. Exiting..."
+        echo
         exit 1
         ;;
 esac
