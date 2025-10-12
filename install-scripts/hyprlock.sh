@@ -7,12 +7,16 @@ lock=(
 	libgbm-dev
 	libdrm-dev
     libmagic-dev
-    libhyprlang-dev
-    libhyprutils-dev
+    libaudit-dev
+    libsdbus-c++-dev
+)
+
+build_dep=(
+    pam
 )
 
 #specific branch or release
-lock_tag="v0.4.0"
+lock_tag="v0.9.1"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -35,7 +39,11 @@ MLOG="install-$(date +%d-%H%M%S)_hyprlock2.log"
 printf "\n%s - Installing ${YELLOW}hyprlock dependencies${RESET} .... \n" "${INFO}"
 
 for PKG1 in "${lock[@]}"; do
-  install_package "$PKG1" "$LOG"
+  re_install_package "$PKG1" "$LOG"
+done
+
+for PKG1 in "${build_dep[@]}"; do
+  build_dep "$PKG1" "$LOG"
 done
 
 # Check if hyprlock directory exists and remove it
