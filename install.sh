@@ -76,6 +76,10 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
+# Ensure locally installed libraries are discoverable by pkg-config and CMake across all child scripts
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig:${PKG_CONFIG_PATH:-}"
+export CMAKE_PREFIX_PATH="/usr/local:${CMAKE_PREFIX_PATH:-}"
+
 # install whiptails if detected not installed. Necessary for this version
 if ! command -v whiptail >/dev/null; then
     echo "${NOTE} - whiptail is not installed. Installing..." | tee -a "$LOG"
