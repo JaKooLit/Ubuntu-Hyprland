@@ -123,6 +123,13 @@ fi
 # Path to the install-scripts directory
 script_directory=install-scripts
 
+# Load centralized Hyprland stack tags if present and export for child scripts
+if [ -f "./hypr-tags.env" ]; then
+    # shellcheck disable=SC1091
+    source "./hypr-tags.env"
+    export HYPRLAND_TAG AQUAMARINE_TAG HYPRUTILS_TAG HYPRLANG_TAG HYPRGRAPHICS_TAG HYPRWAYLAND_SCANNER_TAG HYPRLAND_PROTOCOLS_TAG HYPRLAND_QT_SUPPORT_TAG HYPRLAND_QTUTILS_TAG WAYLAND_PROTOCOLS_TAG
+fi
+
 # Function to execute a script if it exists and make it executable
 execute_script() {
     local script="$1"
@@ -336,8 +343,32 @@ execute_script "fonts.sh"
 echo "${INFO} Installing ${SKY_BLUE}KooL Hyprland packages...${RESET}" | tee -a "$LOG"
 sleep 1
 execute_script "01-hypr-pkgs.sh"
+
+# Build Hyprland stack prerequisites from source in correct order
+sleep 1
+execute_script "wayland-protocols-src.sh"
+sleep 1
+execute_script "hyprland-protocols.sh"
+sleep 1
+execute_script "hyprutils.sh"
+sleep 1
+execute_script "hyprlang.sh"
+sleep 1
+execute_script "aquamarine.sh"
+sleep 1
+execute_script "hyprgraphics.sh"
+sleep 1
+execute_script "hyprwayland-scanner.sh"
+sleep 1
+execute_script "hyprland-qt-support.sh"
+sleep 1
+execute_script "hyprland-qtutils.sh"
+
+# Now build and install Hyprland itself
 sleep 1
 execute_script "hyprland.sh"
+
+# Rest of the desktop stack
 sleep 1
 execute_script "wallust.sh"
 sleep 1
@@ -346,8 +377,6 @@ sleep 1
 execute_script "rofi-wayland.sh"
 sleep 1
 execute_script "hyprlock.sh"
-sleep 1
-execute_script "hyprlang.sh"
 sleep 1
 execute_script "hypridle.sh"
 
