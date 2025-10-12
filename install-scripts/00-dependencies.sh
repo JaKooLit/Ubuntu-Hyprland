@@ -63,6 +63,7 @@ dependencies=(
     libxcb-xinerama0-dev
     libxkbcommon-dev
     libxkbcommon-x11-dev
+    libxcursor-dev
     meson
     ninja-build
     openssl
