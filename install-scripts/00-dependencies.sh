@@ -27,9 +27,16 @@ dependencies=(
     libwayland-dev
     libcairo-5c-dev
     libcairo2-dev
-    libsdbus-c++-bin    
+    libsdbus-c++-bin
     libegl-dev
-    libegl1-mesa-dev  
+    libegl1-mesa-dev
+    libdrm-dev
+    libgbm-dev
+    libinput-dev
+    libudev-dev
+    libseat-dev
+    libdisplay-info-dev
+    libliftoff-dev
     libpango1.0-dev
     libgdk-pixbuf-2.0-dev
     libxcb-keysyms1-dev
