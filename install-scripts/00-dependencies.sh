@@ -68,6 +68,14 @@ dependencies=(
     python3-yaml
     python3-pyquery
     qt6-base-dev
+    qt6-base-private-dev
+    qt6-wayland-dev
+    qt6-wayland-private-dev
+    qt6-declarative-dev
+    qml6-module-qtcore
+    qml6-module-qtquick-layouts
+    qt6-tools-dev
+    qt6-tools-dev-tools
     spirv-tools
     unzip
     vulkan-validationlayers
