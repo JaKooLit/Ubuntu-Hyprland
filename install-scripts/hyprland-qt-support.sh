@@ -43,6 +43,10 @@ fi
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprland-qt-support.log"
 MLOG="install-$(date +%d-%H%M%S)_hyprland-qt-support2.log"
 
+# Prefer locally built hyprlang/hyprutils in /usr/local
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig:${PKG_CONFIG_PATH:-}"
+export CMAKE_PREFIX_PATH="/usr/local:${CMAKE_PREFIX_PATH:-}"
+
 # Installation of dependencies
 printf "\n%s - Installing ${YELLOW}hyprland-qt-support dependencies${RESET} .... \n" "${INFO}"
 

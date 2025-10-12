@@ -4,7 +4,7 @@
 
 
 #specific branch or release
-lang_tag="v0.5.2"
+lang_tag="v0.6.4"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -22,6 +22,10 @@ fi
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprlang.log"
 MLOG="install-$(date +%d-%H%M%S)_hyprlang2.log"
+
+# Prefer locally built hyprutils in /usr/local
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig:${PKG_CONFIG_PATH:-}"
+export CMAKE_PREFIX_PATH="/usr/local:${CMAKE_PREFIX_PATH:-}"
 
 # Installation of dependencies
 printf "\n%s - Installing ${YELLOW}hyprlang dependencies${RESET} .... \n" "${INFO}"
