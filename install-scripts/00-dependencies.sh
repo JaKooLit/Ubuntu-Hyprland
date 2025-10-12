@@ -3,6 +3,11 @@
 # main dependencies #
 # 22 Aug 2024 - NOTE will trim this more down
 
+# Ensure Universe repo is enabled (needed for some -dev packages)
+if command -v add-apt-repository >/dev/null 2>&1; then
+  sudo add-apt-repository -y universe || true
+  sudo apt update || true
+fi
 
 # packages neeeded
 dependencies=(
@@ -19,6 +24,7 @@ dependencies=(
     golang
     hwdata
     jq
+    pkg-config
     libmpdclient-dev
     libnl-3-dev
     libasound2-dev
@@ -37,6 +43,7 @@ dependencies=(
     libseat-dev
     libdisplay-info-dev
     libliftoff-dev
+    libpixman-1-dev
     libpango1.0-dev
     libgdk-pixbuf-2.0-dev
     libxcb-keysyms1-dev
