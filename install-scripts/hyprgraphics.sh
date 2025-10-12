@@ -4,7 +4,7 @@
 # hyprgraphics #
 
 hyprgraphics=(
-	libmagic
+	libmagic-dev
 )
 
 #specific branch or release

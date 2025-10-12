@@ -358,11 +358,12 @@ execute_script "hyprutils.sh"
 sleep 1
 execute_script "hyprlang.sh"
 sleep 1
+# Ensure scanner is available before building aquamarine (required by CMake find_package)
+execute_script "hyprwayland-scanner.sh"
+sleep 1
 execute_script "aquamarine.sh"
 sleep 1
 execute_script "hyprgraphics.sh"
-sleep 1
-execute_script "hyprwayland-scanner.sh"
 sleep 1
 execute_script "hyprland-qt-support.sh"
 sleep 1
