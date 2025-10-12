@@ -44,6 +44,7 @@ dependencies=(
     libdisplay-info-dev
     libliftoff-dev
     libpixman-1-dev
+    libtomlplusplus-dev
     libpango1.0-dev
     libgdk-pixbuf-2.0-dev
     libxcb-keysyms1-dev
