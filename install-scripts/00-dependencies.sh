@@ -51,6 +51,10 @@ dependencies=(
     libxcb-ewmh-dev
     libxcb-cursor-dev
     libxcb-icccm4-dev
+    libxcb-composite0-dev
+    libxcb-res0-dev
+    libxcb-xfixes0-dev
+    libxcb-render0-dev
     libxcb-randr0-dev
     libxcb-render-util0-dev
     libxcb-util-dev
