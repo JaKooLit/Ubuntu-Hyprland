@@ -32,6 +32,10 @@ fi
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_aquamarine.log"
 MLOG="install-$(date +%d-%H%M%S)_aquamarine2.log"
 
+# Prefer locally built hyprutils/hyprlang in /usr/local over distro packages
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig:${PKG_CONFIG_PATH:-}"
+export CMAKE_PREFIX_PATH="/usr/local:${CMAKE_PREFIX_PATH:-}"
+
 # Check if aquamarine directory exists and remove it
 if [ -d "aquamarine" ]; then
     rm -rf "aquamarine"
