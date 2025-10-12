@@ -94,8 +94,6 @@ hyprland_dep=(
     libdisplay-info2
     libdrm2
     libhyprcursor-dev
-    libhyprlang-dev
-    libhyprutils-dev
     libpam0g-dev
     hyprcursor-util
 )
@@ -119,6 +117,16 @@ fi
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_dependencies.log"
+
+# Proactively remove conflicting distro dev packages when using source-built libs
+# (avoid overshadowing /usr/local hyprutils/hyprlang)
+conflicts=(
+  libhyprutils-dev
+  libhyprlang-dev
+)
+for PKG in "${conflicts[@]}"; do
+  uninstall_package "$PKG" 2>&1 | tee -a "$LOG" || true
+done
 
 # Installation of main dependencies
 printf "\n%s - Installing ${SKY_BLUE}main dependencies....${RESET} \n" "${NOTE}"
