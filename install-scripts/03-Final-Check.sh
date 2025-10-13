@@ -50,6 +50,15 @@ local_missing_2=()
 
 # Function to check if a package is installed using dpkg
 is_installed_dpkg() {
+    # Special-case Hyprland: consider it installed if present on PATH or in /usr/local/bin
+    if [ "$1" = "hyprland" ]; then
+        if command -v Hyprland >/dev/null 2>&1 || \
+           command -v hyprland >/dev/null 2>&1 || \
+           [ -x "/usr/local/bin/Hyprland" ] || \
+           [ -x "/usr/local/bin/hyprland" ]; then
+            return 0
+        fi
+    fi
     dpkg -l | grep -q "^ii  $1 "
 }
 
