@@ -487,9 +487,19 @@ execute_script "03-Final-Check.sh"
 
 printf "\n%.0s" {1..1}
 
-# Check if either hyprland or hyprland-git is installed
-if dpkg -l | grep -qw hyprland; then
-    printf "\n ${OK} 👌 Hyprland is installed. However, some essential packages may not be installed. Please see above!"
+# Final verification: detect Hyprland from PATH or package
+hypr_cmd=""
+if command -v Hyprland >/dev/null 2>&1; then
+    hypr_cmd="$(command -v Hyprland)"
+elif command -v hyprland >/dev/null 2>&1; then
+    hypr_cmd="$(command -v hyprland)"
+elif dpkg -l | grep -qw hyprland; then
+    # Fallback: deb package present even if binary not on PATH in this shell
+    hypr_cmd="hyprland (dpkg)"
+fi
+
+if [ -n "$hypr_cmd" ]; then
+    printf "\n ${OK} 👌 Hyprland detected at ${MAGENTA}%s${RESET}. However, some essential packages may not be installed. Please see above!" "$hypr_cmd"
     printf "\n${CAT} Ignore this message if it states ${YELLOW}All essential packages${RESET} are installed as per above\n"
     sleep 2
     printf "\n%.0s" {1..2}
@@ -497,7 +507,12 @@ if dpkg -l | grep -qw hyprland; then
     printf "${SKY_BLUE}Thank you${RESET} 🫰 for using 🇵🇭 ${MAGENTA}KooL's Hyprland Dots${RESET}. ${YELLOW}Enjoy and Have a good day!${RESET}"
     printf "\n%.0s" {1..2}
 
-    printf "\n${NOTE} You can start Hyprland by typing ${SKY_BLUE}Hyprland${RESET} (IF SDDM is not installed) (note the capital H!).\n"
+    printf "\n${NOTE} You can start Hyprland by typing ${SKY_BLUE}Hyprland${RESET} (IF SDDM is not installed)."
+    if command -v hyprland >/dev/null 2>&1; then
+        printf "\n${NOTE} Lowercase 'hyprland' wrapper is also available at ${SKY_BLUE}%s${RESET}.\n" "$(command -v hyprland)"
+    else
+        printf "\n"
+    fi
     printf "\n${NOTE} However, it is ${YELLOW}highly recommended to reboot${RESET} your system.\n\n"
 
     while true; do
@@ -523,8 +538,8 @@ if dpkg -l | grep -qw hyprland; then
         fi
     done
 else
-    # Print error message if neither package is installed
-    printf "\n${WARN} Hyprland is NOT installed. Please check 00_CHECK-time_installed.log and other files in the Install-Logs/ directory..."
+    # Print error message if neither package nor PATH binary is detected
+    printf "\n${WARN} Hyprland is NOT detected. Please check 00_CHECK-time_installed.log and other files in the Install-Logs/ directory..."
     printf "\n%.0s" {1..3}
     exit 1
 fi
