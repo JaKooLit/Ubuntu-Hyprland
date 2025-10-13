@@ -2,7 +2,7 @@
 
 # 💌 KooL's Ubuntu Hyprland Install Script 💌
 
-## For Ubuntu 25.10 Questing Qwokka
+## For Ubuntu 25.10 Questing Quokka
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="400" />
@@ -331,4 +331,3 @@ Or you can donate cryto on my btc wallet :)
 ## 🥰🥰 💖💖 👍👍👍
 
 [![Stargazers over time](https://starchart.cc/JaKooLit/Ubuntu-Hyprland.svg?variant=adaptive)](https://starchart.cc/JaKooLit/Ubuntu-Hyprland)
-
