@@ -28,20 +28,14 @@ print_color() {
 printf "\n%.0s" {1..2}
 print_color $WARNING "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-                KooL's UBUNTU 25.04 - Hyprland 
-              
-                END OF SUPPORT - AUGUST 2025
-
-                            NOTICE
+            KooL's UBUNTU 25.10+ - Hyprland v0.51.1              
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-    Hyprland version that will be built using this script is extremely outdated (V0.41.2)
-    
-    No Plan to update this nor continue to update this nor even to support it if you encounter any issues
-    
-    Use this script at your own risk.
-    
-    BE WARNED!!!!!  Any issues will NOT be dealt with NOR even entertain it
+    This script will install Hyprland 0.51.1 from source
+    It will take time to compile, so be patient
+    This is only supported on ubuntu 25.10 or greater! 
+    If you are not at that level do NOT continue!
+         
 "
 printf "\n%.0s" {1..2}
 
@@ -92,13 +86,13 @@ printf "\n%.0s" {1..2}
 echo -e "\e[35m
 	╦╔═┌─┐┌─┐╦    ╦ ╦┬ ┬┌─┐┬─┐┬  ┌─┐┌┐┌┌┬┐
 	╠╩╗│ ││ │║    ╠═╣└┬┘├─┘├┬┘│  ├─┤│││ ││ 2025
-	╩ ╩└─┘└─┘╩═╝  ╩ ╩ ┴ ┴  ┴└─┴─┘┴ ┴┘└┘─┴┘ Ubuntu 25.04
+	╩ ╩└─┘└─┘╩═╝  ╩ ╩ ┴ ┴  ┴└─┴─┘┴ ┴┘└┘─┴┘ Ubuntu 25.10+
 \e[0m"
 printf "\n%.0s" {1..1} 
 
 # Welcome message using whiptail (for displaying information)
-whiptail --title "KooL Ubuntu 25.04 - Hyprland (2025) Install Script" \
-    --msgbox "Welcome to KooL Ubuntu 25.04 - Hyprland (2025) Install Script!!!\n\n\
+whiptail --title "KooL Ubuntu 25.10+ - Hyprland (2025) Install Script" \
+    --msgbox "Welcome to KooL Ubuntu 25.10+ - Hyprland (2025) Install Script!!!\n\n\
 ATTENTION: Run a full system update and Reboot first !!! (Highly Recommended)\n\n\
 NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland may NOT start!" \
     15 80
