@@ -31,6 +31,12 @@ fi
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_xdph.log"
 MLOG="install-$(date +%d-%H%M%S)_xdph2.log"
 
+# Skip if PPA mode and package already present
+if [ "${HYPR_USE_PPA:-0}" = "1" ] && dpkg -l | grep -qw xdg-desktop-portal-hyprland; then
+  echo "${INFO} PPA mode and xdg-desktop-portal-hyprland already available; skipping source build/install." | tee -a "$LOG"
+  exit 0
+fi
+
 printf "${NOTE} Installing ${SKY_BLUE}xdg-desktop-portal-hyprland dependencies${RESET} ...\n"
 for portal in "${xdg[@]}"; do
     install_package "$portal" "$LOG"

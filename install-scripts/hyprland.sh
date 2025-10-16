@@ -6,6 +6,11 @@
 #specific branch or release
 hyprland_tag="v0.39.1"
 
+# If using PPA path, skip building
+if [ "${HYPR_USE_PPA:-0}" = "1" ]; then
+  echo "${INFO} HYPR_USE_PPA=1 set; skipping Hyprland source build." ; exit 0
+fi
+
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 

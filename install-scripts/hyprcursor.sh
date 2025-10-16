@@ -10,6 +10,11 @@ cursor=(
 #specific branch or release
 cursor_tag="v0.1.9"
 
+# If using PPA path, skip building
+if [ "${HYPR_USE_PPA:-0}" = "1" ]; then
+  echo "${INFO} HYPR_USE_PPA=1 set; skipping hyprcursor source build." ; exit 0
+fi
+
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
