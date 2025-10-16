@@ -29,6 +29,19 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 ### BRANCHES on this Repo
 - Branches on this repo corresponds Ubuntu Versions.
+- In July 2025 we stopped supporting ubuntu because the hyprland version is very old.
+- With the release of 25.10 Questing Quokka, we are able to build Hyprland 0.51.1 from source
+- This is the only version we are supporting for ubuntu
+- It uses the same Hyprland configuration files, which allows our small team to maintain feature parity
+
+## All versions of ubuntu before 25.10 (24.04/24.10/25.04) use the older versions of Hyprland and dotfiles.  You are free to install them but we cannot offer support or fix issues 
+
+###  -  Ubuntu 25.10 Questing Quokka   (Supports Hyprland 0.51.1) 
+<h4 align="left">
+<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />  <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.10"> Ubuntu 25.10 Questing Quokka Hyprland install script branch </a><br><br>
+</h4>
+
+## Archived / Unsupported versions: 
 
 <h4 align="left">
 <img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Objects/File Folder.webp" alt="File Folder" width="38" height="38" />   <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04"> 👉 Ubuntu 24.04 LTS Noble Numbat Hyprland install script branch </a><br><br>
@@ -44,17 +57,31 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 </h4>
 
 
-### Alpha -  Ubuntu 25.04 Plucky Puffin
+###  -  Ubuntu 25.04 Plucky Puffin  
 <h4 align="left">
 <img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />  <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.04"> Ubuntu 25.04 Plucky Puffin Hyprland install script branch </a><br><br>
 </h4>
 
-## ✨ How to install?
+
+
+## ✨ Installation:
 > clone repo including the branch.
 
 > [!IMPORTANT]
 > Make SURE you include the branch by adding -b BRANCH.
 
+
+## 💫 For Ubuntu 25.10  (Hyprland 0.51.1 builds from source)
+```bash
+git clone -b 25.10 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-25.10
+cd ~/Ubuntu-Hyprland-25.10
+chmod +x install.sh
+./install.sh
+```
+
+> [!IMPORTANT]
+> 25 July 2025
+> End of Support for Ubuntu 24.04/24.10/25.04 - Hyprland project
 
 ## 💥 For Ubuntu 24.04 (Includes 24.04.1 or 24.04.2 etc)
 ```bash
@@ -63,9 +90,6 @@ cd ~/Ubuntu-Hyprland-24.04
 chmod +x install.sh
 ./install.sh
 ```
-> [!IMPORTANT]
-> 25 July 2025
-> End of Support for Ubuntu 24.04 - Hyprland project
 
 
 ## 💢 For Ubuntu 24.10
@@ -76,13 +100,14 @@ chmod +x install.sh
 ./install.sh
 ```
 
-## 💫 For Ubuntu 25.04 (NOTE: STILL ON ALPHA STAGE)
+## 💫 For Ubuntu 25.04  
 ```bash
 git clone -b 25.04 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-25.04
 cd ~/Ubuntu-Hyprland-25.04
 chmod +x install.sh
 ./install.sh
 ```
+
 
 > [!IMPORTANT]
 > Read through the Readme on each Branches for installation
@@ -93,7 +118,7 @@ chmod +x install.sh
 
 ## FAQ 🙋‍♂️ Will this work on other Distro Based on Ubuntu? Like Linux mint?
 - Yes, BUT ensure to use the appropriate Ubuntu version. Like latest Linux mint is based on Ubuntu 24.04, you should use the 24.04 branch.
-- So kindly search which version of Ubuntu is your system running and use appropriate branch
+- So kindly search which version of Ubuntu is your system running and use appropriate branch!! 
 
 
 ## Some Links of Projects used for this project
