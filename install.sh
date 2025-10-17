@@ -152,7 +152,6 @@ thunar="OFF"
 ags="OFF"
 sddm="OFF"
 sddm_theme="OFF"
-xdph="OFF"
 zsh="OFF"
 pokemon="OFF"
 rog="OFF"
@@ -249,7 +248,6 @@ options_command+=(
     "bluetooth" "Do you want script to configure Bluetooth?" "OFF"
     "thunar" "Do you want Thunar file manager to be installed?" "OFF"
     "ags" "Install AGS v1 for Desktop-Like Overview" "OFF"
-    "xdph" "Install XDG-DESKTOP-PORTAL-HYPRLAND (for screen share)?" "OFF"
     "zsh" "Install zsh shell with Oh-My-Zsh?" "OFF"
     "pokemon" "Add Pokemon color scripts to your terminal?" "OFF"
     "rog" "Are you installing on Asus ROG laptops?" "OFF"
@@ -438,10 +436,6 @@ for option in "${options[@]}"; do
         ags)
             echo "${INFO} Installing ${SKY_BLUE}AGS v1 for Desktop Overview...${RESET}" | tee -a "$LOG"
             execute_script "ags.sh"
-            ;;
-        xdph)
-            echo "${INFO} Installing ${SKY_BLUE}xdg-desktop-portal-hyprland...${RESET}" | tee -a "$LOG"
-            execute_script "xdph.sh"
             ;;
         bluetooth)
             echo "${INFO} Configuring ${SKY_BLUE}Bluetooth...${RESET}" | tee -a "$LOG"
