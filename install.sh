@@ -342,30 +342,51 @@ echo "${INFO} Installing ${SKY_BLUE}KooL Hyprland packages...${RESET}" | tee -a 
 sleep 1
 execute_script "01-hypr-pkgs.sh"
 
-# Build Hyprland stack prerequisites from source in correct order
-sleep 1
-execute_script "wayland-protocols-src.sh"
-sleep 1
-execute_script "hyprland-protocols.sh"
-sleep 1
-execute_script "hyprutils.sh"
-sleep 1
-execute_script "hyprlang.sh"
-sleep 1
-# Ensure scanner is available before building aquamarine (required by CMake find_package)
-execute_script "hyprwayland-scanner.sh"
-sleep 1
-execute_script "aquamarine.sh"
-sleep 1
-execute_script "hyprgraphics.sh"
-sleep 1
-execute_script "hyprland-qt-support.sh"
-sleep 1
-execute_script "hyprland-qtutils.sh"
+# Default: install from PPA. Optional: build from source when requested.
+FROM_SOURCE=0
+if [ "${HYPR_FROM_SOURCE:-0}" = "1" ]; then
+    FROM_SOURCE=1
+else
+    for arg in "$@"; do
+        if [ "$arg" = "--from-source" ]; then
+            FROM_SOURCE=1
+            break
+        fi
+    done
+fi
 
-# Now build and install Hyprland itself
-sleep 1
-execute_script "hyprland.sh"
+if [ "$FROM_SOURCE" -eq 1 ]; then
+    echo "${INFO} Building Hyprland ${SKY_BLUE}from source${RESET}..." | tee -a "$LOG"
+    # Build Hyprland stack prerequisites from source in correct order
+    sleep 1
+    execute_script "wayland-protocols-src.sh"
+    sleep 1
+    execute_script "hyprland-protocols.sh"
+    sleep 1
+    execute_script "hyprutils.sh"
+    sleep 1
+    execute_script "hyprlang.sh"
+    sleep 1
+    # Ensure scanner is available before building aquamarine (required by CMake find_package)
+    execute_script "hyprwayland-scanner.sh"
+    sleep 1
+    execute_script "aquamarine.sh"
+    sleep 1
+    execute_script "hyprgraphics.sh"
+    sleep 1
+    execute_script "hyprland-qt-support.sh"
+    sleep 1
+    execute_script "hyprland-qtutils.sh"
+
+    # Now build and install Hyprland itself
+    sleep 1
+    execute_script "hyprland.sh"
+else
+    echo "${INFO} Installing Hyprland from ${SKY_BLUE}PPA${RESET}..." | tee -a "$LOG"
+    export HYPR_USE_PPA=1
+    sleep 1
+    execute_script "hyprland-ppa.sh"
+fi
 
 # Rest of the desktop stack
 sleep 1
