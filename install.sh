@@ -233,7 +233,6 @@ options_command+=(
     "bluetooth" "Do you want script to configure Bluetooth?" "OFF"
     "thunar" "Do you want Thunar file manager to be installed?" "OFF"
     "ags" "Install AGS v1 for Desktop-Like Overview" "OFF"
-    "xdph" "Install XDG-DESKTOP-PORTAL-HYPRLAND (for screen share)?" "OFF"
     "zsh" "Install zsh shell with Oh-My-Zsh?" "OFF"
     "nwg-look" "Install nwg-look for GTK theming? WARNING This Package Takes long time to build!" "OFF"
     "pokemon" "Add Pokemon color scripts to your terminal?" "OFF"
@@ -379,10 +378,6 @@ for option in "${options[@]}"; do
         echo "${INFO}Installing ${SKY_BLUE}AGS v1 for Desktop Overview...${RESET}" | tee -a "$LOG"
         execute_script "ags.sh"
         ;;
-    xdph)
-        echo "${INFO}Installing ${SKY_BLUE}xdg-desktop-portal-hyprland...${RESET}" | tee -a "$LOG"
-        execute_script "xdph.sh"
-        ;;
     bluetooth)
         echo "${INFO}Configuring ${SKY_BLUE}Bluetooth...${RESET}" | tee -a "$LOG"
         execute_script "bluetooth.sh"
@@ -446,8 +441,9 @@ execute_script "03-Final-Check.sh"
 
 printf "\n%.0s" {1..1}
 
-# Check if either hyprland or Hyprland files exist in /usr/local/bin/
-if [ -e /usr/local/bin/hyprland ] || [ -f /usr/local/bin/Hyprland ]; then
+# Check if Hyprland is installed (support /usr/bin from PPA)
+if command -v hyprland >/dev/null 2>&1 || command -v Hyprland >/dev/null 2>&1 || \
+   [ -x /usr/bin/hyprland ] || [ -x /usr/local/bin/hyprland ] || [ -x /usr/local/bin/Hyprland ]; then
     printf "\n ${OK} 👌 Hyprland is installed. However, some essential packages may not be installed. Please see above!"
     printf "\n${CAT} Ignore this message if it states ${YELLOW}All essential packages${RESET} are installed as per above\n"
     sleep 2

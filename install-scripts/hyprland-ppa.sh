@@ -30,6 +30,8 @@ sudo apt update 2>&1 | tee -a "$LOG"
 PKGS=(
   hyprland
   hypridle
+  hyprlock
+  waybar
   hyprutils
   hyprwayland-scanner
   hyprgraphics
