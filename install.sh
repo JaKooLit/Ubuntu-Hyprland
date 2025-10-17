@@ -320,10 +320,10 @@ execute_script "fonts.sh"
 
 echo "${INFO} Installing ${SKY_BLUE}KooL Hyprland packages (via PPA)...${RESET}" | tee -a "$LOG"
 sleep 1
-execute_script "01-hypr-pkgs.sh"
-sleep 1
 export HYPR_USE_PPA=1
 execute_script "hyprland-ppa.sh"
+sleep 1
+execute_script "01-hypr-pkgs.sh"
 sleep 1
 execute_script "wallust.sh"
 sleep 1

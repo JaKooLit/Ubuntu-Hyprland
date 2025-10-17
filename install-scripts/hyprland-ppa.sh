@@ -44,8 +44,8 @@ PKGS=(
 
 for p in "${PKGS[@]}"; do
   if apt-cache policy "$p" | grep -q "Candidate: \\S"; then
-    info "Installing $p from apt"
-    install_package "$p" 2>&1 | tee -a "$LOG"
+    info "Installing/Upgrading $p from apt"
+    sudo apt install -y "$p" 2>&1 | tee -a "$LOG"
   else
     note "$p not found in APT archives; skipping"
   fi
