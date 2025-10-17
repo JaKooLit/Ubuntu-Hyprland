@@ -20,7 +20,7 @@ RESET="$(tput sgr0)"
 # Variables
 Distro="Ubuntu-Hyprland"
 Github_URL="https://github.com/JaKooLit/$Distro.git"
-Github_URL_Branch="25.04"
+Github_URL_Branch="25.10"
 Distro_DIR="$HOME/$Distro-$Github_URL_Branch"
 
 printf "\n%.0s" {1..1}
