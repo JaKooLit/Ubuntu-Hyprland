@@ -3,7 +3,7 @@
 # Hyprland-Dots to download from main #
 
 #specific branch or release
-dots_tag="Deb-Untu-Dots"
+dots_tag="main"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
