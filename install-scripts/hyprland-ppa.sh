@@ -28,18 +28,27 @@ fi
 info "Running apt update"
 sudo apt update 2>&1 | tee -a "$LOG"
 
+# Install hyprland first to satisfy dependencies cleanly
+if apt-cache policy hyprland | grep -q "Candidate: \\S"; then
+  info "Installing/Upgrading hyprland from apt"
+  sudo apt install -y hyprland 2>&1 | tee -a "$LOG"
+else
+  note "hyprland not found in APT archives; skipping"
+fi
+
+# Install remaining PPA components (exclude hyprland-qtutils and hyprland-qt-support for now)
 PKGS=(
-  hyprland
   hypridle
   hyprlock
+  hyprsunset
+  hyprpaper
+  hyprpicker
   waybar
   hyprutils
   hyprwayland-scanner
   hyprgraphics
   hyprcursor
   aquamarine
-  hyprland-qtutils
-  hyprland-qt-support
   xdg-desktop-portal-hyprland
 )
 
