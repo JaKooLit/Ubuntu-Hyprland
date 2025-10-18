@@ -49,6 +49,7 @@ PKGS=(
   hyprgraphics
   hyprcursor
   aquamarine
+  hyprland-qtutils
   xdg-desktop-portal-hyprland
 )
 
