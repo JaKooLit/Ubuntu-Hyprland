@@ -30,19 +30,18 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 ### BRANCHES on this Repo
 - Branches on this repo corresponds Ubuntu Versions.
 - In July 2025 we stopped supporting ubuntu because the hyprland version is very old.
-- With the release of 25.10 Questing Quokka, we are able to build Hyprland 0.51.1 from source
-- This is the only version we are supporting for ubuntu
-- It uses the same Hyprland configuration files, which allows our small team to maintain feature parity
+- With the addtion of a PPA we can now support ubuntu 24.04 and 25.10 
+- When 26.04 LTS is released, we will drop support for 25.10
+- These the only versions we are supporting for ubuntu long term 
+- They use the same Hyprland configuration files, which allows our small team to maintain feature parity
 
-## All versions of ubuntu before 25.10 (24.04/24.10/25.04) use the older versions of Hyprland and dotfiles.  You are free to install them but we cannot offer support or fix issues 
 
-###  -  Ubuntu 25.10 Questing Quokka   (Supports Hyprland 0.51.1) 
+###  💥  Ubuntu 25.10 Questing Quokka 
 <h4 align="left">
 <img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />  <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.10"> Ubuntu 25.10 Questing Quokka Hyprland install script branch </a><br><br>
 </h4>
 
-## Archived / Unsupported versions: 
-
+###  💥  Ubuntu 24.04 Noble Numbat
 <h4 align="left">
 <img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Objects/File Folder.webp" alt="File Folder" width="38" height="38" />   <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04"> 👉 Ubuntu 24.04 LTS Noble Numbat Hyprland install script branch </a><br><br>
 </h4>
@@ -52,6 +51,10 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - This also means if Ubuntu decide to have another major update say 24.04.2 or .3 etc.. 
 
 
+
+## Archived / Unsupported versions: 
+
+###  -  Ubuntu 24.10 Oracular Oriole  
 <h4 align="left">
 <img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />  <a href="https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10"> Ubuntu 24.10 Oracular Oriole Hyprland install script branch </a><br><br>
 </h4>
@@ -71,6 +74,16 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 > Make SURE you include the branch by adding -b BRANCH.
 
 
+## 💥 For Ubuntu 24.04 (Includes 24.04.1, 24.04.1,24.04.3 etc)
+
+```bash
+git clone -b 24.04 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-24.04
+cd ~/Ubuntu-Hyprland-24.04
+chmod +x install.sh
+./install.sh
+```
+
+
 ## 💫 For Ubuntu 25.10  (Hyprland 0.51.1 builds from source)
 ```bash
 git clone -b 25.10 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-25.10
@@ -81,15 +94,7 @@ chmod +x install.sh
 
 > [!IMPORTANT]
 > 25 July 2025
-> End of Support for Ubuntu 24.04/24.10/25.04 - Hyprland project
-
-## 💥 For Ubuntu 24.04 (Includes 24.04.1 or 24.04.2 etc)
-```bash
-git clone -b 24.04 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-24.04
-cd ~/Ubuntu-Hyprland-24.04
-chmod +x install.sh
-./install.sh
-```
+> End of Support for Ubuntu 24.10/25.04 - Hyprland project
 
 
 ## 💢 For Ubuntu 24.10
