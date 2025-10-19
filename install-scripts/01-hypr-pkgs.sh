@@ -39,6 +39,8 @@ hypr_package=(
   xdg-user-dirs
   xdg-utils
   yad
+  hypridle
+  hyprlock
 )
 
 # the following packages can be deleted. however, dotfiles may not work properly
