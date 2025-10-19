@@ -242,14 +242,14 @@ fi
 
 # Add the remaining static options
 options_command+=(
-    "GTK Themes" "Install GTK themes (required for Dark/Light function)" "OFF"
-    "Bluetooth" "Do you want script to configure Bluetooth?" "OFF"
-    "Thunar" "Do you want Thunar file manager to be installed?" "OFF"
-    "Overview" "Install AGS v1 for Desktop-Like Overview" "OFF"
-    "ZSH" "Install zsh shell with Oh-My-Zsh?" "OFF"
-    "Pokemon" "Add Pokemon color scripts to your terminal?" "OFF"
-    "ROG-Laptop" "Are you installing on Asus ROG laptops?" "OFF"
-    "Hyprland Cfg" "Install KooL's Hyprland dotfiles?" "OFF"
+    "gtk_themes" "Install GTK themes (required for Dark/Light function)" "OFF"
+    "bluetooth" "Do you want script to configure Bluetooth?" "OFF"
+    "thunar" "Do you want Thunar file manager to be installed?" "OFF"
+    "ags" "Install AGS v1 for Desktop-Like Overview" "OFF"
+    "zsh" "Install zsh shell with Oh-My-Zsh?" "OFF"
+    "pokemon" "Add Pokemon color scripts to your terminal?" "OFF"
+    "rog" "Are you installing on Asus ROG laptops?" "OFF"
+    "dots" "Install KooL's Hyprland dotfiles?" "OFF"
 )
 
 # Capture the selected options before the while loop starts
