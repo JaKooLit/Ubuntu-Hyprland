@@ -21,8 +21,8 @@ printf "[INFO] Ensuring add-apt-repository is available...\n" | tee -a "$LOG"
 sudo apt install -y software-properties-common | tee -a "$LOG"
 
 # Add the PPA, then update package lists (required to see PPA versions)
-printf "[INFO] Adding Hyprland PPA (cpiber/hyprland)...\n" | tee -a "$LOG"
-sudo add-apt-repository -y ppa:cpiber/hyprland | tee -a "$LOG"
+printf "[INFO] Adding Hyprland PPA (cppiber/hyprland)...\n" | tee -a "$LOG"
+sudo add-apt-repository -y ppa:cppiber/hyprland | tee -a "$LOG"
 
 printf "[INFO] Running apt update after adding PPA...\n" | tee -a "$LOG"
 sudo apt update | tee -a "$LOG"

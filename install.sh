@@ -30,7 +30,7 @@ print_color $WARNING "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
                  - KooL's UBUNTU 24.04 - 
                Hyprland installed from PPA 
-           https://github.com/cpiber/hyprland-ppa   
+           https://github.com/cppiber/hyprland-ppa   
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
     Hyprland version should be current as of the time of this install 

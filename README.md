@@ -26,7 +26,7 @@
 ### Update:
 
 - We are now using a PPA to get current Hyprland Packages
-- https://github.com/cpiber/hyprland-ppa
+- https://github.com/cppiber/hyprland-ppa
 - Install times are much shorter
 - Updates to Hyprland will come during normal updates
 - The current Jak dotfiles are compatible with this release

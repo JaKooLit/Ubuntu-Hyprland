@@ -3,7 +3,7 @@
 ## October 2025
 
 - Moved to PPA to install current Hyprland version
-- https://github.com/cpiber/hyprland-ppa
+- https://github.com/cppiber/hyprland-ppa
 - Current Hyprland Dotfiles are now supported
 
 ## 20 March 2025
