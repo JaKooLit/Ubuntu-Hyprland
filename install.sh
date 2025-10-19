@@ -28,12 +28,12 @@ print_color() {
 printf "\n%.0s" {1..2}
 print_color $WARNING "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-            KooL's UBUNTU 25.10+ - Hyprland v0.51.1              
+                KooL's UBUNTU 25.10+ - Hyprland               
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
     This script will install Hyprland 0.51.1 from a PPA
      - https://github.com/cpiber/hyprland-ppa - 
-    This is only supported on ubuntu /25.10 or greater! 
+    This is only supported on ubuntu 25.10 or greater! 
     If you are not at that level do NOT continue!
          
 "
@@ -242,14 +242,14 @@ fi
 
 # Add the remaining static options
 options_command+=(
-    "gtk_themes" "Install GTK themes (required for Dark/Light function)" "OFF"
-    "bluetooth" "Do you want script to configure Bluetooth?" "OFF"
-    "thunar" "Do you want Thunar file manager to be installed?" "OFF"
-    "ags" "Install AGS v1 for Desktop-Like Overview" "OFF"
-    "zsh" "Install zsh shell with Oh-My-Zsh?" "OFF"
-    "pokemon" "Add Pokemon color scripts to your terminal?" "OFF"
+    "GTK Themes" "Install GTK themes (required for Dark/Light function)" "OFF"
+    "Bluetooth" "Do you want script to configure Bluetooth?" "OFF"
+    "Thunar" "Do you want Thunar file manager to be installed?" "OFF"
+    "Overview" "Install AGS v1 for Desktop-Like Overview" "OFF"
+    "ZSH" "Install zsh shell with Oh-My-Zsh?" "OFF"
+    "Pokemon" "Add Pokemon color scripts to your terminal?" "OFF"
     "ROG-Laptop" "Are you installing on Asus ROG laptops?" "OFF"
-    "Hyprland Config" "Download and install pre-configured KooL Hyprland dotfiles?" "OFF"
+    "Hyprland Cfg" "Install KooL's Hyprland dotfiles?" "OFF"
 )
 
 # Capture the selected options before the while loop starts
