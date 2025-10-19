@@ -25,8 +25,7 @@ Distro_DIR="$HOME/$Distro-$Github_URL_Branch"
 
 printf "\n%.0s" {1..1}
 
-if ! command -v git &> /dev/null
-then
+if ! command -v git &>/dev/null; then
     echo "${INFO} Git not found! ${SKY_BLUE}Installing Git...${RESET}"
     if ! sudo apt install -y git; then
         echo "${ERROR} Failed to install Git. Exiting."

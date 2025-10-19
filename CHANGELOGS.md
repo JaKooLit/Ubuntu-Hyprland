@@ -1,17 +1,16 @@
 ## CHANGELOGS
 
+## Oct 2025
+
+- Added PPA to install Hyprland from packages
+- https://github.com/cpiber/hyprland-ppa
+- No more building from source - but it remains a fallback option
+- Updated Hyprland packages should not be installed during normal updates
+
 ## Sep 2025
 
 - New life for ubuntu 25.10+
 - For Ubuntu 25.10+ we can build Hyprland from source
-
-## 08 Aug 2025
-
-- End of Support
-
-## 21 June 2025
-
-- Added a warning message that support is now very limited
 
 ## 08 June 2025
 
