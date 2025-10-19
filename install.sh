@@ -311,6 +311,10 @@ printf "\n%.0s" {1..1}
 echo "${INFO} Running a ${SKY_BLUE}full system update...${RESET}" | tee -a "$LOG"
 sudo apt update
 
+# Add Hyprland PPA and install Hyprland stack early (ensures newer versions like Waybar)
+export HYPR_USE_PPA=1
+execute_script "hyprland-ppa.sh"
+
 echo "${INFO} Installing ${SKY_BLUE}necessary dependencies...${RESET}" | tee -a "$LOG"
 sleep 1
 execute_script "00-dependencies.sh" | tee -a "$LOG"
@@ -319,15 +323,10 @@ echo "${INFO} Installing ${SKY_BLUE}necessary fonts...${RESET}" | tee -a "$LOG"
 sleep 1
 execute_script "fonts.sh"
 
-echo "${INFO} Installing ${SKY_BLUE}KooL Hyprland packages...${RESET}" | tee -a "$LOG"
+echo "${INFO} Installing ${SKY_BLUE}KooL Hyprland packages (via PPA)...${RESET}" | tee -a "$LOG"
 sleep 1
+# Install remaining desktop packages from Ubuntu repos/PPAs
 execute_script "01-hypr-pkgs.sh"
-sleep 1
-execute_script "hyprlang.sh"
-sleep 1
-execute_script "hyprcursor.sh"
-sleep 1
-execute_script "hyprland.sh"
 sleep 1
 execute_script "wallust.sh"
 sleep 1
