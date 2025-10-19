@@ -14,15 +14,12 @@ packages=(
   hyprland
 )
 
-# Local packages that should be in /usr/local/bin/
+# Binaries expected to be available (installed via PPA into /usr/bin)
 local_pkgs_installed=(
-  rofi
   hypridle
   hyprlock
-  wallust 
-)
-
-local_pkgs_installed_2=(
+  rofi
+  wallust
   swww
 )
 
@@ -70,22 +67,15 @@ for pkg in "${packages[@]}"; do
     fi
 done
 
-# Check for local packages
+# Check required binaries via PATH
 for pkg1 in "${local_pkgs_installed[@]}"; do
-    if ! [ -f "/usr/local/bin/$pkg1" ]; then
+    if ! command -v "$pkg1" >/dev/null 2>&1; then
         local_missing+=("$pkg1")
     fi
 done
 
-# Check for local packages in /usr/bin
-for pkg2 in "${local_pkgs_installed_2[@]}"; do
-    if ! [ -f "/usr/bin/$pkg2" ]; then
-        local_missing_2+=("$pkg2")
-    fi
-done
-
 # Log missing packages
-if [ ${#missing[@]} -eq 0 ] && [ ${#local_missing[@]} -eq 0 ] && [ ${#local_missing_2[@]} -eq 0 ]; then
+if [ ${#missing[@]} -eq 0 ] && [ ${#local_missing[@]} -eq 0 ]; then
     echo "${OK} GREAT! All ${YELLOW}essential packages${RESET} have been successfully installed." | tee -a "$LOG"
 else
     if [ ${#missing[@]} -ne 0 ]; then
@@ -97,18 +87,10 @@ else
     fi
 
     if [ ${#local_missing[@]} -ne 0 ]; then
-        echo "${WARN} The following local packages are missing from /usr/local/bin/ and will be logged:"
+        echo "${WARN} The following binaries are missing from PATH and will be logged:"
         for pkg1 in "${local_missing[@]}"; do
-            echo "$pkg1 is not installed. can't find it in /usr/local/bin/"
+            echo "$pkg1 (not found in PATH)"
             echo "$pkg1" >> "$LOG" # Log the missing local package to the file
-        done
-    fi
-
-    if [ ${#local_missing_2[@]} -ne 0 ]; then
-        echo "${WARN} The following local packages are missing from /usr/bin/ and will be logged:"
-        for pkg2 in "${local_missing_2[@]}"; do
-            echo "$pkg2 is not installed. can't find it in /usr/bin/"
-            echo "$pkg2" >> "$LOG" # Log the missing local package to the file
         done
     fi
 

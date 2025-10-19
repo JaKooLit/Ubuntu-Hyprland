@@ -5,8 +5,8 @@
 
 # Ensure Universe repo is enabled (needed for some -dev packages)
 if command -v add-apt-repository >/dev/null 2>&1; then
-  sudo add-apt-repository -y universe || true
-  sudo apt update || true
+    sudo add-apt-repository -y universe || true
+    sudo apt update || true
 fi
 
 # packages neeeded
@@ -66,6 +66,7 @@ dependencies=(
     libxcursor-dev
     meson
     ninja-build
+    nm-tray
     openssl
     psmisc
     python3-mako
@@ -105,20 +106,23 @@ hyprland_dep=(
 )
 
 build_dep=(
-  wlroots
+    wlroots
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Change the working directory to the parent directory of the script
 PARENT_DIR="$SCRIPT_DIR/.."
-cd "$PARENT_DIR" || { echo "${ERROR} Failed to change directory to $PARENT_DIR"; exit 1; }
+cd "$PARENT_DIR" || {
+    echo "${ERROR} Failed to change directory to $PARENT_DIR"
+    exit 1
+}
 
 # Source the global functions script
 if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
-  echo "Failed to source Global_functions.sh"
-  exit 1
+    echo "Failed to source Global_functions.sh"
+    exit 1
 fi
 
 # Set the name of the log file to include the current date and time
@@ -127,24 +131,24 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_dependencies.log"
 # Proactively remove conflicting distro dev packages when using source-built libs
 # (avoid overshadowing /usr/local hyprutils/hyprlang)
 conflicts=(
-  libhyprutils-dev
-  libhyprlang-dev
+    libhyprutils-dev
+    libhyprlang-dev
 )
 for PKG in "${conflicts[@]}"; do
-  uninstall_package "$PKG" 2>&1 | tee -a "$LOG" || true
+    uninstall_package "$PKG" 2>&1 | tee -a "$LOG" || true
 done
 
 # Installation of main dependencies
 printf "\n%s - Installing ${SKY_BLUE}main dependencies....${RESET} \n" "${NOTE}"
 
 for PKG1 in "${dependencies[@]}" "${hyprland_dep[@]}"; do
-  install_package "$PKG1" "$LOG"
+    install_package "$PKG1" "$LOG"
 done
 
 printf "\n%.0s" {1..1}
 
 for PKG1 in "${build_dep[@]}"; do
-  build_dep "$PKG1" "$LOG"
+    build_dep "$PKG1" "$LOG"
 done
 
 printf "\n%.0s" {1..2}
