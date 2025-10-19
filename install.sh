@@ -444,8 +444,8 @@ execute_script "03-Final-Check.sh"
 
 printf "\n%.0s" {1..1}
 
-# Check if either hyprland or Hyprland files exist in /usr/local/bin/
-if [ -e /usr/local/bin/hyprland ] || [ -f /usr/local/bin/Hyprland ]; then
+# Check if Hyprland is installed via PATH or dpkg (covers PPA installs)
+if command -v hyprland >/dev/null 2>&1 || dpkg -l | grep -q "^ii  hyprland "; then
     printf "\n ${OK} 👌 Hyprland is installed. However, some essential packages may not be installed. Please see above!"
     printf "\n${CAT} Ignore this message if it states ${YELLOW}All essential packages${RESET} are installed as per above\n"
     sleep 2
@@ -480,7 +480,7 @@ if [ -e /usr/local/bin/hyprland ] || [ -f /usr/local/bin/Hyprland ]; then
         fi
     done
 else
-    # Print error message if neither package is installed
+    # Print error message if Hyprland not found
     printf "\n${WARN} Hyprland is NOT installed. Please check 00_CHECK-time_installed.log and other files in the Install-Logs/ directory..."
     printf "\n%.0s" {1..3}
     exit 1

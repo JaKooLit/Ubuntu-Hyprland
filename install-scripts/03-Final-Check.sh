@@ -13,18 +13,15 @@ packages=(
   kitty
 )
 
-# Local packages that should be in /usr/local/bin/
-local_pkgs_installed=(
-  rofi
-  nwg-displays
+# Commands that should be available in PATH (regardless of /usr/bin or /usr/local/bin)
+path_cmds=(
+  hyprland
   hypridle
   hyprlock
-  wallust
-  hyprland 
-)
-
-local_pkgs_installed_2=(
   swww
+  rofi
+  wallust
+  nwg-displays
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -46,8 +43,7 @@ LOG="Install-Logs/00_CHECK-$(date +%d-%H%M%S)_installed.log"
 printf "\n%s - Final Check if Essential packages were installed \n" "${NOTE}"
 # Initialize an empty array to hold missing packages
 missing=()
-local_missing=()
-local_missing_2=()
+path_missing=()
 
 # Function to check if a package is installed using dpkg
 is_installed_dpkg() {
@@ -62,22 +58,15 @@ for pkg in "${packages[@]}"; do
     fi
 done
 
-# Check for local packages
-for pkg1 in "${local_pkgs_installed[@]}"; do
-    if ! [ -f "/usr/local/bin/$pkg1" ]; then
-        local_missing+=("$pkg1")
-    fi
-done
-
-# Check for local packages in /usr/bin
-for pkg2 in "${local_pkgs_installed_2[@]}"; do
-    if ! [ -f "/usr/bin/$pkg2" ]; then
-        local_missing_2+=("$pkg2")
+# Check that commands are available in PATH (covers both /usr/bin and /usr/local/bin)
+for cmd in "${path_cmds[@]}"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        path_missing+=("$cmd")
     fi
 done
 
 # Log missing packages
-if [ ${#missing[@]} -eq 0 ] && [ ${#local_missing[@]} -eq 0 ] && [ ${#local_missing_2[@]} -eq 0 ]; then
+if [ ${#missing[@]} -eq 0 ] && [ ${#path_missing[@]} -eq 0 ]; then
     echo "${OK} GREAT! All ${YELLOW}essential packages${RESET} have been successfully installed." | tee -a "$LOG"
 else
     if [ ${#missing[@]} -ne 0 ]; then
@@ -88,19 +77,11 @@ else
         done
     fi
 
-    if [ ${#local_missing[@]} -ne 0 ]; then
-        echo "${WARN} The following local packages are missing from /usr/local/bin/ and will be logged:"
-        for pkg1 in "${local_missing[@]}"; do
-            echo "$pkg1 is not installed. can't find it in /usr/local/bin/"
-            echo "$pkg1" >> "$LOG" # Log the missing local package to the file
-        done
-    fi
-
-    if [ ${#local_missing_2[@]} -ne 0 ]; then
-        echo "${WARN} The following local packages are missing from /usr/bin/ and will be logged:"
-        for pkg2 in "${local_missing_2[@]}"; do
-            echo "$pkg2 is not installed. can't find it in /usr/bin/"
-            echo "$pkg2" >> "$LOG" # Log the missing local package to the file
+    if [ ${#path_missing[@]} -ne 0 ]; then
+        echo "${WARN} The following commands are missing from PATH and will be logged:"
+        for cmd in "${path_missing[@]}"; do
+            echo "$cmd is not installed or not in PATH"
+            echo "$cmd" >> "$LOG" # Log the missing command to the file
         done
     fi
 
