@@ -26,7 +26,7 @@ print_color() {
 
 # Warning: End of Life Support
 printf "\n%.0s" {1..2}
-print_color $WARNING "
+print_color $BLUE "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
                  - KooL's UBUNTU 24.04 - 
                Hyprland installed from PPA 
@@ -39,7 +39,7 @@ print_color $WARNING "
 printf "\n%.0s" {1..2}
 
 # Prompt user to continue or exit
-read -rp "$YELLOW Do you still want to continue with Hyprland installation using this script? [y/N]: " confirm
+read -rp "$YELLOW Continue with Hyprland installation?  [y/N]: " confirm
 case "$confirm" in
 [yY][eE][sS] | [yY])
     echo -e "${OK} Continuing with installation..."
