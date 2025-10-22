@@ -28,6 +28,17 @@ fi
 info "Running apt update"
 sudo apt update 2>&1 | tee -a "$LOG"
 
+# Remove conflicting Ubuntu package if present (overlaps /usr/bin/hyprcursor-util)
+if dpkg -l | grep -q '^ii  hyprcursor-util '; then
+  info "Removing conflicting hyprcursor-util (Ubuntu repo) to allow libhyprcursor1 from PPA"
+  sudo apt -y purge hyprcursor-util 2>&1 | tee -a "$LOG" || true
+  sudo apt -y autoremove 2>&1 | tee -a "$LOG" || true
+fi
+
+# Ensure APT is not in a broken state before proceeding
+sudo dpkg --configure -a 2>/dev/null | tee -a "$LOG" || true
+sudo apt --fix-broken install -y 2>&1 | tee -a "$LOG" || true
+
 # Install hyprland first to satisfy dependencies cleanly
 if apt-cache policy hyprland | grep -q "Candidate: \\S"; then
   info "Installing/Upgrading hyprland from apt"
