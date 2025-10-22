@@ -92,7 +92,7 @@ dependencies=(
     xwayland
 )
 
-# hyprland dependencies
+# hyprland dependencies (runtime libs only; do NOT install hyprcursor-util to avoid conflicts with PPA's libhyprcursor1)
 hyprland_dep=(
     bc
     binutils
@@ -102,7 +102,6 @@ hyprland_dep=(
     libdrm2
     libhyprcursor-dev
     libpam0g-dev
-    hyprcursor-util
 )
 
 build_dep=(
@@ -137,6 +136,13 @@ conflicts=(
 for PKG in "${conflicts[@]}"; do
     uninstall_package "$PKG" 2>&1 | tee -a "$LOG" || true
 done
+
+# Proactively remove conflicting Ubuntu package if present (overlaps /usr/bin/hyprcursor-util)
+if dpkg -l | grep -q '^ii  hyprcursor-util '; then
+    echo "${INFO} Removing conflicting hyprcursor-util (Ubuntu repo) to allow libhyprcursor1 from PPA" | tee -a "$LOG"
+    sudo apt -y purge hyprcursor-util 2>&1 | tee -a "$LOG" || true
+    sudo apt -y autoremove 2>&1 | tee -a "$LOG" || true
+fi
 
 # Installation of main dependencies
 printf "\n%s - Installing ${SKY_BLUE}main dependencies....${RESET} \n" "${NOTE}"
