@@ -5,6 +5,7 @@
 - Moved to PPA to install current Hyprland version
 - https://github.com/cppiber/hyprland-ppa
 - Current Hyprland Dotfiles are now supported
+- Updated SWWW to v0.11.2
 
 ## 20 March 2025
 
