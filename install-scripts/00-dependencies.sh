@@ -92,7 +92,7 @@ dependencies=(
     xwayland
 )
 
-# hyprland dependencies (runtime libs only; do NOT install hyprcursor-util to avoid conflicts with PPA's libhyprcursor1)
+# hyprland dependencies (runtime libs only; do NOT install hyprcursor-util or libhyprcursor-dev to avoid conflicts with PPA's libhyprcursor1)
 hyprland_dep=(
     bc
     binutils
@@ -100,7 +100,6 @@ hyprland_dep=(
     libcairo2
     libdisplay-info2
     libdrm2
-    libhyprcursor-dev
     libpam0g-dev
 )
 
