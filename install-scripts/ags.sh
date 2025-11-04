@@ -124,7 +124,7 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
       # 3) Inject GI_TYPELIB_PATH export right after the GLib import (once)
       if ! sudo grep -q 'GLib.setenv("GI_TYPELIB_PATH"' "$target"; then
         TMPF=$(sudo mktemp)
-        sudo awk '{print} $0 ~ /^import GLib from "gi:\/\/GLib";$/ {print "const __old = GLib.getenv(\"GI_TYPELIB_PATH\");"; print "GLib.setenv(\"GI_TYPELIB_PATH\", \"/usr/local/lib64/girepository-1.0:/usr/local/lib/girepository-1.0\" + (__old ? \":\" + __old : \"\"), true);"; print "const __oldld = GLib.getenv(\"LD_LIBRARY_PATH\");"; print "GLib.setenv(\"LD_LIBRARY_PATH\", \"/usr/local/lib64:/usr/local/lib\" + (__oldld ? \":\" + __oldld : \"\"), true);"}' "$target" | sudo tee "$TMPF" >/dev/null
+        sudo awk '{print} $0 ~ /^import GLib from "gi:\/\/GLib";$/ {print "const __old = GLib.getenv(\"GI_TYPELIB_PATH\");"; print "GLib.setenv(\"GI_TYPELIB_PATH\", \"/usr/local/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/local/lib:/usr/local/lib64/girepository-1.0:/usr/local/lib/girepository-1.0:/usr/local/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/girepository-1.0:/usr/lib/ags:/usr/local/lib/ags:/usr/lib64/ags\" + (__old ? \":\" + __old : \"\"), true);"; print "const __oldld = GLib.getenv(\"LD_LIBRARY_PATH\");"; print "GLib.setenv(\"LD_LIBRARY_PATH\", \"/usr/local/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/local/lib\" + (__oldld ? \":\" + __oldld : \"\"), true);"}' "$target" | sudo tee "$TMPF" >/dev/null
         sudo mv "$TMPF" "$target"
       fi
 
@@ -171,8 +171,8 @@ if [ ! -f "$MAIN_JS" ]; then
   exit 1
 fi
 # Ensure GI typelibs and native libs are discoverable before gjs ESM loads
-export GI_TYPELIB_PATH="/usr/local/lib64:/usr/local/lib:/usr/local/lib64/girepository-1.0:/usr/local/lib/girepository-1.0:/usr/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/girepository-1.0:/usr/lib64/girepository-1.0:/usr/lib64/ags:${GI_TYPELIB_PATH-}"
-export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH-}"
+export GI_TYPELIB_PATH="/usr/local/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/local/lib:/usr/local/lib64/girepository-1.0:/usr/local/lib/girepository-1.0:/usr/local/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/girepository-1.0:/usr/lib64/girepository-1.0:/usr/lib/ags:/usr/local/lib/ags:/usr/lib64/ags:${GI_TYPELIB_PATH-}"
+export LD_LIBRARY_PATH="/usr/local/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH-}"
 exec /usr/bin/gjs -m "$MAIN_JS" -- "$@"
 WRAP
     sudo chmod 0755 /usr/local/bin/ags
