@@ -8,12 +8,20 @@ ags=(
     meson 
     libgjs-dev 
     gjs 
+    gobject-introspection
+    libgirepository1.0-dev
+    gir1.2-gtk-4.0
+    gir1.2-gtklayershell-0.1
     libgtk-layer-shell-dev 
     libgtk-3-dev
+    libadwaita-1-dev
     libpam0g-dev 
     libpulse-dev 
     libdbusmenu-gtk3-dev 
     libsoup-3.0-dev
+    ninja-build
+    build-essential
+    pkg-config
 )
 
 f_ags=(
@@ -46,11 +54,20 @@ MLOG="install-$(date +%d-%H%M%S)_ags2.log"
 
 # Check if AGS is installed
 if command -v ags &>/dev/null; then
-    AGS_VERSION=$(ags -v | awk '{print $NF}') 
+    AGS_VERSION=$(ags -v | awk '{print $NF}')
     if [[ "$AGS_VERSION" == "1.9.0" ]]; then
-        printf "${INFO} ${MAGENTA}Aylur's GTK Shell v1.9.0${RESET} is already installed. Skipping installation."
-        printf "\n%.0s" {1..2}
-        exit 0
+        printf "${INFO} ${MAGENTA}Aylur's GTK Shell v1.9.0${RESET} is already installed.\n"
+        read -r -p "Reinstall v1.9.0 anyway? [y/N]: " REPLY
+        case "$REPLY" in
+          [yY]|[yY][eE][sS])
+            printf "${NOTE} Reinstalling Aylur's GTK Shell v1.9.0...\n"
+            ;;
+          *)
+            printf "Skipping reinstallation.\n"
+            printf "\n%.0s" {1..2}
+            exit 0
+            ;;
+        esac
     fi
 fi
 
@@ -78,11 +95,13 @@ sudo npm install --global typescript 2>&1 | tee -a "$LOG"
 # ags v1
 printf "${NOTE} Install and Compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}..\n"
 
-# Check if directory exists and remove it
-if [ -d "ags" ]; then
-    printf "${NOTE} Removing existing ags directory...\n"
-    rm -rf "ags"
-fi
+# Remove previous sources (both legacy "ags" and tagged "ags_v1.9.0")
+for SRC_DIR in "ags" "ags_v1.9.0"; do
+    if [ -d "$SRC_DIR" ]; then
+        printf "${NOTE} Removing existing %s directory...\\n" "$SRC_DIR"
+        rm -rf "$SRC_DIR"
+    fi
+done
 
 printf "\n%.0s" {1..1}
 printf "${INFO} Kindly Standby...cloning and compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}...\n"
@@ -94,6 +113,92 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
     meson setup build
    if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
     printf "\n${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+
+    # Patch installed AGS launchers to ensure GI typelibs in /usr/local/lib are discoverable in GJS ESM
+    printf "${NOTE} Applying AGS launcher patch for GI typelibs search path...\n"
+
+    patch_ags_launcher() {
+      local target="$1"
+      if ! sudo test -f "$target"; then
+        return 1
+      fi
+
+      # 1) Remove deprecated GIR Repository path tweaks and GIRepository import (harmless if absent)
+      sudo sed -i \
+        -e '/Repository\.prepend_search_path/d' \
+        -e '/Repository\.prepend_library_path/d' \
+        -e '/gi:\/\/GIRepository/d' \
+        "$target"
+
+      # 2) Ensure GLib import exists (insert after first import line, or at top if none)
+      if ! sudo grep -q '^import GLib from "gi://GLib";' "$target"; then
+        TMPF=$(sudo mktemp)
+        sudo awk 'BEGIN{added=0} {
+          if (!added && $0 ~ /^import /) { print; print "import GLib from \"gi://GLib\";"; added=1; next }
+          print
+        } END { if (!added) print "import GLib from \"gi://GLib\";" }' "$target" | sudo tee "$TMPF" >/dev/null
+        sudo mv "$TMPF" "$target"
+      fi
+
+      # 3) Inject GI_TYPELIB_PATH export right after the GLib import (once)
+      if ! sudo grep -q 'GLib.setenv("GI_TYPELIB_PATH"' "$target"; then
+        TMPF=$(sudo mktemp)
+        sudo awk '{print} $0 ~ /^import GLib from "gi:\/\/GLib";$/ {print "const __old = GLib.getenv(\"GI_TYPELIB_PATH\");"; print "GLib.setenv(\"GI_TYPELIB_PATH\", \"/usr/local/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/local/lib:/usr/local/lib64/girepository-1.0:/usr/local/lib/girepository-1.0:/usr/local/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/girepository-1.0:/usr/lib/ags:/usr/local/lib/ags:/usr/lib64/ags\" + (__old ? \":\" + __old : \"\"), true);"; print "const __oldld = GLib.getenv(\"LD_LIBRARY_PATH\");"; print "GLib.setenv(\"LD_LIBRARY_PATH\", \"/usr/local/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/local/lib\" + (__oldld ? \":\" + __oldld : \"\"), true);"}' "$target" | sudo tee "$TMPF" >/dev/null
+        sudo mv "$TMPF" "$target"
+      fi
+
+      # 4) Ensure LD_LIBRARY_PATH export exists even if GI_TYPELIB_PATH was already present
+      if ! sudo grep -q 'GLib.setenv("LD_LIBRARY_PATH"' "$target"; then
+        TMPF=$(sudo mktemp)
+        sudo awk '{print} $0 ~ /^import GLib from "gi:\/\/GLib";$/ {print "const __oldld = GLib.getenv(\"LD_LIBRARY_PATH\");"; print "GLib.setenv(\"LD_LIBRARY_PATH\", \"/usr/local/lib64:/usr/local/lib\" + (__oldld ? \":\" + __oldld : \"\"), true);"}' "$target" | sudo tee "$TMPF" >/dev/null
+        sudo mv "$TMPF" "$target"
+      fi
+
+      # Restore executable bit for bin wrappers (mv from mktemp resets mode to 0600)
+      case "$target" in
+        */bin/ags)
+          sudo chmod 0755 "$target" || true
+          ;;
+      esac
+
+      printf "${OK} Patched: %s\n" "$target"
+      return 0
+    }
+
+    # Try common locations
+    for CAND in \
+      "/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags" \
+      "/usr/share/com.github.Aylur.ags/com.github.Aylur.ags" \
+      "/usr/local/bin/ags" \
+      "/usr/bin/ags"; do
+      patch_ags_launcher "$CAND" || true
+    done
+
+    # Create an env-setting wrapper for AGS to ensure GI typelibs/libs are discoverable
+    printf "${NOTE} Creating env wrapper /usr/local/bin/ags...\n"
+    sudo tee /usr/local/bin/ags >/dev/null <<'WRAP'
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$HOME" 2>/dev/null || true
+# Locate AGS ESM entry
+MAIN_JS="/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags"
+if [ ! -f "$MAIN_JS" ]; then
+  MAIN_JS="/usr/share/com.github.Aylur.ags/com.github.Aylur.ags"
+fi
+if [ ! -f "$MAIN_JS" ]; then
+  echo "Unable to find AGS entry script (com.github.Aylur.ags) in /usr/local/share or /usr/share" >&2
+  exit 1
+fi
+# Ensure GI typelibs and native libs are discoverable before gjs ESM loads
+export GI_TYPELIB_PATH="/usr/local/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/local/lib:/usr/local/lib64/girepository-1.0:/usr/local/lib/girepository-1.0:/usr/local/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/girepository-1.0:/usr/lib64/girepository-1.0:/usr/lib/ags:/usr/local/lib/ags:/usr/lib64/ags:${GI_TYPELIB_PATH-}"
+export LD_LIBRARY_PATH="/usr/local/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH-}"
+exec /usr/bin/gjs -m "$MAIN_JS" "$@"
+WRAP
+    sudo chmod 0755 /usr/local/bin/ags
+    # Ensure ESM entry is readable by gjs
+    sudo chmod 0644 /usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags 2>/dev/null || true
+    sudo chmod 0644 /usr/share/com.github.Aylur.ags/com.github.Aylur.ags 2>/dev/null || true
+    printf "${OK} AGS wrapper installed at /usr/local/bin/ags\n"
   else
     echo -e "\n${ERROR} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Installation failed\n " 2>&1 | tee -a "$MLOG"
    fi
