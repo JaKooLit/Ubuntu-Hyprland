@@ -8,12 +8,20 @@ ags=(
     meson 
     libgjs-dev 
     gjs 
+    gobject-introspection
+    libgirepository1.0-dev
+    gir1.2-gtk-4.0
+    gir1.2-gtklayershell-0.1
     libgtk-layer-shell-dev 
     libgtk-3-dev
+    libadwaita-1-dev
     libpam0g-dev 
     libpulse-dev 
     libdbusmenu-gtk3-dev 
     libsoup-3.0-dev
+    ninja-build
+    build-essential
+    pkg-config
 )
 
 f_ags=(
