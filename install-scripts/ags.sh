@@ -46,11 +46,20 @@ MLOG="install-$(date +%d-%H%M%S)_ags2.log"
 
 # Check if AGS is installed
 if command -v ags &>/dev/null; then
-    AGS_VERSION=$(ags -v | awk '{print $NF}') 
+    AGS_VERSION=$(ags -v | awk '{print $NF}')
     if [[ "$AGS_VERSION" == "1.9.0" ]]; then
-        printf "${INFO} ${MAGENTA}Aylur's GTK Shell v1.9.0${RESET} is already installed. Skipping installation."
-        printf "\n%.0s" {1..2}
-        exit 0
+        printf "${INFO} ${MAGENTA}Aylur's GTK Shell v1.9.0${RESET} is already installed.\n"
+        read -r -p "Reinstall v1.9.0 anyway? [y/N]: " REPLY
+        case "$REPLY" in
+          [yY]|[yY][eE][sS])
+            printf "${NOTE} Reinstalling Aylur's GTK Shell v1.9.0...\n"
+            ;;
+          *)
+            printf "Skipping reinstallation.\n"
+            printf "\n%.0s" {1..2}
+            exit 0
+            ;;
+        esac
     fi
 fi
 
@@ -173,7 +182,7 @@ fi
 # Ensure GI typelibs and native libs are discoverable before gjs ESM loads
 export GI_TYPELIB_PATH="/usr/local/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/local/lib:/usr/local/lib64/girepository-1.0:/usr/local/lib/girepository-1.0:/usr/local/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/girepository-1.0:/usr/lib64/girepository-1.0:/usr/lib/ags:/usr/local/lib/ags:/usr/lib64/ags:${GI_TYPELIB_PATH-}"
 export LD_LIBRARY_PATH="/usr/local/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH-}"
-exec /usr/bin/gjs -m "$MAIN_JS" -- "$@"
+exec /usr/bin/gjs -m "$MAIN_JS" "$@"
 WRAP
     sudo chmod 0755 /usr/local/bin/ags
     # Ensure ESM entry is readable by gjs
