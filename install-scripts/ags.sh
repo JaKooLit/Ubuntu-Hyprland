@@ -95,11 +95,13 @@ sudo npm install --global typescript 2>&1 | tee -a "$LOG"
 # ags v1
 printf "${NOTE} Install and Compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}..\n"
 
-# Check if directory exists and remove it
-if [ -d "ags" ]; then
-    printf "${NOTE} Removing existing ags directory...\n"
-    rm -rf "ags"
-fi
+# Remove previous sources (both legacy "ags" and tagged "ags_v1.9.0")
+for SRC_DIR in "ags" "ags_v1.9.0"; do
+    if [ -d "$SRC_DIR" ]; then
+        printf "${NOTE} Removing existing %s directory...\\n" "$SRC_DIR"
+        rm -rf "$SRC_DIR"
+    fi
+done
 
 printf "\n%.0s" {1..1}
 printf "${INFO} Kindly Standby...cloning and compiling ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET}...\n"
