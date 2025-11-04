@@ -157,14 +157,19 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
 
     # Create an env-setting wrapper for AGS to ensure GI typelibs/libs are discoverable
     printf "${NOTE} Creating env wrapper /usr/local/bin/ags...\n"
-    MAIN_JS="/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags"
-    if ! sudo test -f "$MAIN_JS"; then
-      MAIN_JS="/usr/share/com.github.Aylur.ags/com.github.Aylur.ags"
-    fi
     sudo tee /usr/local/bin/ags >/dev/null <<'WRAP'
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$HOME" 2>/dev/null || true
+# Locate AGS ESM entry
+MAIN_JS="/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags"
+if [ ! -f "$MAIN_JS" ]; then
+  MAIN_JS="/usr/share/com.github.Aylur.ags/com.github.Aylur.ags"
+fi
+if [ ! -f "$MAIN_JS" ]; then
+  echo "Unable to find AGS entry script (com.github.Aylur.ags) in /usr/local/share or /usr/share" >&2
+  exit 1
+fi
 # Ensure GI typelibs and native libs are discoverable before gjs ESM loads
 export GI_TYPELIB_PATH="/usr/local/lib64:/usr/local/lib:/usr/local/lib64/girepository-1.0:/usr/local/lib/girepository-1.0:/usr/lib/x86_64-linux-gnu/girepository-1.0:/usr/lib/girepository-1.0:/usr/lib64/girepository-1.0:/usr/lib64/ags:${GI_TYPELIB_PATH-}"
 export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH-}"
