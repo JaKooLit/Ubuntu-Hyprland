@@ -37,7 +37,8 @@ print_color $BLUE "
     
 "
 printf "\n%.0s" {1..2}
-
+#Tell user that it uses open source drivers
+echo -e "${NOTE}NOTE:If you chose to config nvida drivers we will install open source drivers..."
 # Prompt user to continue or exit
 read -rp "$YELLOW Continue with Hyprland installation?  [y/N]: " confirm
 case "$confirm" in
