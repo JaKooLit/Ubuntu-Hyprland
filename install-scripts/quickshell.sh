@@ -54,6 +54,7 @@ DEPS=(
     qt6-shadertools-dev
     qt6-tools-dev
     qt6-tools-dev-tools
+    qt6-declarative-private-dev
     # Wayland + protocols
     libwayland-dev
     wayland-protocols
