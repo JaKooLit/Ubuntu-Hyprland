@@ -53,6 +53,8 @@ DEPS=(
   libpolkit-gobject-1-dev
   # X11 (optional but harmless)
   libxcb1-dev
+  # Third-party libs used by Quickshell
+  cli11
   # SVG support (package name differs across releases; try both)
   qt6-svg-dev
   libqt6svg6-dev
