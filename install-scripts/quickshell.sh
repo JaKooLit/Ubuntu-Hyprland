@@ -29,7 +29,7 @@ note() { echo -e "${NOTE} $*" | tee -a "$LOG"; }
 info() { echo -e "${INFO} $*" | tee -a "$LOG"; }
 
 # Build-time and runtime deps per upstream BUILD.md (Qt 6.6+)
-# Many of these may already be present from 00-dependencies.sh; install_package is idempotent
+# Some may already be present from 00-dependencies.sh
 DEPS=(
   cmake
   ninja-build
@@ -39,7 +39,7 @@ DEPS=(
   qt6-declarative-dev
   qt6-shadertools-dev
   qt6-tools-dev
-  qt6-5compat-dev
+  qt6-tools-dev-tools
   # Wayland + protocols
   libwayland-dev
   wayland-protocols
@@ -53,19 +53,26 @@ DEPS=(
   libpolkit-gobject-1-dev
   # X11 (optional but harmless)
   libxcb1-dev
-  # SVG support recommended by upstream docs
+  # SVG support (package name differs across releases; try both)
   qt6-svg-dev
+  libqt6svg6-dev
 )
 
 printf "\n%s - Installing ${SKY_BLUE}Quickshell build dependencies${RESET}....\n" "${NOTE}"
-for PKG in "${DEPS[@]}"; do
-  install_package "$PKG"
-done
-
-# Ensure ninja is available (ninja-build provides /usr/bin/ninja)
-if ! command -v ninja >/dev/null 2>&1; then
-  install_package ninja-build
+# Single apt transaction for speed and robustness
+sudo apt update 2>&1 | tee -a "$LOG"
+if ! sudo apt install -y "${DEPS[@]}" 2>&1 | tee -a "$LOG"; then
+  echo "${ERROR} apt failed when installing Quickshell build dependencies." | tee -a "$LOG"
+  exit 1
 fi
+
+# Validate critical tools
+for bin in cmake ninja pkg-config; do
+  if ! command -v "$bin" >/dev/null 2>&1; then
+    echo "${ERROR} Required tool '$bin' not found after apt install." | tee -a "$LOG"
+    exit 1
+  fi
+done
 
 # Clone source (prefer upstream forgejo; mirror available at github:quickshell-mirror/quickshell)
 SRC_DIR="quickshell-src"
