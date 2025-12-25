@@ -28,12 +28,11 @@ print_color() {
 printf "\n%.0s" {1..2}
 print_color $WARNING "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-                KooL's UBUNTU 25.10+ - Hyprland               
+                KooL's UBUNTU 26.04 - Hyprland               
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-    This script will install Hyprland 0.51.1 from a PPA
-     - https://github.com/cpiber/hyprland-ppa - 
-    This is only supported on ubuntu 25.10 or greater! 
+    This script will install Hyprland 0.52.2 from ubuntu 
+    This is only supported on ubuntu 26.04 or greater! 
     If you are not at that level do NOT continue!
          
 "
@@ -89,8 +88,8 @@ echo -e "\e[35m
 printf "\n%.0s" {1..1}
 
 # Welcome message using whiptail (for displaying information)
-whiptail --title "KooL Ubuntu 25.10+ - Hyprland (2025) Install Script" \
-    --msgbox "Welcome to KooL Ubuntu 25.10+ - Hyprland (2025) Install Script!!!\n\n\
+whiptail --title "KooL Ubuntu 26.04+ - Hyprland (2025) Install Script" \
+    --msgbox "Welcome to KooL Ubuntu 26.04+ - Hyprland (2025) Install Script!!!\n\n\
 ATTENTION: Run a full system update and Reboot first !!! (Highly Recommended)\n\n\
 NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland may NOT start!" \
     15 80
