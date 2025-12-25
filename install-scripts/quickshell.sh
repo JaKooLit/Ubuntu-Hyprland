@@ -2,7 +2,7 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Quickshell (QtQuick-based shell toolkit) - Ubuntu 26.04 builder
 
-set -e
+set -Eeuo pipefail
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PARENT_DIR="$SCRIPT_DIR/.."
@@ -34,6 +34,7 @@ DEPS=(
   qt6-declarative-dev
   qt6-shadertools-dev
   qt6-tools-dev
+  qt6-5compat-dev
   # Wayland + protocols
   libwayland-dev
   wayland-protocols
@@ -55,6 +56,11 @@ printf "\n%s - Installing ${SKY_BLUE}Quickshell build dependencies${RESET}....\n
 for PKG in "${DEPS[@]}"; do
   install_package "$PKG" 2>&1 | tee -a "$LOG"
 done
+
+# Ensure ninja is available (ninja-build provides /usr/bin/ninja)
+if ! command -v ninja >/dev/null 2>&1; then
+  install_package ninja-build 2>&1 | tee -a "$LOG"
+fi
 
 # Clone source (prefer upstream forgejo; mirror available at github:quickshell-mirror/quickshell)
 SRC_DIR="quickshell-src"
@@ -80,18 +86,31 @@ CMAKE_FLAGS=(
 )
 
 note "Configuring Quickshell (CMake)..."
-cmake "${CMAKE_FLAGS[@]}" 2>&1 | tee -a "$MLOG"
-
-note "Building Quickshell (Ninja)..."
-cmake --build build 2>&1 | tee -a "$MLOG"
-
-note "Installing Quickshell..."
-if sudo cmake --install build 2>&1 | tee -a "$MLOG"; then
-  echo "${OK} Quickshell installed successfully." | tee -a "$MLOG"
-else
-  echo "${ERROR} Quickshell installation failed." | tee -a "$MLOG"
+# Use explicit source/build dirs and preserve cmake exit code with pipefail
+if ! cmake -S . -B build "${CMAKE_FLAGS[@]}" 2>&1 | tee -a "$MLOG"; then
+  echo "${ERROR} CMake configure failed. See log: $MLOG" | tee -a "$LOG"
   exit 1
 fi
+
+# Ensure build files exist before invoking ninja
+if [ ! -f build/build.ninja ]; then
+  echo "${ERROR} build/build.ninja not generated; aborting build." | tee -a "$LOG"
+  exit 1
+fi
+
+note "Building Quickshell (Ninja)..."
+if ! cmake --build build 2>&1 | tee -a "$MLOG"; then
+  echo "${ERROR} Build failed. See log: $MLOG" | tee -a "$LOG"
+  exit 1
+fi
+
+note "Installing Quickshell..."
+if ! sudo cmake --install build 2>&1 | tee -a "$MLOG"; then
+  echo "${ERROR} Installation failed. See log: $MLOG" | tee -a "$LOG"
+  exit 1
+fi
+
+echo "${OK} Quickshell installed successfully." | tee -a "$MLOG"
 
 # Build logs already written to $PARENT_DIR/Install-Logs
 # Keep source directory for reference in case user wants to rebuild later
