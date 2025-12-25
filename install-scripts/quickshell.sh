@@ -93,25 +93,25 @@ done
 
 # Build Google Breakpad from source if pkg-config 'breakpad' is missing
 if ! pkg-config --exists breakpad; then
-    note "Building Google Breakpad from source..."
-    BP_DIR="$PARENT_DIR/.thirdparty/breakpad"
-    rm -rf "$BP_DIR"
-    mkdir -p "$BP_DIR"
-    (
-        set -Eeuo pipefail
-        cd "$BP_DIR"
-        git clone --depth=1 https://chromium.googlesource.com/breakpad/breakpad src 2>&1 | tee -a "$MLOG"
-        cd src
-        # lss is required for Linux builds
-        git clone --depth=1 https://chromium.googlesource.com/linux-syscall-support third_party/lss 2>&1 | tee -a "$MLOG" || true
-        # Autotools bootstrap if needed
-        if [ ! -x ./configure ]; then
-            autoreconf -fi 2>&1 | tee -a "$MLOG"
-        fi
-        ./configure --prefix=/usr/local 2>&1 | tee -a "$MLOG"
-        make -j "$(nproc 2>/dev/null || getconf _NPROCESSORS_ONLN)" 2>&1 | tee -a "$MLOG"
-        sudo make install 2>&1 | tee -a "$MLOG"
-    ) || {
+  note "Building Google Breakpad from source..."
+  BP_DIR="$PARENT_DIR/.thirdparty/breakpad"
+  rm -rf "$BP_DIR"
+  mkdir -p "$BP_DIR"
+  (
+    set -Eeuo pipefail
+    cd "$BP_DIR"
+    # Clone Breakpad into the root of BP_DIR (expected layout: ./src)
+    git clone --depth=1 https://chromium.googlesource.com/breakpad/breakpad . 2>&1 | tee -a "$MLOG"
+    # lss must live at src/third_party/lss relative to Breakpad root
+    git clone --depth=1 https://chromium.googlesource.com/linux-syscall-support src/third_party/lss 2>&1 | tee -a "$MLOG" || true
+    # Autotools bootstrap if needed (at Breakpad root)
+    if [ ! -x ./configure ]; then
+      autoreconf -fi 2>&1 | tee -a "$MLOG"
+    fi
+    ./configure --prefix=/usr/local 2>&1 | tee -a "$MLOG"
+    make -j "$(nproc 2>/dev/null || getconf _NPROCESSORS_ONLN)" 2>&1 | tee -a "$MLOG"
+    sudo make install 2>&1 | tee -a "$MLOG"
+  ) || { echo "${ERROR} Breakpad build failed." | tee -a "$LOG"; exit 1; }
         echo "${ERROR} Breakpad build failed." | tee -a "$LOG"
         exit 1
     }
