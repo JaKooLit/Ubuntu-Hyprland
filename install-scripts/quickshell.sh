@@ -65,6 +65,7 @@ DEPS=(
     libpam0g-dev
     libglib2.0-dev
     libpolkit-gobject-1-dev
+    libpolkit-agent-1-dev
     # X11 (optional but harmless)
     libxcb1-dev
     # SVG support (package name differs across releases; try both)
