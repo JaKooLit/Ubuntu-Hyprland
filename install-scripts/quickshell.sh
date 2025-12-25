@@ -14,6 +14,9 @@ if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
   exit 1
 fi
 
+# Ensure logs dir exists (handles running quickshell standalone)
+[ -d Install-Logs ] || mkdir -p Install-Logs
+
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_quickshell.log"
 MLOG="install-$(date +%d-%H%M%S)_quickshell_build.log"
 
