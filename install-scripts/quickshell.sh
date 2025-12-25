@@ -13,8 +13,8 @@ cd "$PARENT_DIR" || {
 
 # Source the global functions script
 if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
-  echo "Failed to source Global_functions.sh"
-  exit 1
+    echo "Failed to source Global_functions.sh"
+    exit 1
 fi
 
 # Prefer /usr/local for pkg-config and CMake (for locally built libs like Breakpad)
@@ -38,41 +38,40 @@ info() { echo -e "${INFO} $*" | tee -a "$LOG"; }
 # Build-time and runtime deps per upstream BUILD.md (Qt 6.6+)
 # Some may already be present from 00-dependencies.sh
 DEPS=(
-  build-essential
-  git
-  autoconf
-  automake
-  libtool
-  zlib1g-dev
-  libcurl4-openssl-dev
-  cmake
-  ninja-build
-  pkg-config
-  spirv-tools
-  qt6-base-dev
-  qt6-declarative-dev
-  qt6-shadertools-dev
-  qt6-tools-dev
-  qt6-tools-dev-tools
-  # Wayland + protocols
-  libwayland-dev
-  wayland-protocols
-  # Screencopy/GBM/DRM
-  libdrm-dev
-  libgbm-dev
-  # Optional integrations enabled by default
-  libpipewire-0.3-dev
-  libpam0g-dev
-  libglib2.0-dev
-  libpolkit-gobject-1-dev
-  # X11 (optional but harmless)
-  libxcb1-dev
-  # SVG support (package name differs across releases; try both)
-  qt6-svg-dev
-  libqt6svg6-dev
-  # Third-party libs used by Quickshell
-  cli11
-)
+    build-essential
+    git
+    autoconf
+    automake
+    libtool
+    zlib1g-dev
+    libcurl4-openssl-dev
+    cmake
+    ninja-build
+    pkg-config
+    spirv-tools
+    qt6-base-dev
+    qt6-declarative-dev
+    qt6-shadertools-dev
+    qt6-tools-dev
+    qt6-tools-dev-tools
+    # Wayland + protocols
+    libwayland-dev
+    wayland-protocols
+    # Screencopy/GBM/DRM
+    libdrm-dev
+    libgbm-dev
+    # Optional integrations enabled by default
+    libpipewire-0.3-dev
+    libpam0g-dev
+    libglib2.0-dev
+    libpolkit-gobject-1-dev
+    # X11 (optional but harmless)
+    libxcb1-dev
+    # SVG support (package name differs across releases; try both)
+    qt6-svg-dev
+    libqt6svg6-dev
+    # Third-party libs used by Quickshell
+    libcli11-dev
     libqt6svg6-dev
 )
 
@@ -94,34 +93,37 @@ done
 
 # Build Google Breakpad from source if pkg-config 'breakpad' is missing
 if ! pkg-config --exists breakpad; then
-  note "Building Google Breakpad from source..."
-  BP_DIR="$PARENT_DIR/.thirdparty/breakpad"
-  rm -rf "$BP_DIR"
-  mkdir -p "$BP_DIR"
-  (
-    set -Eeuo pipefail
-    cd "$BP_DIR"
-    git clone --depth=1 https://chromium.googlesource.com/breakpad/breakpad src 2>&1 | tee -a "$MLOG"
-    cd src
-    # lss is required for Linux builds
-    git clone --depth=1 https://chromium.googlesource.com/linux-syscall-support third_party/lss 2>&1 | tee -a "$MLOG" || true
-    # Autotools bootstrap if needed
-    if [ ! -x ./configure ]; then
-      autoreconf -fi 2>&1 | tee -a "$MLOG"
-    fi
-    ./configure --prefix=/usr/local 2>&1 | tee -a "$MLOG"
-    make -j "$(nproc 2>/dev/null || getconf _NPROCESSORS_ONLN)" 2>&1 | tee -a "$MLOG"
-    sudo make install 2>&1 | tee -a "$MLOG"
-  ) || { echo "${ERROR} Breakpad build failed." | tee -a "$LOG"; exit 1; }
+    note "Building Google Breakpad from source..."
+    BP_DIR="$PARENT_DIR/.thirdparty/breakpad"
+    rm -rf "$BP_DIR"
+    mkdir -p "$BP_DIR"
+    (
+        set -Eeuo pipefail
+        cd "$BP_DIR"
+        git clone --depth=1 https://chromium.googlesource.com/breakpad/breakpad src 2>&1 | tee -a "$MLOG"
+        cd src
+        # lss is required for Linux builds
+        git clone --depth=1 https://chromium.googlesource.com/linux-syscall-support third_party/lss 2>&1 | tee -a "$MLOG" || true
+        # Autotools bootstrap if needed
+        if [ ! -x ./configure ]; then
+            autoreconf -fi 2>&1 | tee -a "$MLOG"
+        fi
+        ./configure --prefix=/usr/local 2>&1 | tee -a "$MLOG"
+        make -j "$(nproc 2>/dev/null || getconf _NPROCESSORS_ONLN)" 2>&1 | tee -a "$MLOG"
+        sudo make install 2>&1 | tee -a "$MLOG"
+    ) || {
+        echo "${ERROR} Breakpad build failed." | tee -a "$LOG"
+        exit 1
+    }
 
-  # Provide pkg-config file if upstream didn't install one under the name 'breakpad'
-  if ! pkg-config --exists breakpad; then
-    if pkg-config --exists breakpad-client; then
-      sudo mkdir -p /usr/local/lib/pkgconfig
-      sudo ln -sf /usr/local/lib/pkgconfig/breakpad-client.pc /usr/local/lib/pkgconfig/breakpad.pc
-    elif [ -f /usr/local/lib/libbreakpad_client.a ] || [ -f /usr/local/lib/libbreakpad_client.so ]; then
-      TMP_PC="/tmp/breakpad.pc.$$"
-      cat > "$TMP_PC" <<'PCEOF'
+    # Provide pkg-config file if upstream didn't install one under the name 'breakpad'
+    if ! pkg-config --exists breakpad; then
+        if pkg-config --exists breakpad-client; then
+            sudo mkdir -p /usr/local/lib/pkgconfig
+            sudo ln -sf /usr/local/lib/pkgconfig/breakpad-client.pc /usr/local/lib/pkgconfig/breakpad.pc
+        elif [ -f /usr/local/lib/libbreakpad_client.a ] || [ -f /usr/local/lib/libbreakpad_client.so ]; then
+            TMP_PC="/tmp/breakpad.pc.$$"
+            cat >"$TMP_PC" <<'PCEOF'
 prefix=/usr/local
 exec_prefix=${prefix}
 includedir=${prefix}/include
@@ -132,15 +134,15 @@ Version: 0
 Libs: -L${libdir} -lbreakpad_client
 Cflags: -I${includedir}
 PCEOF
-      sudo mkdir -p /usr/local/lib/pkgconfig
-      sudo mv "$TMP_PC" /usr/local/lib/pkgconfig/breakpad.pc
+            sudo mkdir -p /usr/local/lib/pkgconfig
+            sudo mv "$TMP_PC" /usr/local/lib/pkgconfig/breakpad.pc
+        fi
     fi
-  fi
 
-  if ! pkg-config --exists breakpad; then
-    echo "${ERROR} breakpad pkg-config entry not found after installation." | tee -a "$LOG"
-    exit 1
-  fi
+    if ! pkg-config --exists breakpad; then
+        echo "${ERROR} breakpad pkg-config entry not found after installation." | tee -a "$LOG"
+        exit 1
+    fi
 fi
 
 # Clone source (prefer upstream forgejo; mirror available at github:quickshell-mirror/quickshell)
