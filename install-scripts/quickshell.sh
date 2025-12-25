@@ -14,11 +14,11 @@ if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
   exit 1
 fi
 
-# Ensure logs dir exists (handles running quickshell standalone)
-[ -d Install-Logs ] || mkdir -p Install-Logs
+# Ensure logs dir exists at repo root (we cd into source later)
+mkdir -p "$PARENT_DIR/Install-Logs"
 
-LOG="Install-Logs/install-$(date +%d-%H%M%S)_quickshell.log"
-MLOG="install-$(date +%d-%H%M%S)_quickshell_build.log"
+LOG="$PARENT_DIR/Install-Logs/install-$(date +%d-%H%M%S)_quickshell.log"
+MLOG="$PARENT_DIR/Install-Logs/install-$(date +%d-%H%M%S)_quickshell_build.log"
 
 note() { echo -e "${NOTE} $*" | tee -a "$LOG"; }
 info() { echo -e "${INFO} $*" | tee -a "$LOG"; }
@@ -93,9 +93,7 @@ else
   exit 1
 fi
 
-# Move build log to Install-Logs and cleanup source tree to keep repo tidy
-cd ..
-mv "$SRC_DIR/$MLOG" Install-Logs/ 2>/dev/null || true
+# Build logs already written to $PARENT_DIR/Install-Logs
 # Keep source directory for reference in case user wants to rebuild later
 
 printf "\n%.0s" {1..1}
