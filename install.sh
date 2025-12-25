@@ -377,8 +377,7 @@ if [ "$FROM_SOURCE" -eq 1 ]; then
     sleep 1
     execute_script "hyprland.sh"
 else
-    echo "${INFO} Installing Hyprland from ${SKY_BLUE}PPA${RESET}..." | tee -a "$LOG"
-    export HYPR_USE_PPA=1
+    echo "${INFO} Installing Hyprland from ${SKY_BLUE}Ubuntu repositories${RESET}..." | tee -a "$LOG"
     sleep 1
     execute_script "hyprland-ppa.sh"
 fi

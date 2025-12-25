@@ -2,7 +2,7 @@
 
 # 💌 KooL's Ubuntu Hyprland Install Script 💌
 
-## For Ubuntu 25.10 Questing Quokka
+## For Ubuntu 2.04 Resolute Raccoon ONLY!!!
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="400" />
@@ -64,7 +64,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 - Do not run this installer as sudo or as root
 - This Installer requires a user with a priviledge to install packages
-- This is only 25.10 Questing Quokka and above. Check [`MAIN BRANCH`](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/main) for other Ubuntu Versions
+- This is only 26.04 Resolute Raccoon and above. Check [`MAIN BRANCH`](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/main) for other Ubuntu Versions
 
 ### Gallery and Videos
 
@@ -83,8 +83,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 ### ✨ Some notes on this installer / Prerequisites
 
-- This script is to install Hyprland on Ubuntu 25.10 Questing Quokka or later.
-- If you have nvidia, and wanted to use proprietary drivers, uninstall nouveau first (if installed). This script will be installing proprietary nvidia drivers and will not deal with removal of nouveau.
+- This script is to install Hyprland on Ubuntu 26.04 Resolute Raccoon If you have nvidia, and wanted to use proprietary drivers, uninstall nouveau first (if installed). This script will be installing proprietary nvidia drivers and will not deal with removal of nouveau.
 - NVIDIA users / owners, after installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
 
 #### ✨ Costumize the packages to be installed
@@ -128,8 +127,8 @@ sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Ubuntu-Hyprland/25.10/au
 > clone this repo (latest commit only) by using git. Change directory, make executable and run the script
 
 ```bash
-git clone --depth=1 -b 25.10 https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-25.10
-cd ~/Ubuntu-Hyprland-25.10
+git clone --depth=1 -b 26.04 https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-25.10
+cd ~/Ubuntu-Hyprland-26.04
 chmod +x install.sh
 ./install.sh
 ```

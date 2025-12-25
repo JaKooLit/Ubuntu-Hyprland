@@ -136,8 +136,8 @@ for PKG in "${conflicts[@]}"; do
     uninstall_package "$PKG" 2>&1 | tee -a "$LOG" || true
 done
 
-# Proactively remove conflicting Ubuntu package if present (overlaps /usr/bin/hyprcursor-util)
-if dpkg -l | grep -q '^ii  hyprcursor-util '; then
+# Only remove hyprcursor-util when explicitly using the Hyprland PPA path (not for Ubuntu repo installs)
+if [ "${HYPR_USE_PPA:-0}" = "1" ] && dpkg -l | grep -q '^ii  hyprcursor-util '; then
     echo "${INFO} Removing conflicting hyprcursor-util (Ubuntu repo) to allow libhyprcursor1 from PPA" | tee -a "$LOG"
     sudo apt -y purge hyprcursor-util 2>&1 | tee -a "$LOG" || true
     sudo apt -y autoremove 2>&1 | tee -a "$LOG" || true

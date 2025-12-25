@@ -1,5 +1,12 @@
 ## CHANGELOGS
 
+## Dec 2025
+
+- Started work on supporting ubuntu 26.04
+    - Hyprland packages for 0.52.2 are in repo
+    - rofi w/wayland support is in repo
+    - install script will remove PPA based packages
+
 ## Oct 2025
 
 - Added PPA to install Hyprland from packages
