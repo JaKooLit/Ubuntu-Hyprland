@@ -20,6 +20,11 @@ mkdir -p "$PARENT_DIR/Install-Logs"
 LOG="$PARENT_DIR/Install-Logs/install-$(date +%d-%H%M%S)_quickshell.log"
 MLOG="$PARENT_DIR/Install-Logs/install-$(date +%d-%H%M%S)_quickshell_build.log"
 
+# Refresh sudo credentials once (install_package uses sudo internally)
+if command -v sudo >/dev/null 2>&1; then
+  sudo -v 2>/dev/null || sudo -v
+fi
+
 note() { echo -e "${NOTE} $*" | tee -a "$LOG"; }
 info() { echo -e "${INFO} $*" | tee -a "$LOG"; }
 
@@ -54,12 +59,12 @@ DEPS=(
 
 printf "\n%s - Installing ${SKY_BLUE}Quickshell build dependencies${RESET}....\n" "${NOTE}"
 for PKG in "${DEPS[@]}"; do
-  install_package "$PKG" 2>&1 | tee -a "$LOG"
+  install_package "$PKG"
 done
 
 # Ensure ninja is available (ninja-build provides /usr/bin/ninja)
 if ! command -v ninja >/dev/null 2>&1; then
-  install_package ninja-build 2>&1 | tee -a "$LOG"
+  install_package ninja-build
 fi
 
 # Clone source (prefer upstream forgejo; mirror available at github:quickshell-mirror/quickshell)
