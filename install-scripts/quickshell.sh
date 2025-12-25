@@ -72,7 +72,6 @@ DEPS=(
     libqt6svg6-dev
     # Third-party libs used by Quickshell
     libcli11-dev
-    libqt6svg6-dev
 )
 
 printf "\n%s - Installing ${SKY_BLUE}Quickshell build dependencies${RESET}....\n" "${NOTE}"
@@ -112,9 +111,6 @@ if ! pkg-config --exists breakpad; then
     make -j "$(nproc 2>/dev/null || getconf _NPROCESSORS_ONLN)" 2>&1 | tee -a "$MLOG"
     sudo make install 2>&1 | tee -a "$MLOG"
   ) || { echo "${ERROR} Breakpad build failed." | tee -a "$LOG"; exit 1; }
-        echo "${ERROR} Breakpad build failed." | tee -a "$LOG"
-        exit 1
-    }
 
     # Provide pkg-config file if upstream didn't install one under the name 'breakpad'
     if ! pkg-config --exists breakpad; then
