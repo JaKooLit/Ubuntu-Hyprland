@@ -75,6 +75,12 @@ DEPS=(
     libqt6svg6-dev
     # Third-party libs used by Quickshell
     libcli11-dev
+    # Qt Quick runtime QML modules required at runtime (RectangularShadow, etc.)
+    qml6-module-qtquick-effects
+    qml6-module-qtquick-shapes
+    qml6-module-qtquick-controls
+    qml6-module-qtquick-layouts
+    qml6-module-qt5compat-graphicaleffects
 )
 
 printf "\n%s - Installing ${SKY_BLUE}Quickshell build dependencies${RESET}....\n" "${NOTE}"
