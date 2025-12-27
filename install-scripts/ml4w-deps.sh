@@ -10,7 +10,8 @@ PARENT_DIR="$SCRIPT_DIR/.."
 cd "$PARENT_DIR"
 
 # Source shared helpers (progress, logging, idempotent install)
-source "$(dirname "$(readlink -f "$0")")/install-scripts/Global_functions.sh"
+# shellcheck source=install-scripts/Global_functions.sh
+source "$SCRIPT_DIR/Global_functions.sh"
 
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_ml4w-deps.log"
 mkdir -p "$(dirname "$LOG")"
