@@ -32,10 +32,15 @@ source "$SCRIPT_DIR/Global_functions.sh"
 
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_ml4w-deps.log"
 mkdir -p "$(dirname "$LOG")"
+export LOG
 
 note() { echo -e "${NOTE} $*" | tee -a "$LOG"; }
 warn() { echo -e "${WARN} $*" | tee -a "$LOG"; }
 info() { echo -e "${INFO} $*" | tee -a "$LOG"; }
+
+is_installed() {
+  dpkg -s "$1" >/dev/null 2>&1
+}
 
 # Map Arch-style names in the ML4W list to Ubuntu package names
 # - libnotify      -> libnotify-bin (for notify-send CLI)
@@ -91,18 +96,26 @@ sudo apt update 2>&1 | tee -a "$LOG"
 # Install definite packages (skip if already installed)
 info "Installing ML4W additional packages (definite set)"
 for pkg in "${UBUNTU_PKGS[@]}"; do
-  install_package "$pkg" "$LOG"
+  if is_installed "$pkg"; then
+    note "$pkg is already installed. Skipping."
+  else
+    install_package "$pkg"
+  fi
+
 done
 
 # Try best-effort packages only if APT has a candidate
 info "Installing best-effort packages when available in APT"
 for pkg in "${BEST_EFFORT_APT[@]}"; do
   if apt-cache policy "$pkg" | grep -q "Candidate: \\S"; then
-    install_package "$pkg" "$LOG"
+    if is_installed "$pkg"; then
+      note "$pkg is already installed. Skipping."
+    else
+      install_package "$pkg"
+    fi
   else
     warn "$pkg not found in Ubuntu archives; skipping APT install"
   fi
-
 done
 
 # If grimblast wasn't available in APT, fetch the script from hyprwm/contrib
@@ -147,6 +160,20 @@ if ! command -v gum >/dev/null 2>&1; then
   if ! apt-cache policy gum | grep -q "Candidate: \\S"; then
     warn "gum not available via APT on this release. If desired, install via Snap: 'sudo snap install charm-gum --classic' or use upstream .deb."
   fi
+fi
+
+# Ensure Flathub remote exists and install ML4W Dotfiles Installer
+if command -v flatpak >/dev/null 2>&1; then
+  info "Ensuring Flathub remote is configured"
+  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo 2>&1 | tee -a "$LOG" || true
+  if flatpak list --app --columns=application | grep -qx com.ml4w.dotfilesinstaller; then
+    note "com.ml4w.dotfilesinstaller already installed. Skipping."
+  else
+    info "Installing com.ml4w.dotfilesinstaller from Flathub (user scope)"
+    flatpak install -y --user flathub com.ml4w.dotfilesinstaller 2>&1 | tee -a "$LOG"
+  fi
+else
+  warn "flatpak not available; skipping Flathub setup and com.ml4w.dotfilesinstaller. Re-run after Flatpak is installed."
 fi
 
 note "ML4W dependency pass completed. Review $LOG for details."
