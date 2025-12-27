@@ -155,25 +155,34 @@ install_fira_nerd_font() {
 
 install_fira_nerd_font
 
-# Gum fallback: suggest Snap if APT had no candidate and gum still missing
+# Gum fallback: if APT install didn't provide gum, try Snap (charm-gum)
 if ! command -v gum >/dev/null 2>&1; then
-    if ! apt-cache policy gum | grep -q "Candidate: \\S"; then
-        warn "gum not available via APT on this release. If desired, install via Snap: 'sudo snap install charm-gum --classic' or use upstream .deb."
-    fi
+  if command -v snap >/dev/null 2>&1; then
+    info "Installing gum via Snap (charm-gum)"
+    sudo snap install charm-gum --classic 2>&1 | tee -a "$LOG" || warn "Snap install of charm-gum failed"
+  else
+    warn "snap not available; install 'snapd' to get gum via 'sudo snap install charm-gum --classic'"
+  fi
 fi
 
 # Ensure Flathub remote exists and install ML4W Dotfiles Installer
 if command -v flatpak >/dev/null 2>&1; then
-    info "Ensuring Flathub remote is configured"
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo 2>&1 | tee -a "$LOG" || true
-    if flatpak list --app --columns=application | grep -qx com.ml4w.dotfilesinstaller; then
-        note "com.ml4w.dotfilesinstaller already installed. Skipping."
-    else
-        info "Installing com.ml4w.dotfilesinstaller from Flathub (user scope)"
-        flatpak install -y com.ml4w.dotfilesinstaller 2>&1 | tee -a "$LOG"
+  info "Ensuring Flathub remote is configured (system scope)"
+  sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo 2>&1 | tee -a "$LOG" || true
+  # Helper to check if app is installed either system or user
+  if flatpak info --system com.ml4w.dotfilesinstaller >/dev/null 2>&1 || \
+     flatpak info --user com.ml4w.dotfilesinstaller >/dev/null 2>&1; then
+    note "com.ml4w.dotfilesinstaller already installed. Skipping."
+  else
+    info "Installing com.ml4w.dotfilesinstaller from Flathub (system, fallback to user)"
+    if ! sudo flatpak install -y flathub com.ml4w.dotfilesinstaller 2>&1 | tee -a "$LOG"; then
+      warn "System install failed or not permitted; falling back to user scope"
+      flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo 2>&1 | tee -a "$LOG" || true
+      flatpak install -y --user flathub com.ml4w.dotfilesinstaller 2>&1 | tee -a "$LOG"
     fi
+  fi
 else
-    warn "flatpak not available; skipping Flathub setup and com.ml4w.dotfilesinstaller. Re-run after Flatpak is installed."
+  warn "flatpak not available; skipping Flathub setup and com.ml4w.dotfilesinstaller. Re-run after Flatpak is installed."
 fi
 
 note "ML4W dependency pass completed. Review $LOG for details."
