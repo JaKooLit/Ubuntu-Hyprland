@@ -9,6 +9,23 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PARENT_DIR="$SCRIPT_DIR/.."
 cd "$PARENT_DIR"
 
+# Obtain sudo once (foreground) and keep the timestamp alive for the duration of this script.
+# Global_functions' install_package runs 'sudo apt install' in the background, which would fail
+# without a cached sudo credential.
+if ! sudo -v; then
+  echo "Sudo authentication failed; cannot continue." >&2
+  exit 1
+fi
+(
+  while true; do
+    sudo -n true 2>/dev/null || exit
+    sleep 60
+    kill -0 "$$" 2>/dev/null || exit
+  done
+) &
+SUDO_KEEPALIVE_PID=$!
+trap 'kill ${SUDO_KEEPALIVE_PID} 2>/dev/null || true' EXIT
+
 # Source shared helpers (progress, logging, idempotent install)
 # shellcheck source=install-scripts/Global_functions.sh
 source "$SCRIPT_DIR/Global_functions.sh"
