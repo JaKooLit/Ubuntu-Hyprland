@@ -165,6 +165,64 @@ if ! command -v gum >/dev/null 2>&1; then
   fi
 fi
 
+# Ensure Go toolchain (install via Snap classic if missing), then add /snap/bin to PATH if needed
+if ! command -v go >/dev/null 2>&1; then
+  if command -v snap >/dev/null 2>&1; then
+    if ! snap list 2>/dev/null | awk '$1=="go" {found=1} END{exit(found?0:1)}'; then
+      info "Installing Go via Snap (classic)"
+      sudo snap install go --classic 2>&1 | tee -a "$LOG" || warn "Snap install of go failed"
+    else
+      note "Snap 'go' already installed."
+    fi
+    # ensure PATH contains /snap/bin for this shell
+    if [ -x /snap/bin/go ] && ! command -v go >/dev/null 2>&1; then
+      export PATH="/snap/bin:$PATH"
+    fi
+  else
+    warn "snap not available; cannot install Go via snap. Install 'snapd' or provide Go another way."
+  fi
+else
+  note "Go toolchain already present ($(command -v go))."
+fi
+
+# Build from source: nwg-dock-hyprland and nwg-drawer (idempotent)
+NWG_BUILD_DEPS=(git make pkg-config libgtk-3-dev libglib2.0-dev libgdk-pixbuf-2.0-dev libcairo2-dev libpango1.0-dev)
+info "Ensuring build dependencies for nwg-*"
+for d in "${NWG_BUILD_DEPS[@]}"; do
+  install_package "$d"
+done
+
+build_install_repo() {
+  local url="$1"; shift
+  local dir="$1"; shift
+  local bin_name="$1"; shift
+  local mlog="Install-Logs/install-$(date +%d-%H%M%S)_${dir}.log"
+
+  if command -v "$bin_name" >/dev/null 2>&1; then
+    note "$bin_name already installed. Skipping build."
+    return 0
+  fi
+
+  if [ -d "$dir" ]; then
+    info "Updating $dir"
+    git -C "$dir" pull --ff-only 2>&1 | tee -a "$mlog" || true
+  else
+    info "Cloning $url -> $dir"
+    git clone --depth=1 "$url" "$dir" 2>&1 | tee -a "$mlog"
+  fi
+
+  (
+    cd "$dir"
+    info "Building $dir"
+    make build 2>&1 | tee -a "$mlog"
+    info "Installing $dir"
+    sudo make install 2>&1 | tee -a "$mlog"
+  )
+}
+
+build_install_repo "https://github.com/nwg-piotr/nwg-dock-hyprland.git" "nwg-dock-hyprland" "nwg-dock-hyprland"
+build_install_repo "https://github.com/nwg-piotr/nwg-drawer.git" "nwg-drawer" "nwg-drawer"
+
 # Ensure Flathub remote exists and install ML4W Dotfiles Installer
 if command -v flatpak >/dev/null 2>&1; then
   info "Ensuring Flathub remote is configured (system scope)"
