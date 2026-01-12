@@ -1,0 +1,12 @@
+{
+  "blocked": [
+    {
+      "id": "rhino-linux-mainline",
+      "match": {
+        "NAME": "Rhino Linux",
+        "VERSION_CODENAME": "devel"
+      },
+      "reason": "Rhino Linux sets VERSION_CODENAME=devel, which the cppiber/hyprland PPA does not support."
+    }
+  ]
+}

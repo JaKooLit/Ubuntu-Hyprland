@@ -68,6 +68,12 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
+# Block unsupported distros for the Hyprland PPA early
+if ! execute_script "check-distro-support.sh"; then
+    echo "${ERROR} Distro check failed. See above for details." | tee -a "$LOG"
+    exit 1
+fi
+
 # install whiptails if detected not installed. Necessary for this version
 if ! command -v whiptail >/dev/null; then
     echo "${NOTE} - whiptail is not installed. Installing..." | tee -a "$LOG"
