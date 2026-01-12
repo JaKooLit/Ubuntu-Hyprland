@@ -96,7 +96,8 @@ for entry in blocked:
         print(f"   {CYAN}Reason :{RESET} {reason}")
         print(f"   {CYAN}Matched:{RESET} {match}")
         print(f"\n{YELLOW}🛈 The Hyprland PPA cannot be used on this distribution.{RESET}")
+        print()
         sys.exit(12)
-
+print(f"{GREEN}✅ Distro not on the Hyprland PPA blocklist.{RESET}\n")
 print(f"{GREEN}✅ Distro not on the Hyprland PPA blocklist.{RESET}")
 PYCODE
