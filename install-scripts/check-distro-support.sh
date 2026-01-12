@@ -45,10 +45,11 @@ fi
 
 python3 - <<'PYCODE'
 import json
+import os
 import sys
 from pathlib import Path
 
-blocklist_path = Path("$BLOCKLIST_FILE")
+blocklist_path = Path(os.environ.get("BLOCKLIST_FILE", "distro-blocklist.json")).expanduser()
 os_release_path = Path("/etc/os-release")
 
 def load_os_release():
