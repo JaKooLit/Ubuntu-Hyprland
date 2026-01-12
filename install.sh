@@ -142,6 +142,12 @@ execute_script() {
     fi
 }
 
+# Block unsupported distros for the Hyprland PPA early
+if ! execute_script "check-distro-support.sh"; then
+    echo "${ERROR} Distro check failed. See above for details." | tee -a "$LOG"
+    exit 1
+fi
+
 #################
 ## Default values for the options (will be overwritten by preset file if available)
 gtk_themes="OFF"
