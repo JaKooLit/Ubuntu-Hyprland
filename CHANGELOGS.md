@@ -1,5 +1,9 @@
 ## CHANGELOGS
 
+## December 2025
+
+- Ubuntu 24.04 supports Hyprland v0.53.1
+
 ## October 2025
 
 - Moved to PPA to install current Hyprland version
