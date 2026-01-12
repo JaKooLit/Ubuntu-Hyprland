@@ -68,11 +68,6 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
-# Block unsupported distros for the Hyprland PPA early
-if ! execute_script "check-distro-support.sh"; then
-    echo "${ERROR} Distro check failed. See above for details." | tee -a "$LOG"
-    exit 1
-fi
 
 # install whiptails if detected not installed. Necessary for this version
 if ! command -v whiptail >/dev/null; then
@@ -135,6 +130,12 @@ execute_script() {
         echo "Script '$script' not found in '$script_directory'." | tee -a "$LOG"
     fi
 }
+
+# Block unsupported distros for the Hyprland PPA early
+if ! execute_script "check-distro-support.sh"; then
+    echo "${ERROR} Distro check failed. See above for details." | tee -a "$LOG"
+    exit 1
+fi
 
 #################
 ## Default values for the options (will be overwritten by preset file if available)
