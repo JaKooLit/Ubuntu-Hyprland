@@ -63,10 +63,16 @@ def load_os_release():
             data[key] = val.strip().strip('"')
     return data
 
+RED = "\033[31m"
+YELLOW = "\033[33m"
+CYAN = "\033[36m"
+GREEN = "\033[32m"
+RESET = "\033[0m"
+
 try:
     blocklist = json.loads(blocklist_path.read_text())
 except Exception as exc:
-    print(f"[ERROR] Failed to read {blocklist_path}: {exc}", file=sys.stderr)
+    print(f"{RED}❌ Failed to read blocklist ({blocklist_path}): {exc}{RESET}", file=sys.stderr)
     sys.exit(1)
 
 blocked = blocklist.get("blocked", [])
@@ -85,9 +91,12 @@ for entry in blocked:
     if all(os_release.get(k) == v for k, v in match.items()):
         reason = entry.get("reason", "Unsupported distribution for Hyprland PPA.")
         ident = entry.get("id", "unknown")
-        print(f"[ERROR] Distro blocked ({ident}): {reason}")
-        print(f"[DETAIL] /etc/os-release matched: {match}")
+        print(f"{RED}❌ Distro blocked{RESET}")
+        print(f"   {CYAN}ID     :{RESET} {ident}")
+        print(f"   {CYAN}Reason :{RESET} {reason}")
+        print(f"   {CYAN}Matched:{RESET} {match}")
+        print(f"\n{YELLOW}🛈 The Hyprland PPA cannot be used on this distribution.{RESET}")
         sys.exit(12)
 
-print("[OK] Distro not on the Hyprland PPA blocklist.")
+print(f"{GREEN}✅ Distro not on the Hyprland PPA blocklist.{RESET}")
 PYCODE
