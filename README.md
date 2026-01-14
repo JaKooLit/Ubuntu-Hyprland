@@ -75,7 +75,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 
 ## 💥 For Ubuntu 24.04 (Includes 24.04.1, 24.04.1,24.04.3 etc)
-
+- (Uses PPA to install current Hyprland version) 
 ```bash
 git clone -b 24.04 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-24.04
 cd ~/Ubuntu-Hyprland-24.04
@@ -84,8 +84,10 @@ chmod +x install.sh
 ```
 
 
-## 💫 For Ubuntu 25.10  (Hyprland 0.51.1 builds from source)
-```bash
+## 💫 For Ubuntu 25.10  
+- (Uses PPA to install current Hyprland version) 
+
+```
 git clone -b 25.10 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-25.10
 cd ~/Ubuntu-Hyprland-25.10
 chmod +x install.sh
@@ -112,7 +114,7 @@ cd ~/Ubuntu-Hyprland-25.04
 chmod +x install.sh
 ./install.sh
 ```
-
+ 
 
 > [!IMPORTANT]
 > Read through the Readme on each Branches for installation
@@ -129,7 +131,6 @@ chmod +x install.sh
 ## Some Links of Projects used for this project
 - KooL's Hyprland Dots [`LINK`](https://github.com/JaKooLit/Hyprland-Dots)
 - SDDM Theme [`LINK`](https://github.com/JaKooLit/simple-sddm.git) - for Ubuntu 24.04
-- SDDM Theme [`LINK`](https://codeberg.org/JaKooLit/sddm-sequoia) which is a fork of [`LINK`](https://codeberg.org/minMelody/sddm-sequoia)
 - Wallpapers - which was offered to download at the end of installation ['LINK'](https://github.com/JaKooLit/Wallpaper-Bank)
 - GTK Themes and Icons [`LINK`](https://github.com/JaKooLit/GTK-themes-icons)
 
@@ -144,11 +145,9 @@ chmod +x install.sh
 
 ## 🛎 *** DEBIAN and UBUNTU Hyprland Dots UPDATING NOTES ***
 > [!IMPORTANT]
-> This is very Important for Debian and Ubuntu Dots
-- Some parts of KooL's Hyprland Dots [`LINK`](https://github.com/JaKooLit/Hyprland-Dots) are not compatible on Debian and Ubuntu especially the hyprland settings. 
-- That is the reason the DOTS for those distro's are "fixed" and they are being pulled on different branch of KooL Dots.
 
-- To update your KooL's Dots follow this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update#%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F---debian-and-ubuntu-hyprland-dots-updating-notes--%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F%EF%B8%8F)
+> Ubuntu and Debian are now using the same dotfiles as the version of Hyprland for both is v0.53.1
+> Ubuntu has a PPA, and debian is compiled from source from Hyprland GIT repo
 
 
 ### 💖 Support
