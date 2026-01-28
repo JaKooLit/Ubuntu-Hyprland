@@ -44,10 +44,10 @@ EOF
 
 for arg in "$@"; do
     case "$arg" in
-        -h|--help)
-            print_help
-            exit 0
-            ;;
+    -h | --help)
+        print_help
+        exit 0
+        ;;
     esac
 done
 
@@ -55,13 +55,16 @@ done
 printf "\n%.0s" {1..2}
 print_color $WARNING "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-                KooL's UBUNTU 26.04 - Hyprland               
+                KooL's UBUNTU 26.04 - Hyprland
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-    Ubuntu 26.04 archives currently ship Hyprland 0.52.2.  
-    This installer can keep the repo build or compile the   
-    latest upstream Hyprland + stack from source.           
-    It will refuse to run outside Ubuntu 26.04.             
+    - Ubuntu 26.04 repo currently ships Hyprland v0.52.2.
+    - This installer defaults to the repo build.
+       - It can build the latest upstream Hyprland release from source.
+          - However, that is not recommended!
+          - Support for that option is limited
+          - Use at your own risk!
+    - Note: This installer will refuse to run outside Ubuntu 26.04.
 "
 printf "\n%.0s" {1..2}
 
@@ -480,7 +483,6 @@ execute_script "fonts.sh"
 echo "${INFO} Installing ${SKY_BLUE}KooL Hyprland packages...${RESET}" | tee -a "$LOG"
 sleep 1
 execute_script "01-hypr-pkgs.sh"
-
 
 if [ "$FROM_SOURCE" -eq 1 ]; then
     echo "${INFO} Building Hyprland ${SKY_BLUE}from source${RESET}..." | tee -a "$LOG"
