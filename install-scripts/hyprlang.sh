@@ -4,7 +4,15 @@
 
 
 #specific branch or release
-lang_tag="v0.6.4"
+lang_tag_default="v0.6.8"
+lang_tag="${HYPRLANG_TAG:-$lang_tag_default}"
+
+# Dry-run support
+DO_INSTALL=1
+if [ "${1:-}" = "--dry-run" ] || [ "${DRY_RUN:-0}" = "1" ] || [ "${DRY_RUN:-false}" = "true" ]; then
+    DO_INSTALL=0
+    echo "${NOTE} DRY RUN: install step will be skipped."
+fi
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -37,14 +45,19 @@ fi
 
 # Clone and build 
 printf "${INFO} Installing ${YELLOW}hyprlang $lang_tag${RESET} ...\n"
-if git clone --recursive -b $lang_tag https://github.com/hyprwm/hyprlang.git; then
+if git clone --recursive -b "$lang_tag" https://github.com/hyprwm/hyprlang.git; then
     cd hyprlang || exit 1
-	cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
-    cmake --build ./build --config Release --target hyprlang -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
-    if sudo cmake --install ./build 2>&1 | tee -a "$MLOG" ; then
-        printf "${OK} ${MAGENTA}hyprlang $lang_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+\tcmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -S . -B ./build
+    cmake --build ./build --config Release --target hyprlang -j"$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)"
+    if [ $DO_INSTALL -eq 1 ]; then
+        if sudo cmake --install ./build 2>&1 | tee -a "$MLOG" ; then
+            sudo ldconfig 2>/dev/null || true
+            printf "${OK} ${MAGENTA}hyprlang $lang_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
+        else
+            echo -e "${ERROR} Installation failed for ${YELLOW}hyprlang $lang_tag${RESET}" 2>&1 | tee -a "$MLOG"
+        fi
     else
-        echo -e "${ERROR} Installation failed for ${YELLOW}hyprlang $lang_tag${RESET}" 2>&1 | tee -a "$MLOG"
+        echo "${NOTE} DRY RUN: Skipping installation of hyprlang $lang_tag."
     fi
     #moving the addional logs to Install-Logs directory
     mv $MLOG ../Install-Logs/ || true 
