@@ -47,7 +47,7 @@ fi
 printf "${INFO} Installing ${YELLOW}hyprlang $lang_tag${RESET} ...\n"
 if git clone --recursive -b "$lang_tag" https://github.com/hyprwm/hyprlang.git; then
     cd hyprlang || exit 1
-\tcmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -S . -B ./build
+    cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -S . -B ./build
     cmake --build ./build --config Release --target hyprlang -j"$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)"
     if [ $DO_INSTALL -eq 1 ]; then
         if sudo cmake --install ./build 2>&1 | tee -a "$MLOG" ; then
