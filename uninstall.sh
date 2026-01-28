@@ -35,7 +35,7 @@ whiptail --title "Ubuntu-25.04-Hyprland KooL Dots Uninstall Script" --yesno \
 You can choose packages and directories you want to remove.
 NOTE: This will remove configs from ~/.config
 
-WARNING: After uninstallation, your system may become unstable.
+WARNING: After uninstallation, your system may behave unexpectedly.
 
 Shall we Proceed?" 20 80
 
@@ -198,7 +198,7 @@ done
 
 # First confirmation - Warning about potential instability
 if ! whiptail --title "Warning" --yesno \
-"Warning: Removing these packages and directories may cause your system to become unstable and you may not be able to recover it.\n\nAre you sure you want to proceed?" \
+"Warning: Removing these packages and directories may leave your system in an unusable state and you may not be able to recover it.\\n\\nAre you sure you want to proceed?" \\
 10 80; then
     echo "$INFO uninstall process canceled."
     exit 0

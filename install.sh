@@ -31,10 +31,10 @@ print_color $WARNING "
                 KooL's UBUNTU 26.04 - Hyprland               
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-    This script will install Hyprland 0.52.2 from ubuntu 
-    This is only supported on ubuntu 26.04 or greater! 
-    If you are not at that level do NOT continue!
-         
+    Ubuntu 26.04 archives currently ship Hyprland 0.52.2.  
+    This installer can keep the repo build or compile the   
+    latest upstream Hyprland + stack from source.           
+    It will refuse to run outside Ubuntu 26.04.             
 "
 printf "\n%.0s" {1..2}
 
@@ -60,11 +60,101 @@ fi
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/01-Hyprland-Install-Scripts-$(date +%d-%H%M%S).log"
+# Package + binary cleanup helpers for the source-build path
+hypr_repo_packages=(
+    hyprland
+    hyprland-dev
+    hyprland-data
+    hyprland-plugins
+    hyprutils
+    hyprgraphics
+    hyprcursor
+    hyprland-protocols
+    hyprlang
+    hypridle
+    hyprlock
+    hyprpolkitagent
+    hyprpicker
+    aquamarine
+    xdg-desktop-portal-hyprland
+)
+
+purge_hyprland_repo_packages() {
+    local removed=0
+    echo "${INFO} Ensuring Ubuntu repository Hyprland packages are removed..." | tee -a "$LOG"
+    for pkg in "${hypr_repo_packages[@]}"; do
+        if dpkg -l | grep -q "^ii[[:space:]]\+$pkg[[:space:]]"; then
+            echo "${NOTE} Removing repo package: $pkg" | tee -a "$LOG"
+            sudo apt-get remove --purge -y "$pkg" >>"$LOG" 2>&1 || true
+            removed=1
+        fi
+    done
+    if [ $removed -eq 1 ]; then
+        sudo apt-get autoremove -y >>"$LOG" 2>&1 || true
+    else
+        echo "${INFO} No Ubuntu repo Hyprland packages detected." | tee -a "$LOG"
+    fi
+}
+
+purge_local_hyprland_builds() {
+    echo "${INFO} Cleaning previous /usr/local Hyprland builds..." | tee -a "$LOG"
+    local bin_paths=(
+        /usr/local/bin/Hyprland
+        /usr/local/bin/hyprland
+        /usr/local/bin/hyprctl
+    )
+    for bin in "${bin_paths[@]}"; do
+        if [ -e "$bin" ]; then
+            echo "${NOTE} Removing binary: $bin" | tee -a "$LOG"
+            sudo rm -f "$bin"
+        fi
+    done
+    shopt -s nullglob
+    local lib_paths=(/usr/local/lib/libhypr* /usr/local/lib/libaquamarine* /usr/local/lib/libypr* /usr/local/lib/libhyprgraphics* /usr/local/lib/libhyprutils* /usr/local/lib/libhyprlang* /usr/local/lib/libhyprwire*)
+    for lib in "${lib_paths[@]}"; do
+        if [ -e "$lib" ]; then
+            echo "${NOTE} Removing library: $lib" | tee -a "$LOG"
+            sudo rm -f "$lib"
+        fi
+    done
+    local include_paths=(/usr/local/include/hypr* /usr/local/include/aquamarine* /usr/local/include/Hypr*)
+    for inc in "${include_paths[@]}"; do
+        if [ -e "$inc" ]; then
+            echo "${NOTE} Removing include dir: $inc" | tee -a "$LOG"
+            sudo rm -rf "$inc"
+        fi
+    done
+    shopt -u nullglob
+    sudo ldconfig 2>/dev/null || true
+}
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
     echo "${ERROR}  This script should ${WARNING}NOT${RESET} be executed as root!! Exiting......." | tee -a "$LOG"
     printf "\n%.0s" {1..2}
+    exit 1
+fi
+
+# Enforce Ubuntu 26.04 environment (Hyprland 0.52.2 repo build)
+UBUNTU_SUPPORTED=0
+UBUNTU_VERSION_ID="unknown"
+UBUNTU_PRETTY="Unknown"
+if [ -f /etc/os-release ]; then
+    # shellcheck disable=SC1091
+    . /etc/os-release
+    UBUNTU_VERSION_ID="${VERSION_ID:-unknown}"
+    UBUNTU_PRETTY="${PRETTY_NAME:-Unknown Ubuntu release}"
+    if [[ "${ID:-}" = "ubuntu" ]] || [[ "${ID_LIKE:-}" == *"ubuntu"* ]]; then
+        if [[ "${VERSION_ID:-}" == "26.04" ]]; then
+            UBUNTU_SUPPORTED=1
+        fi
+    fi
+fi
+
+if [ "$UBUNTU_SUPPORTED" -ne 1 ]; then
+    echo "${WARN} Detected ${YELLOW}${UBUNTU_PRETTY}${RESET} (${UBUNTU_VERSION_ID})."
+    echo "${ERROR} This installer is restricted to Ubuntu 26.04 because Ubuntu repositories ship Hyprland 0.52.2 on older releases."
+    echo "${NOTE} Please use the appropriate project for your distro or upgrade to Ubuntu 26.04."
     exit 1
 fi
 
@@ -81,9 +171,9 @@ fi
 
 printf "\n%.0s" {1..2}
 echo -e "\e[35m
-	╦╔═┌─┐┌─┐╦    ╦ ╦┬ ┬┌─┐┬─┐┬  ┌─┐┌┐┌┌┬┐
-	╠╩╗│ ││ │║    ╠═╣└┬┘├─┘├┬┘│  ├─┤│││ ││ 2025
-	╩ ╩└─┘└─┘╩═╝  ╩ ╩ ┴ ┴  ┴└─┴─┘┴ ┴┘└┘─┴┘ Ubuntu 25.10+
+\t╦╔═┌─┐┌─┐╦    ╦ ╦┬ ┬┌─┐┬─┐┬  ┌─┐┌┐┌┌┬┐
+\t╠╩╗│ ││ │║    ╠═╣└┬┘├─┘├┬┘│  ├─┤│││ ││ 2025
+\t╩ ╩└─┘└─┘╩═╝  ╩ ╩ ┴ ┴  ┴└─┴─┘┴ ┴┘└┘─┴┘ Ubuntu 26.04 only
 \e[0m"
 printf "\n%.0s" {1..1}
 
@@ -104,6 +194,30 @@ if ! whiptail --title "Proceed with Installation?" \
 fi
 
 echo "👌 ${OK} 🇵🇭 ${MAGENTA}KooL..${RESET} ${SKY_BLUE}lets continue with the installation...${RESET}" | tee -a "$LOG"
+# Determine installation method (repo vs source build)
+FROM_SOURCE=${HYPR_FROM_SOURCE:-0}
+CLI_FORCED=0
+for arg in "$@"; do
+    if [ "$arg" = "--from-source" ]; then
+        FROM_SOURCE=1
+        CLI_FORCED=1
+        break
+    fi
+done
+if [ "$UBUNTU_SUPPORTED" -eq 1 ] && [ "$CLI_FORCED" -eq 0 ] && [ -z "${HYPR_FROM_SOURCE+x}" ]; then
+    if whiptail --title "Choose Hyprland build method" \
+        --yesno "Ubuntu 26.04 repositories provide Hyprland 0.52.2. You can instead compile the latest Hyprland stack from source.\n\nChoose \"Yes\" to build from source (recommended for newest tags) or \"No\" to stay on the Ubuntu repo build." \
+        --yes-button "Source build" --no-button "Ubuntu repo" 18 80; then
+        FROM_SOURCE=1
+    fi
+fi
+export HYPR_FROM_SOURCE=$FROM_SOURCE
+
+if [ "$FROM_SOURCE" -eq 1 ]; then
+    echo "${INFO} Source build selected. Ubuntu Hyprland packages will be removed before compiling." | tee -a "$LOG"
+else
+    echo "${INFO} Using Ubuntu archive Hyprland 0.52.2. Re-run with --from-source (or select Source) if you need the latest upstream build." | tee -a "$LOG"
+fi
 
 sleep 1
 printf "\n%.0s" {1..1}
@@ -339,21 +453,11 @@ echo "${INFO} Installing ${SKY_BLUE}KooL Hyprland packages...${RESET}" | tee -a 
 sleep 1
 execute_script "01-hypr-pkgs.sh"
 
-# Default: install from PPA. Optional: build from source when requested.
-FROM_SOURCE=0
-if [ "${HYPR_FROM_SOURCE:-0}" = "1" ]; then
-    FROM_SOURCE=1
-else
-    for arg in "$@"; do
-        if [ "$arg" = "--from-source" ]; then
-            FROM_SOURCE=1
-            break
-        fi
-    done
-fi
 
 if [ "$FROM_SOURCE" -eq 1 ]; then
     echo "${INFO} Building Hyprland ${SKY_BLUE}from source${RESET}..." | tee -a "$LOG"
+    purge_hyprland_repo_packages
+    purge_local_hyprland_builds
     # Build Hyprland stack prerequisites from source in correct order
     sleep 1
     execute_script "wayland-protocols-src.sh"
@@ -374,10 +478,13 @@ if [ "$FROM_SOURCE" -eq 1 ]; then
     execute_script "hyprland-qt-support.sh"
     sleep 1
     execute_script "hyprland-qtutils.sh"
+    sleep 1
+    execute_script "hyprwire.sh"
 
     # Now build and install Hyprland itself
     sleep 1
     execute_script "hyprland.sh"
+    purge_hyprland_repo_packages
 else
     echo "${INFO} Installing Hyprland from ${SKY_BLUE}Ubuntu repositories${RESET}..." | tee -a "$LOG"
     sleep 1

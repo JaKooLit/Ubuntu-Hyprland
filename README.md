@@ -135,7 +135,7 @@ chmod +x install.sh
 
 ### 💥 💥 UNINSTALL SCRIPT / Removal of Config Files
 
-- 11 March 2025, due to popular request, created a guided `uninstall.sh` script. USE this with caution as it may render your system unstable.
+- 11 March 2025, due to popular request, created a guided `uninstall.sh` script. USE this with caution as it may negatively impact your system if misused.
 - I will not be responsible if your system breaks
 - The best still to revert to previous state of your system is via timeshift of snapper
 
