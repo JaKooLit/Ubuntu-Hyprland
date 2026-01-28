@@ -45,6 +45,7 @@ DEFAULT_MODULES=(
 )
 
 WITH_DEPS=0
+DEPS_PREF="auto"
 DO_INSTALL=0
 DO_DRY_RUN=0
 FETCH_LATEST=0
@@ -65,7 +66,8 @@ usage() {
 
 Options:
   -h, --help            Show this help and exit
-      --with-deps       Run install-scripts/00-dependencies.sh first
+      --with-deps       Run install-scripts/00-dependencies.sh first (default for --install)
+      --without-deps    Skip dependency installation even during --install
       --dry-run         Compile only; skip installation
       --install         Compile + install
       --fetch-latest    Query GitHub for the newest release tags
@@ -386,7 +388,8 @@ run_stack() {
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -h|--help) usage; exit 0 ;;
-        --with-deps) WITH_DEPS=1; shift ;;
+        --with-deps) DEPS_PREF="on"; shift ;;
+        --without-deps) DEPS_PREF="off"; shift ;;
         --dry-run) DO_DRY_RUN=1; shift ;;
         --install) DO_INSTALL=1; shift ;;
         --fetch-latest) FETCH_LATEST=1; shift ;;
@@ -417,6 +420,15 @@ if [[ $DO_INSTALL -eq 1 && $DO_DRY_RUN -eq 1 ]]; then
 fi
 
 ensure_tags_file
+if [[ "$DEPS_PREF" = "on" ]]; then
+    WITH_DEPS=1
+elif [[ "$DEPS_PREF" = "off" ]]; then
+    WITH_DEPS=0
+else
+    if [[ $DO_INSTALL -eq 1 ]]; then
+        WITH_DEPS=1
+    fi
+fi
 [[ ${FORCE:-0} -eq 1 ]] && FORCE_UPDATE=1
 
 [[ $RESTORE -eq 1 ]] && restore_tags

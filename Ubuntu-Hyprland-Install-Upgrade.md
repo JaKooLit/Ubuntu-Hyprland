@@ -58,7 +58,8 @@ HYPR_FROM_SOURCE=0 ./install.sh        # force Ubuntu repo build
 - `--set HYPRLAND=v0.53.3`: override specific tags inline.
 - `--only hyprland,hyprwire` / `--skip hyprland-qt-support`: build a subset.
 - `--bundled` / `--system`: toggle whether Hyprland uses bundled or system hyprutils/hyprlang libs (default: system).
-- `--with-deps`: rerun dependency installation before compiling.
+- `--with-deps`: rerun dependency installation (forced on automatically whenever you use `--install` unless you explicitly disable it).
+- `--without-deps`: skip the dependency installer when you already know the system has everything it needs.
 - `--via-helper`: send the plan to `dry-run-build.sh` for summary output.
 
 ### dry-run-build.sh

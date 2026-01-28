@@ -44,7 +44,9 @@
 - `--fetch-latest`, `--force-update`, `--set CLAVE=valor`
 - `--only lista`, `--skip lista`
 - `--bundled` / `--system`
-- `--with-deps`, `--no-fetch`, `--auto`, `--via-helper`
+- `--with-deps`: reinstala dependencias (se ejecuta automáticamente cuando usas `--install`, a menos que lo desactives).
+- `--without-deps`: omite el instalador de dependencias si ya sabes que el sistema está preparado.
+- `--no-fetch`, `--auto`, `--via-helper`
 
 ### dry-run-build.sh
 - `--with-deps`, `--only`, `--skip`
