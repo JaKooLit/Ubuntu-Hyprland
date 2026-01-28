@@ -365,6 +365,7 @@ options_command+=(
     "pokemon" "Add Pokemon color scripts to your terminal?" "OFF"
     "rog" "Are you installing on Asus ROG laptops?" "OFF"
     "dots" "Install KooL's Hyprland dotfiles?" "OFF"
+    "hyprcursor" "Build hyprcursor from source (needed for latest Hyprland)?" "OFF"
 )
 
 # Capture the selected options before the while loop starts
@@ -479,6 +480,8 @@ if [ "$FROM_SOURCE" -eq 1 ]; then
     sleep 1
     execute_script "hyprland-qtutils.sh"
     sleep 1
+    execute_script "hyprcursor.sh"
+    sleep 1
     execute_script "hyprwire.sh"
 
     # Now build and install Hyprland itself
@@ -574,6 +577,10 @@ for option in "${options[@]}"; do
     dots)
         echo "${INFO} Installing pre-configured ${SKY_BLUE}KooL Hyprland dotfiles...${RESET}" | tee -a "$LOG"
         execute_script "dotfiles-branch.sh"
+        ;;
+    hyprcursor)
+        echo "${INFO} Building ${SKY_BLUE}hyprcursor${RESET} from source..." | tee -a "$LOG"
+        execute_script "hyprcursor.sh"
         ;;
     *)
         echo "Unknown option: $option" | tee -a "$LOG"

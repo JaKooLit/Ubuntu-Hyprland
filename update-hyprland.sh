@@ -39,6 +39,7 @@ DEFAULT_MODULES=(
     hyprwayland-scanner
     hyprland-qt-support
     hyprland-qtutils
+    hyprcursor
     hyprwire
     hyprland
 )
@@ -304,13 +305,14 @@ run_stack() {
                 fetch_latest_tags
             fi
         fi
-        local has_wp=0 has_hlprot=0 has_utils=0 has_lang=0 has_aqua=0 has_wire=0
+        local has_wp=0 has_hlprot=0 has_utils=0 has_lang=0 has_aqua=0 has_cursor=0 has_wire=0
         for m in "${modules[@]}"; do
             [[ "$m" == "wayland-protocols-src" ]] && has_wp=1
             [[ "$m" == "hyprland-protocols" ]] && has_hlprot=1
             [[ "$m" == "hyprutils" ]] && has_utils=1
             [[ "$m" == "hyprlang" ]] && has_lang=1
             [[ "$m" == "aquamarine" ]] && has_aqua=1
+            [[ "$m" == "hyprcursor" ]] && has_cursor=1
             [[ "$m" == "hyprwire" ]] && has_wire=1
         done
         if [[ $has_wire -eq 0 ]]; then
@@ -324,6 +326,9 @@ run_stack() {
         fi
         if [[ $has_utils -eq 0 ]]; then
             modules=("hyprutils" "${modules[@]}")
+        fi
+        if [[ $has_cursor -eq 0 ]]; then
+            modules=("hyprcursor" "${modules[@]}")
         fi
         if [[ $has_hlprot -eq 0 ]]; then
             modules=("hyprland-protocols" "${modules[@]}")
