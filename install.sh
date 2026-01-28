@@ -23,6 +23,33 @@ RESET="$(tput sgr0)"
 print_color() {
     printf "%b%s%b\n" "$1" "$2" "$RESET"
 }
+print_help() {
+    cat <<'EOF'
+KooL Ubuntu 26.04 Hyprland installer
+
+Usage: ./install.sh [options]
+
+Options:
+  --preset <file>   Use a preset file for whiptail selections.
+  --from-source     Force building the Hyprland stack from source.
+  -h, --help        Show this help message and exit.
+
+Notes:
+  • Run as a regular user with sudo privileges (not as root).
+  • Script enforces Ubuntu 26.04 since earlier releases ship Hyprland 0.52.2.
+  • Source-build workflow installs updated libraries under /usr/local and
+    adjusts pkg-config / linker paths automatically.
+EOF
+}
+
+for arg in "$@"; do
+    case "$arg" in
+        -h|--help)
+            print_help
+            exit 0
+            ;;
+    esac
+done
 
 # Display warning message
 printf "\n%.0s" {1..2}
