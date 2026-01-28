@@ -4,7 +4,7 @@
 # hyprutils #
 
 #specific branch or release
-tag="v0.8.3"
+tag="v0.11.0"
 # Allow environment override
 if [ -n "${HYPRUTILS_TAG:-}" ]; then tag="$HYPRUTILS_TAG"; fi
 
@@ -45,6 +45,7 @@ if git clone -b "$tag" https://github.com/hyprwm/hyprutils.git; then
   cmake --build ./build --config Release --target all -j"$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)"
   if [ $DO_INSTALL -eq 1 ]; then
     if sudo cmake --install build 2>&1 | tee -a "$MLOG"; then
+      sudo ldconfig 2>/dev/null || true
       printf "${OK} hyprutils installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
       echo -e "${ERROR} Installation failed for hyprutils." 2>&1 | tee -a "$MLOG"
