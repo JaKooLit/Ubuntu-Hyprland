@@ -34,6 +34,7 @@ DEFAULT_MODULES=(
     hyprland-protocols
     hyprutils
     hyprlang
+    re2
     hyprgraphics
     aquamarine
     hyprwayland-scanner
@@ -307,12 +308,13 @@ run_stack() {
                 fetch_latest_tags
             fi
         fi
-        local has_wp=0 has_hlprot=0 has_utils=0 has_lang=0 has_aqua=0 has_cursor=0 has_wire=0
+        local has_wp=0 has_hlprot=0 has_utils=0 has_lang=0 has_re2=0 has_aqua=0 has_cursor=0 has_wire=0
         for m in "${modules[@]}"; do
             [[ "$m" == "wayland-protocols-src" ]] && has_wp=1
             [[ "$m" == "hyprland-protocols" ]] && has_hlprot=1
             [[ "$m" == "hyprutils" ]] && has_utils=1
             [[ "$m" == "hyprlang" ]] && has_lang=1
+            [[ "$m" == "re2" ]] && has_re2=1
             [[ "$m" == "aquamarine" ]] && has_aqua=1
             [[ "$m" == "hyprcursor" ]] && has_cursor=1
             [[ "$m" == "hyprwire" ]] && has_wire=1
@@ -325,6 +327,9 @@ run_stack() {
         fi
         if [[ $has_lang -eq 0 ]]; then
             modules=("hyprlang" "${modules[@]}")
+        fi
+        if [[ $has_re2 -eq 0 ]]; then
+            modules=("re2" "${modules[@]}")
         fi
         if [[ $has_utils -eq 0 ]]; then
             modules=("hyprutils" "${modules[@]}")

@@ -482,6 +482,8 @@ if [ "$FROM_SOURCE" -eq 1 ]; then
     sleep 1
     execute_script "hyprcursor.sh"
     sleep 1
+    execute_script "re2.sh"
+    sleep 1
     execute_script "hyprwire.sh"
 
     # Now build and install Hyprland itself

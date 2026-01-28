@@ -21,6 +21,7 @@ hyprland_extra_deps=(
   libxcb-errors-dev
   libre2-dev
   libudis86-dev
+  libglaze-dev
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##

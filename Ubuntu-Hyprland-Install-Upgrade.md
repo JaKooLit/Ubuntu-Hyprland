@@ -24,6 +24,7 @@ Ubuntu 26.04 ships Hyprland 0.52.2 in the official repositories. This project ke
 - `update-hyprland.sh` orchestrates upgrades/dry-runs for the Hyprland stack without running the full interactive installer.
 - `dry-run-build.sh` compiles everything with `DRY_RUN=1` so you can verify tag combos safely.
 - `hypr-tags.env` centralizes every Hyprland-related version tag for both the installer and update tooling.
+- `re2` is compiled from the upstream Google source so `hyprctl` links against the required `string_view` APIs (Ubuntu’s repo version is too old).
 
 ## What's new in the 26.04 branch
 

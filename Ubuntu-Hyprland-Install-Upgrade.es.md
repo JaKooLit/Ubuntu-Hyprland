@@ -24,6 +24,7 @@
 - `update-hyprland.sh` replica la herramienta usada en Debian pero adaptada al conjunto de scripts de Ubuntu.
 - `dry-run-build.sh` compila cada módulo con `DRY_RUN=1` y genera un resumen PASS/FAIL.
 - `hypr-tags.env` concentra todas las versiones (actualizado a Hyprland v0.53.3).
+- `re2` se compila desde la fuente oficial de Google para que `hyprctl` aproveche las API con `string_view` (la versión del repo de Ubuntu es demasiado vieja).
 
 ## Novedades en la rama 26.04
 
