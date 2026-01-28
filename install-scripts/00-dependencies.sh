@@ -47,6 +47,7 @@ dependencies=(
     libtomlplusplus-dev
     libpango1.0-dev
     libgdk-pixbuf-2.0-dev
+    librsvg2-dev
     libxcb-keysyms1-dev
     libwayland-client0
     libxcb-ewmh-dev
