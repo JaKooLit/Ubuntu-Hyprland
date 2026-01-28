@@ -250,6 +250,17 @@ done
 printf "\n%.0s" {1..1}
 printf "\n%s${SKY_BLUE}Attempting to remove selected directories${RESET}\n" "${NOTE}"
 remove_directories /tmp/selected_directories.txt
+RE2_BACKUP_DIR="/usr/lib/x86_64-linux-gnu/hyprland-re2-backup"
+if [ -d "$RE2_BACKUP_DIR" ]; then
+    echo "${INFO} Restoring original libre2 libraries from $RE2_BACKUP_DIR ..."
+    if sudo cp -a "$RE2_BACKUP_DIR"/libre2.so* /usr/lib/x86_64-linux-gnu/ 2>/dev/null; then
+        sudo ldconfig >/dev/null 2>&1 || true
+        echo "${OK} Distro libre2 libraries restored."
+        sudo rm -rf "$RE2_BACKUP_DIR"
+    else
+        echo "${WARN} Unable to restore libre2 automatically. Please restore manually from $RE2_BACKUP_DIR."
+    fi
+fi
 
 printf "\n%.0s" {1..1}
 echo -e "$MAGENTA Hyprland and related components have been uninstalled.$RESET"

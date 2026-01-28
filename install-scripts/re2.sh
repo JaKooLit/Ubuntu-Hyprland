@@ -40,6 +40,15 @@ if git clone --depth=1 -b "$tag" https://github.com/google/re2.git "$SRC_DIR"; t
         if sudo cmake --install "$BUILD_DIR" 2>&1 | tee -a "$MLOG"; then
             sudo ldconfig 2>/dev/null || true
             printf "${OK} re2 $tag installed successfully.\n" | tee -a "$MLOG"
+            BACKUP_DIR="/usr/lib/x86_64-linux-gnu/hyprland-re2-backup"
+            if [ ! -d "$BACKUP_DIR" ]; then
+                echo "${INFO} Backing up distro libre2 artifacts to $BACKUP_DIR" | tee -a "$MLOG"
+                sudo mkdir -p "$BACKUP_DIR"
+                sudo cp -a /usr/lib/x86_64-linux-gnu/libre2.so* "$BACKUP_DIR"/ 2>/dev/null || true
+            fi
+            echo "${INFO} Replacing distro libre2 with source-built version" | tee -a "$MLOG"
+            sudo cp -a /usr/local/lib/libre2.so* /usr/lib/x86_64-linux-gnu/ || true
+            sudo ldconfig 2>/dev/null || true
         else
             echo -e "${ERROR} Installation failed for re2 $tag" | tee -a "$MLOG"
         fi
