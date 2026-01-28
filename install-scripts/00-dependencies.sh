@@ -9,6 +9,7 @@ if command -v add-apt-repository >/dev/null 2>&1; then
     sudo apt update || true
 fi
 
+
 # packages neeeded
 dependencies=(
     build-essential
@@ -127,6 +128,21 @@ fi
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_dependencies.log"
+
+# Ensure deb-src lines are enabled so apt build-dep works (required for wlroots)
+enable_deb_src_repos() {
+    local updated=0
+    if ! grep -Rqs '^deb-src ' /etc/apt/sources.list /etc/apt/sources.list.d 2>/dev/null; then
+        echo "${INFO} Enabling deb-src entries for apt build-dep support..." | tee -a "$LOG"
+        sudo sed -i 's/^#\s*deb-src/deb-src/' /etc/apt/sources.list
+        updated=1
+    fi
+    if [ $updated -eq 1 ]; then
+        sudo apt update || true
+    fi
+}
+
+enable_deb_src_repos
 
 # Proactively remove conflicting distro dev packages when using source-built libs
 # (avoid overshadowing /usr/local hyprutils/hyprlang)

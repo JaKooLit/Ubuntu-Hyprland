@@ -30,39 +30,49 @@ mkdir -p "$BUILD_ROOT"
 SRC_ROOT="${SRC_ROOT:-$BUILD_ROOT/src}"
 mkdir -p "$SRC_ROOT"
 
+# Detect whether we can safely use tput (interactive terminal)
+USE_TPUT=0
+if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+    if tput colors >/dev/null 2>&1; then
+        USE_TPUT=1
+    fi
+fi
+
 # Show progress function
 show_progress() {
     local pid=$1
     local package_name=$2
-    local spin_chars=("●○○○○○○○○○" "○●○○○○○○○○" "○○●○○○○○○○" "○○○●○○○○○○" "○○○○●○○○○" \
-                      "○○○○○●○○○○" "○○○○○○●○○○" "○○○○○○○●○○" "○○○○○○○○●○" "○○○○○○○○○●") 
-    local i=0
-
-    tput civis 
-    printf "\r${INFO} Installing ${YELLOW}%s${RESET} ..." "$package_name"
-
-    while ps -p $pid &> /dev/null; do
-        printf "\r${INFO} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
-        i=$(( (i + 1) % 10 ))  
-        sleep 0.3  
-    done
-
-    printf "\r${INFO} Installing ${YELLOW}%s${RESET} ... Done!%-20s \n\n" "$package_name" ""
-    tput cnorm  
+    if [ $USE_TPUT -eq 1 ]; then
+        local spin_chars=("●○○○○○○○○○" "○●○○○○○○○○" "○○●○○○○○○○" "○○○●○○○○○○" "○○○○●○○○○" \
+                          "○○○○○●○○○○" "○○○○○○●○○○" "○○○○○○○●○○" "○○○○○○○○●○" "○○○○○○○○○●")
+        local i=0
+        tput civis
+        printf "\r${INFO} Installing ${YELLOW}%s${RESET} ..." "$package_name"
+        while ps -p $pid &> /dev/null; do
+            printf "\r${INFO} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
+            i=$(((i + 1) % 10))
+            sleep 0.3
+        done
+        printf "\r${INFO} Installing ${YELLOW}%s${RESET} ... Done!%-20s \n\n" "$package_name" ""
+        tput cnorm
+    else
+        printf "%s Installing %s (non-interactive mode, see log)...\n" "${INFO}" "${YELLOW}${package_name}${RESET}"
+        wait $pid
+    fi
 }
 
 
 # Function for installing packages with a progress bar
-install_package() { 
+install_package() {
   if dpkg -l | grep -q -w "$1" ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
-  else 
+  else
     (
       stdbuf -oL sudo apt install -y "$1" 2>&1
     ) >> "$LOG" 2>&1 &
     PID=$!
-    show_progress $PID "$1" 
-    
+    show_progress $PID "$1"
+
     # Double check if the package successfully installed
     if dpkg -l | grep -q -w "$1"; then
         echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
