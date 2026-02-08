@@ -19,7 +19,7 @@ hypr_package=(
     gvfs-backends
     inxi
     imagemagick
-    kitty
+    alacritty
     nano
     pavucontrol
     playerctl
@@ -41,6 +41,7 @@ hypr_package=(
     xdg-user-dirs
     xdg-utils
     yad
+    tmux
 )
 
 # the following packages can be deleted. however, dotfiles may not work properly
