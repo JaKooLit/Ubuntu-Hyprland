@@ -10,7 +10,7 @@ packages=(
   wl-clipboard
   cliphist
   wlogout
-  kitty
+  alacritty
   hyprland
 )
 
