@@ -2,7 +2,7 @@
 
 # 💌 KooL's Ubuntu Hyprland Install Script 💌
 
-## For Ubuntu 2.04 Resolute Raccoon ONLY!!!
+## For Ubuntu 26.04 Resolute Raccoon ONLY!!!
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="400" />

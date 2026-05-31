@@ -5,6 +5,8 @@
 
 hyprgraphics=(
 	libmagic-dev
+	libjpeg-dev
+	libwebp-dev
 )
 
 #specific branch or release
